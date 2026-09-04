@@ -380,7 +380,7 @@
     color: var(--tc-stone);
   }
 
-  /* ── DECISION TREE ───────────────────────────────────────────────────── */
+  /* ── TWO ROUTES SECTION SHELL ────────────────────────────────────────── */
   .section-tree {
     padding: var(--tc-space-3xl) 0;
     background: var(--tc-chalk);
@@ -391,161 +391,6 @@
     max-width: 560px;
     margin: 0 auto var(--tc-space-2xl);
   }
-
-  /* Step 1: Question card */
-  .tree-question-card {
-    background: var(--tc-ink);
-    padding: var(--tc-space-2xl) var(--tc-space-xl);
-    max-width: 680px;
-    margin: 0 auto var(--tc-space-xl);
-    text-align: center;
-    position: relative;
-  }
-  .tree-question-card::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: var(--tc-space-xl);
-    right: var(--tc-space-xl);
-    height: 0.5px;
-    background: rgba(182,176,159,0.2);
-  }
-  .tree-question-label {
-    font-family: var(--tc-font-body);
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--tc-stone);
-    margin-bottom: var(--tc-space-md);
-  }
-  .tree-question-text {
-    font-family: var(--tc-font-display);
-    font-size: clamp(22px, 3vw, 30px);
-    font-weight: 400;
-    color: var(--tc-chalk);
-    line-height: 1.2;
-    margin-bottom: var(--tc-space-xl);
-  }
-  .tree-btn-group {
-    display: flex;
-    gap: var(--tc-space-md);
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .tree-btn {
-    font-family: var(--tc-font-body);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 14px 40px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.15s ease;
-    border-radius: 0;
-  }
-  .tree-btn-yes {
-    background: var(--tc-lime);
-    color: var(--tc-ink);
-  }
-  .tree-btn-yes:hover { background: #b8e020; }
-  .tree-btn-no {
-    background: transparent;
-    color: var(--tc-chalk);
-    border: 0.5px solid rgba(182,176,159,0.5);
-  }
-  .tree-btn-no:hover { border-color: var(--tc-chalk); }
-
-  /* Paths container */
-  .tree-paths {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--tc-space-md);
-    max-width: 860px;
-    margin: 0 auto;
-  }
-  @media (max-width: 680px) { .tree-paths { grid-template-columns: 1fr; } }
-
-  .tree-path {
-    border: 0.5px solid var(--tc-border-strong);
-    padding: var(--tc-space-xl) var(--tc-space-lg);
-    background: var(--tc-white);
-    transition: opacity 0.25s ease, transform 0.25s ease;
-    position: relative;
-  }
-  .tree-path.dimmed {
-    opacity: 0.3;
-    pointer-events: none;
-  }
-  .tree-path.highlighted {
-    border-color: var(--tc-ink);
-    box-shadow: inset 0 0 0 1px var(--tc-ink);
-  }
-
-  .tree-path-badge {
-    display: inline-block;
-    background: var(--tc-ink);
-    padding: 4px 12px;
-    margin-bottom: var(--tc-space-md);
-  }
-  .tree-path-badge span {
-    font-size: 9px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--tc-lime);
-    font-family: var(--tc-font-body);
-  }
-  .tree-path-badge.badge-b {
-    background: var(--tc-chalk);
-  }
-  .tree-path-badge.badge-b span { color: var(--tc-stone); }
-
-  .tree-path-title {
-    font-family: var(--tc-font-body);
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--tc-ink);
-    margin-bottom: var(--tc-space-sm);
-  }
-  .tree-path-body {
-    font-family: var(--tc-font-body);
-    font-size: 13px;
-    font-weight: 300;
-    color: var(--tc-stone);
-    line-height: 1.7;
-    margin-bottom: var(--tc-space-lg);
-  }
-
-  .tree-reset {
-    text-align: center;
-    margin-top: var(--tc-space-lg);
-  }
-  .tree-reset button {
-    background: none;
-    border: none;
-    font-family: var(--tc-font-body);
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--tc-stone);
-    cursor: pointer;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-  .tree-reset button:hover { color: var(--tc-ink); }
-  .tree-reset { display: none; }
-
-  /* Connector arrow */
-  .tree-connector {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 40px;
-    margin-bottom: var(--tc-space-xs);
-  }
-  .tree-connector svg { color: var(--tc-stone); }
 
   /* ── KEY LINKS ───────────────────────────────────────────────────────── */
   .section-links { padding: var(--tc-space-3xl) 0; background: var(--tc-linen); }
@@ -763,6 +608,350 @@
   .mb-md  { margin-bottom: var(--tc-space-md); }
   .mb-lg  { margin-bottom: var(--tc-space-lg); }
   .mb-xl  { margin-bottom: var(--tc-space-xl); }
+
+  /* ── VIEW SWITCHING ──────────────────────────────────────────────────── */
+  [hidden] { display: none !important; }
+
+  /* ── TWO ROUTES (v2.0 — both routes are in-portal doors, no gate question) ── */
+  .routes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--tc-space-md);
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  @media (max-width: 680px) { .routes-grid { grid-template-columns: 1fr; } }
+
+  .route-card {
+    border: 0.5px solid var(--tc-border-strong);
+    padding: var(--tc-space-xl) var(--tc-space-lg);
+    background: var(--tc-white);
+    display: flex;
+    flex-direction: column;
+  }
+  .route-card-badge {
+    display: inline-block;
+    background: var(--tc-ink);
+    padding: 4px 12px;
+    margin-bottom: var(--tc-space-md);
+    align-self: flex-start;
+  }
+  .route-card-badge span {
+    font-family: var(--tc-font-body);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--tc-chalk);
+  }
+  .route-card-badge.badge-b { background: var(--tc-chalk); }
+  .route-card-badge.badge-b span { color: var(--tc-stone); }
+  .route-card-title {
+    font-family: var(--tc-font-body);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--tc-ink);
+    margin-bottom: var(--tc-space-sm);
+  }
+  .route-card-body {
+    font-family: var(--tc-font-body);
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--tc-stone);
+    line-height: 1.7;
+    margin-bottom: var(--tc-space-lg);
+    flex: 1;
+  }
+  .route-card-btn {
+    width: 100%;
+    text-align: center;
+    display: block;
+    padding: 14px;
+    box-sizing: border-box;
+  }
+  .route-card-btn + .route-card-btn { margin-top: 10px; }
+
+  /* ── FORMS (Views 2–4) ───────────────────────────────────────────────── */
+  .section-form { padding: var(--tc-space-3xl) 0; background: var(--tc-white); min-height: 55vh; }
+
+  .tc-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--tc-font-body);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--tc-ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    margin-bottom: var(--tc-space-xl);
+  }
+  .tc-back-link:hover { color: #1a1a1a; }
+
+  .tc-form-header { max-width: var(--tc-content-width); margin-bottom: var(--tc-space-xl); }
+
+  .tc-field { margin-bottom: var(--tc-space-lg); max-width: var(--tc-content-width); }
+  .tc-field-label {
+    display: block;
+    font-family: var(--tc-font-body);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--tc-ink);
+    margin-bottom: 8px;
+  }
+  .tc-field-hint {
+    font-family: var(--tc-font-body);
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--tc-stone);
+    margin-top: 6px;
+  }
+  .tc-field-error {
+    font-family: var(--tc-font-body);
+    font-size: 12px;
+    font-weight: 500;
+    color: #C0392B;
+    margin-top: 6px;
+    display: none;
+  }
+  .tc-field.has-error .tc-field-error { display: block; }
+  .tc-field.has-error .tc-input { border-color: #C0392B; }
+
+  .tc-input {
+    font-family: var(--tc-font-body);
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--tc-ink);
+    background: var(--tc-white);
+    border: 0.5px solid var(--tc-stone);
+    border-radius: 0;
+    padding: 10px 14px;
+    width: 100%;
+    outline: none;
+    box-sizing: border-box;
+  }
+  .tc-input:focus { border-color: var(--tc-ink); }
+  .tc-input::placeholder { color: var(--tc-stone); }
+  textarea.tc-input { resize: vertical; line-height: 1.6; font-family: var(--tc-font-body); }
+  select.tc-input {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='1.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px;
+    padding-right: 34px;
+    cursor: pointer;
+  }
+
+  /* ── QUESTIONNAIRE (View 3) ──────────────────────────────────────────── */
+  .qst-warning {
+    background: var(--tc-ink);
+    color: var(--tc-chalk);
+    border: 0.5px solid var(--tc-border-strong);
+    padding: var(--tc-space-md) var(--tc-space-lg);
+    font-family: var(--tc-font-body);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.6;
+    margin-bottom: var(--tc-space-xl);
+  }
+  .qst-warning strong { font-weight: 500; }
+
+  .qst-stepper {
+    font-family: var(--tc-font-body);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--tc-stone);
+    margin-bottom: var(--tc-space-xs);
+  }
+  .qst-section-title {
+    font-family: var(--tc-font-display);
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 400;
+    color: var(--tc-ink);
+    margin-bottom: var(--tc-space-xl);
+  }
+
+  .qst-question {
+    border: 0.5px solid var(--tc-border-strong);
+    background: var(--tc-linen);
+    padding: var(--tc-space-lg);
+    margin-bottom: var(--tc-space-lg);
+  }
+  .qst-question-meta {
+    font-family: var(--tc-font-body);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--tc-stone);
+    margin-bottom: var(--tc-space-sm);
+  }
+  .qst-question-text {
+    font-family: var(--tc-font-body);
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--tc-ink);
+    line-height: 1.6;
+    margin-bottom: var(--tc-space-md);
+    white-space: pre-line;
+  }
+  .qst-question-helper {
+    font-family: var(--tc-font-body);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--tc-ink);
+    background: var(--tc-chalk);
+    border: 0.5px solid var(--tc-border-strong);
+    padding: 8px 12px;
+    margin-bottom: var(--tc-space-md);
+  }
+  .qst-input-row { margin-bottom: var(--tc-space-md); }
+  .qst-input-row:last-child { margin-bottom: 0; }
+  .qst-input-label {
+    display: block;
+    font-family: var(--tc-font-body);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--tc-stone);
+    margin-bottom: 6px;
+  }
+
+  .qst-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--tc-space-xl);
+    gap: var(--tc-space-md);
+  }
+  .qst-nav-spacer { flex: 1; }
+
+  .qst-declaration-text {
+    font-family: var(--tc-font-body);
+    font-style: normal;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--tc-ink);
+    line-height: 1.7;
+    background: var(--tc-linen);
+    border: 0.5px solid var(--tc-border-strong);
+    padding: var(--tc-space-lg);
+    margin-bottom: var(--tc-space-xl);
+    max-width: var(--tc-content-width);
+  }
+
+  /* ── UPLOAD (View 4) ─────────────────────────────────────────────────── */
+  .upload-dropzone {
+    border: 0.5px dashed var(--tc-border-strong);
+    background: var(--tc-chalk);
+    padding: var(--tc-space-2xl) var(--tc-space-lg);
+    text-align: center;
+    max-width: var(--tc-content-width);
+    margin-bottom: var(--tc-space-lg);
+  }
+  .upload-dropzone.is-dragover { border-color: var(--tc-ink); background: var(--tc-linen); }
+  .upload-dropzone p { font-family: var(--tc-font-body); font-size: 13px; color: var(--tc-stone); margin-top: var(--tc-space-md); }
+
+  .upload-error {
+    border: 0.5px solid #C0392B;
+    background: var(--tc-white);
+    padding: var(--tc-space-lg);
+    max-width: var(--tc-content-width);
+    margin-bottom: var(--tc-space-lg);
+  }
+  .upload-error-message {
+    font-family: var(--tc-font-body);
+    font-size: 14px;
+    font-weight: 500;
+    color: #C0392B;
+    margin-bottom: var(--tc-space-md);
+  }
+
+  .upload-filename {
+    font-family: var(--tc-font-body);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--tc-ink);
+    margin-bottom: var(--tc-space-lg);
+  }
+
+  /* ── READ-ONLY RECAP (Views 4 & 5) ───────────────────────────────────── */
+  .recap-section-title {
+    font-family: var(--tc-font-body);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--tc-ink);
+    border-bottom: 0.5px solid var(--tc-border-strong);
+    padding-bottom: 8px;
+    margin: var(--tc-space-xl) 0 var(--tc-space-md);
+  }
+  .recap-section-title:first-child { margin-top: 0; }
+  .recap-question {
+    border-bottom: 0.5px solid var(--tc-border);
+    padding: var(--tc-space-md) 0;
+  }
+  .recap-question-text {
+    font-family: var(--tc-font-body);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--tc-ink);
+    margin-bottom: var(--tc-space-sm);
+    line-height: 1.55;
+  }
+  .recap-values {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--tc-space-md);
+  }
+  @media (max-width: 680px) { .recap-values { grid-template-columns: 1fr; } }
+  .recap-value-label {
+    font-family: var(--tc-font-body);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--tc-stone);
+    margin-bottom: 4px;
+  }
+  .recap-value {
+    font-family: var(--tc-font-body);
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--tc-ink);
+    line-height: 1.6;
+    min-height: 1em;
+    white-space: pre-line;
+  }
+  .recap-summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--tc-space-lg);
+    max-width: var(--tc-content-width);
+    margin-bottom: var(--tc-space-xl);
+  }
+  @media (max-width: 680px) { .recap-summary-grid { grid-template-columns: 1fr; } }
+
+  .confirm-heading {
+    font-family: var(--tc-font-display);
+    font-size: clamp(30px, 4vw, 42px);
+    font-weight: 700;
+    color: var(--tc-ink);
+    margin-bottom: var(--tc-space-sm);
+  }
 </style>
 </head>
 <body>
@@ -770,13 +959,15 @@
 <!-- ── NAV ──────────────────────────────────────────────────────────────────── -->
 <nav class="nav">
   <div class="nav-inner">
-    <a href="#" class="nav-logo" aria-label="The Corporate">
+    <a href="#" class="nav-logo" aria-label="The Corporate" onclick="event.preventDefault(); showView('view-landing');">
       <div class="nav-logo-mark"><span>C</span></div>
       <span class="nav-logo-wordmark">The Corporate</span>
     </a>
     <span class="nav-meta">Supplier Sustainability Portal · 2026</span>
   </div>
 </nav>
+
+<div id="view-landing" class="tc-view">
 
 <!-- ── HERO ──────────────────────────────────────────────────────────────────── -->
 <section class="hero" id="top">
@@ -874,82 +1065,58 @@
   </div>
 </section>
 
-<!-- ── DECISION TREE ──────────────────────────────────────────────────────── -->
+<!-- ── TWO ROUTES ──────────────────────────────────────────────────────────── -->
 <section class="section-tree" id="submit">
   <div class="tc-page">
     <div class="tree-header">
       <p class="tc-subhead mb-md">Your Submission Path</p>
       <h2 class="tc-h2">Two routes. One destination.</h2>
       <p class="tc-body mt-md" style="color:var(--tc-stone); font-size:14px;">
-        We respect your time. If you already hold a current EcoVadis Scorecard,
-        you have an expedited path. Answer the question below to find out where to start.
+        Read both options below and choose the one that fits your current sustainability
+        documentation. Both routes lead to the same assessment.
       </p>
     </div>
 
-    <!-- Question card -->
-    <div class="tree-question-card" id="tree-question">
-      <div class="tree-question-label">Step 1 of 2 — Qualification Check</div>
-      <div class="tree-question-text">
-        Do you hold a valid EcoVadis Scorecard issued within the last 12 months?
-      </div>
-      <div class="tree-btn-group">
-        <button class="tree-btn tree-btn-yes" onclick="choosePath('yes')">Yes, I Have a Scorecard</button>
-        <button class="tree-btn tree-btn-no" onclick="choosePath('no')">No, I Don't</button>
-      </div>
-    </div>
+    <div class="routes-grid">
 
-    <!-- Connector -->
-    <div class="tree-connector" id="tree-connector" style="display:none;">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M12 5v14M5 12l7 7 7-7"/>
-      </svg>
-    </div>
-
-    <!-- Two paths -->
-    <div class="tree-paths" id="tree-paths">
-
-      <!-- Path A: EcoVadis -->
-      <div class="tree-path" id="path-a">
-        <div class="tree-path-badge"><span>Path A — EcoVadis</span></div>
-        <div class="tree-path-title">Submit Your Scorecard</div>
-        <div class="tree-path-body">
-          Suppliers with a current EcoVadis Scorecard (score ≥ 45) are exempt from
-          the detailed technical questionnaire. Simply submit your scorecard link and
-          our Procurement team will be in touch to confirm your status.
+      <!-- Card 1: EcoVadis Scorecard -->
+      <div class="route-card">
+        <div class="route-card-badge"><span>EcoVadis Scorecard</span></div>
+        <div class="route-card-title">Submit Your Scorecard</div>
+        <div class="route-card-body">
+          Suppliers holding a valid EcoVadis Scorecard issued within the last 12 months
+          may submit their scorecard details instead of completing the full questionnaire.
           <br><br>
           Estimated time: <strong style="color:var(--tc-ink); font-weight:500;">5 minutes</strong>
         </div>
-        <a href="mailto:sustainability@thecorporate.com?subject=EcoVadis Scorecard Submission — [Your Company Name]&body=Please include your EcoVadis scorecard link and company name." class="tc-btn-primary" style="width:100%; text-align:center; display:block; padding:14px;">
-          Submit Scorecard by Email
-        </a>
+        <button type="button" class="tc-btn-primary route-card-btn" style="border:none;" onclick="showView('view-ecovadis')">
+          Submit EcoVadis Scorecard
+        </button>
       </div>
 
-      <!-- Path B: Full Questionnaire -->
-      <div class="tree-path" id="path-b">
-        <div class="tree-path-badge badge-b"><span>Path B — Full Assessment</span></div>
-        <div class="tree-path-title">Download & Complete the Questionnaire</div>
-        <div class="tree-path-body">
-          Complete the Smart Sustainability Questionnaire covering 8 sections aligned
-          to ESRS E1, E2, E3, E4, E5, S2, and G1. The file includes data-validated
-          dropdowns and clear instructions for each section.
+      <!-- Card 2: Full Questionnaire -->
+      <div class="route-card">
+        <div class="route-card-badge badge-b"><span>Full Questionnaire</span></div>
+        <div class="route-card-title">Complete the ESRS-Aligned Assessment</div>
+        <div class="route-card-body">
+          Suppliers without a current scorecard complete the seven-section sustainability
+          assessment. Fill it in directly in the portal, or download the workbook, complete
+          it offline, and upload the finished file back for review.
           <br><br>
           Estimated time: <strong style="color:var(--tc-ink); font-weight:500;">45–60 minutes</strong>
         </div>
-        <a href="The_Corporate_Supplier_Questionnaire_2026.xlsx" download class="tc-btn-secondary" style="width:100%; text-align:center; display:block; padding:14px;">
-          Download Questionnaire (Excel)
+        <button type="button" class="tc-btn-primary route-card-btn" onclick="showView('view-questionnaire')">
+          Fill in the Portal
+        </button>
+        <button type="button" class="tc-btn-secondary route-card-btn" onclick="showView('view-upload')">
+          Upload Completed File
+        </button>
+        <a href="assets/The_Corporate_Supplier_Questionnaire_2026.xlsx" download class="tc-btn-ghost route-card-btn">
+          Download Assessment
         </a>
-        <p style="font-size:11px; color:var(--tc-stone); letter-spacing:0.08em; margin-top:10px; text-align:center;">
-          Return completed file to sustainability@thecorporate.com
-        </p>
       </div>
 
     </div>
-
-    <!-- Reset -->
-    <div class="tree-reset" id="tree-reset">
-      <button onclick="resetTree()">Start Over</button>
-    </div>
-
   </div>
 </section>
 
@@ -1071,44 +1238,724 @@
   </div>
 </footer>
 
-<!-- ── DECISION TREE LOGIC ────────────────────────────────────────────────── -->
+</div><!-- /#view-landing -->
+
+<!-- ── VIEW 2 — ECOVADIS SUBMISSION ────────────────────────────────────────── -->
+<div id="view-ecovadis" class="tc-view" hidden>
+  <section class="section-form">
+    <div class="tc-page">
+      <button type="button" class="tc-back-link" onclick="showView('view-landing')">&larr; Back to Landing Page</button>
+
+      <div class="tc-form-header">
+        <p class="tc-subhead mb-md">EcoVadis Door</p>
+        <h2 class="tc-h2">Submit your EcoVadis Scorecard.</h2>
+        <p class="tc-body mt-md" style="color:var(--tc-stone);">
+          Your scorecard must have been issued within the last 12 months. A date outside
+          that window, or in the future, cannot be accepted through this route.
+        </p>
+      </div>
+
+      <form id="ecovadis-form" novalidate>
+        <div class="tc-field">
+          <label class="tc-field-label" for="ev-company">Company Legal Name</label>
+          <input class="tc-input" type="text" id="ev-company">
+          <div class="tc-field-error">Enter your company's legal name.</div>
+        </div>
+        <div class="tc-field">
+          <label class="tc-field-label" for="ev-contact">Contact Name</label>
+          <input class="tc-input" type="text" id="ev-contact">
+          <div class="tc-field-error">Enter a contact name.</div>
+        </div>
+        <div class="tc-field">
+          <label class="tc-field-label" for="ev-email">Contact Email</label>
+          <input class="tc-input" type="email" id="ev-email">
+          <div class="tc-field-error">Enter a valid email address.</div>
+        </div>
+        <div class="tc-field">
+          <label class="tc-field-label" for="ev-link">EcoVadis Scorecard Link</label>
+          <input class="tc-input" type="url" id="ev-link" placeholder="https://">
+          <div class="tc-field-error">Enter a valid URL.</div>
+        </div>
+        <div class="tc-field">
+          <label class="tc-field-label" for="ev-date">Scorecard Issue Date</label>
+          <input class="tc-input" type="date" id="ev-date">
+          <div class="tc-field-hint">Must fall within the 12 months preceding today.</div>
+          <div class="tc-field-error">The scorecard issue date must fall within the 12 months preceding today.</div>
+        </div>
+
+        <button type="submit" class="tc-btn-primary">Submit</button>
+      </form>
+    </div>
+  </section>
+</div>
+
+<!-- ── VIEW 3 — GUIDED QUESTIONNAIRE ───────────────────────────────────────── -->
+<div id="view-questionnaire" class="tc-view" hidden>
+  <section class="section-form">
+    <div class="tc-page">
+      <button type="button" class="tc-back-link" onclick="showView('view-landing')">&larr; Back to Landing Page</button>
+
+      <div class="qst-warning">
+        Your progress is not saved. Refreshing this page, navigating back, or closing the
+        tab will lose all answers. Complete the assessment in one sitting.
+      </div>
+
+      <div class="qst-stepper" id="qst-stepper">Section 1 of 7</div>
+      <div id="qst-sections"><!-- populated by script --></div>
+
+      <div class="qst-nav">
+        <button type="button" class="tc-btn-secondary" id="qst-back" onclick="qstGoTo(qstStep - 1)">Back</button>
+        <div class="qst-nav-spacer"></div>
+        <button type="button" class="tc-btn-primary" id="qst-next" onclick="qstGoTo(qstStep + 1)">Next</button>
+        <button type="button" class="tc-btn-primary" id="qst-submit" hidden onclick="submitQuestionnaire()">Submit</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ── VIEW 4 — UPLOAD COMPLETED FILE ──────────────────────────────────────── -->
+<div id="view-upload" class="tc-view" hidden>
+  <section class="section-form">
+    <div class="tc-page">
+      <button type="button" class="tc-back-link" onclick="showView('view-landing')">&larr; Back to Landing Page</button>
+
+      <div class="tc-form-header">
+        <p class="tc-subhead mb-md">Upload Door</p>
+        <h2 class="tc-h2">Upload your completed file.</h2>
+        <p class="tc-body mt-md" style="color:var(--tc-stone);">
+          Upload the completed questionnaire — the Excel workbook, or a CSV export of it.
+          The file is read in your browser and never leaves your device.
+        </p>
+      </div>
+
+      <div id="upload-initial">
+        <div class="upload-dropzone" id="upload-dropzone">
+          <input type="file" id="upload-input" accept=".xlsx,.csv" style="display:none;">
+          <button type="button" class="tc-btn-primary" onclick="document.getElementById('upload-input').click()">Choose File</button>
+          <p>Drag and drop an .xlsx or .csv file here, or choose a file. Maximum 10 MB.</p>
+        </div>
+        <p class="tc-body" style="font-size:13px; color:var(--tc-stone); max-width: var(--tc-content-width);">
+          Don't have the file yet?
+          <a href="assets/The_Corporate_Supplier_Questionnaire_2026.xlsx" download style="color:var(--tc-ink);">Download the template</a>.
+        </p>
+      </div>
+
+      <div id="upload-error" hidden></div>
+
+      <div id="upload-review" hidden>
+        <div class="upload-filename" id="upload-filename"></div>
+        <div id="upload-review-body"></div>
+        <div style="margin-top: var(--tc-space-xl); display:flex; gap: var(--tc-space-md); flex-wrap:wrap;">
+          <button type="button" class="tc-btn-secondary" onclick="resetUpload()">Replace File</button>
+          <button type="button" class="tc-btn-primary" onclick="submitUpload()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ── VIEW 5 — CONFIRMATION ───────────────────────────────────────────────── -->
+<div id="view-confirmation" class="tc-view" hidden>
+  <section class="section-form">
+    <div class="tc-page">
+      <div class="confirm-heading">Successfully submitted.</div>
+      <p class="tc-body mb-xl" style="color:var(--tc-stone); max-width: var(--tc-content-width);">
+        Below is a read-only recap of what you submitted.
+      </p>
+      <div id="confirmation-body"></div>
+      <button type="button" class="tc-btn-primary mt-xl" onclick="showView('view-landing')">Back to Landing Page</button>
+    </div>
+  </section>
+</div>
+
+<!-- ── SheetJS (xlsx) — CDN only, parses uploaded workbooks entirely in the browser ── -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<!-- ── APP LOGIC — Views 2–5 (session-only, nothing transmitted) ──────────── -->
 <script>
-  function choosePath(choice) {
-    const pathA   = document.getElementById("path-a");
-    const pathB   = document.getElementById("path-b");
-    const reset   = document.getElementById("tree-reset");
-    const connector = document.getElementById("tree-connector");
+(function () {
+  "use strict";
 
-    connector.style.display = "flex";
-    reset.style.display = "block";
+  /* ── Question inventory — exact text/order from product-spec.md Section 8, ── */
+  /* ── verified against The_Corporate_Supplier_Questionnaire_2026.xlsx.       ── */
+  var STATUS_OPTIONS = ["Not Started", "In Progress", "Complete", "N/A", "EcoVadis Bypass"];
 
-    if (choice === "yes") {
-      pathA.classList.remove("dimmed");
-      pathA.classList.add("highlighted");
-      pathB.classList.add("dimmed");
-      pathB.classList.remove("highlighted");
+  var SECTIONS = [
+    {
+      code: "S1", title: "General Information & EcoVadis Bypass", esrs: "All ESRS",
+      questions: [
+        { row: 6, esrsRef: "—", type: "text-multiline",
+          text: "Legal name and registered country of the responding entity." },
+        { row: 7, esrsRef: "—", type: "text-multiline",
+          text: "Primary contact name, title, and email address for this assessment." },
+        { row: 8, esrsRef: "Bypass", type: "dropdown",
+          options: ["Yes — Scorecard Attached", "No — Will Complete Questionnaire"],
+          text: "Do you hold a valid EcoVadis Sustainability Scorecard (issued within the last 12 months)? If YES: attach scorecard link in the Notes column and proceed directly to the Status column. Sections S2–S7 are not required." },
+        { row: 9, esrsRef: "—", type: "text",
+          text: "EcoVadis Scorecard Link (if applicable). Paste URL or attach document reference." }
+      ]
+    },
+    {
+      code: "S2", title: "Climate & Decarbonisation", esrs: "ESRS E1",
+      questions: [
+        { row: 11, esrsRef: "E1-4", type: "number",
+          text: "Total Scope 1 emissions for last fiscal year (metric tonnes CO₂e). Include verification method." },
+        { row: 12, esrsRef: "E1-4", type: "number",
+          text: "Total Scope 2 emissions for last fiscal year — market-based (metric tonnes CO₂e)." },
+        { row: 13, esrsRef: "E1-4", type: "number",
+          text: "Total Scope 3 emissions for last fiscal year (metric tonnes CO₂e). Specify categories included." },
+        { row: 14, esrsRef: "E1-3", type: "dropdown", options: ["Yes", "No"],
+          text: "Does your organisation have a Science-Based Target (SBTi) validated decarbonisation target?" },
+        { row: 15, esrsRef: "E1-2", type: "textarea",
+          text: "Describe your top three decarbonisation projects currently in progress or planned for the next 24 months. Include estimated tCO₂e reduction and the specific technology being utilised (e.g., electrification of heat, on-site renewables)." },
+        { row: 16, esrsRef: "E1-2", type: "textarea",
+          text: "What are the primary technical or financial barriers preventing you from reaching a 50% reduction in Scope 1 and 2 emissions by 2030?" }
+      ]
+    },
+    {
+      code: "S3", title: "Pollution & PFAS", esrs: "ESRS E2",
+      questions: [
+        { row: 18, esrsRef: "E2-3", type: "number",
+          text: "Total weight of substances of concern (REACH, SVHC list) used in production last fiscal year (kg)." },
+        { row: 19, esrsRef: "E2-3", type: "dropdown", options: ["Yes", "No"],
+          text: "Do any of your products or production processes contain or utilise PFAS compounds (\"Forever Chemicals\")?",
+          helper: "⚠ AUTO-FLAG: \"Yes\" triggers PFAS Risk review" },
+        { row: 20, esrsRef: "E2-3", type: "textarea",
+          text: "If your products contain PFAS, detail your substitution roadmap. Have you identified viable non-PFAS alternatives? Provide your target date for a complete phase-out." },
+        { row: 21, esrsRef: "E2-2", type: "textarea",
+          text: "Describe your industrial wastewater treatment process. What specific measures are in place to ensure zero leakage of hazardous chemicals into local water systems?" }
+      ]
+    },
+    {
+      code: "S4", title: "Water & Marine Resources", esrs: "ESRS E3",
+      questions: [
+        { row: 23, esrsRef: "E3-1", type: "number",
+          text: "Total water withdrawal last fiscal year (m³). Specify source (municipal, groundwater, surface)." },
+        { row: 24, esrsRef: "E3-1", type: "dropdown", options: ["Yes", "No"],
+          text: "Is your primary production facility located in a high-water-stress region (WRI Aqueduct score ≥3)?" },
+        { row: 25, esrsRef: "E3-2", type: "textarea",
+          text: "Provide details on any water-saving or closed-loop recycling projects implemented at your facility. How has your total water intensity (litres per unit produced) changed over the last three years?" },
+        { row: 26, esrsRef: "E3-2", type: "textarea",
+          text: "If your facility is in a high-water-stress region, what is your operational contingency plan for severe drought conditions to ensure supply continuity to The Corporate?" }
+      ]
+    },
+    {
+      code: "S5", title: "Circular Economy & Waste", esrs: "ESRS E5",
+      questions: [
+        { row: 28, esrsRef: "E5-2", type: "number",
+          text: "Total waste generated last fiscal year (tonnes). Breakdown: landfill / recycled / energy recovery / hazardous." },
+        { row: 29, esrsRef: "E5-4", type: "number",
+          text: "Percentage of post-consumer recycled (PCR) content in the components supplied to The Corporate (%)." },
+        { row: 30, esrsRef: "E5-3", type: "textarea",
+          text: "How are you incorporating circularity into the specific components you supply to The Corporate? Examples: design for disassembly, modularity, or increasing PCR content." },
+        { row: 31, esrsRef: "E5-2", type: "textarea",
+          text: "Detail your strategy for achieving Zero Waste to Landfill. What are your primary waste streams, and what innovative recycling or upcycling initiatives have you launched recently?" }
+      ]
+    },
+    {
+      code: "S6", title: "Biodiversity & Ecosystems", esrs: "ESRS E4",
+      questions: [
+        { row: 33, esrsRef: "E4-2", type: "dropdown", options: ["Yes", "No"],
+          text: "Are any of your production sites located within or adjacent to (within 1 km) a protected area or biodiversity hotspot?" },
+        { row: 34, esrsRef: "E4-3", type: "textarea",
+          text: "Describe any initiatives taken to minimise the impact of your operations on local biodiversity. Include land-use management, native planting schemes, or light/noise pollution reduction." },
+        { row: 35, esrsRef: "E4-5", type: "textarea",
+          text: "Have you undertaken a biodiversity impact assessment (TNFD or equivalent) for your primary production sites? If yes, share key findings. If no, provide your target assessment date." }
+      ]
+    },
+    {
+      code: "S7", title: "Social, Labour & Governance", esrs: "ESRS S2 · G1",
+      questions: [
+        { row: 37, esrsRef: "S2-1", type: "dropdown", options: ["Yes", "No"],
+          text: "Does your organisation have a formal Human Rights and Labour Rights Policy, aligned with the UN Guiding Principles on Business and Human Rights?" },
+        { row: 38, esrsRef: "S2-2", type: "dropdown", options: ["Yes", "No"],
+          text: "Have you conducted a human rights due diligence assessment of your Tier 1 and Tier 2 supply chains in the last 24 months?" },
+        { row: 39, esrsRef: "S2-4", type: "textarea",
+          text: "Describe the grievance mechanism available to workers in your supply chain. How many grievances were filed and resolved in the last 12 months?" },
+        { row: 40, esrsRef: "G1-1", type: "dropdown", options: ["Yes", "No"],
+          text: "Does your organisation have a verified conflict minerals policy (3TG — tin, tantalum, tungsten, gold) in place, including OECD Due Diligence guidance compliance?" },
+        { row: 41, esrsRef: "G1-2", type: "textarea",
+          text: "Describe your supplier code of conduct and how compliance is monitored across your own supply chain. Include details of any third-party audits conducted in the last 24 months." }
+      ]
+    }
+  ];
+
+  var HEADER_ROW = ["SECTION", "ESRS REF", "TYPE", "QUESTION / METRIC", "SUPPLIER RESPONSE", "NOTES / EVIDENCE", "STATUS"];
+  var ASSET_PATH = "assets/The_Corporate_Supplier_Questionnaire_2026.xlsx";
+  var FILE_FORMAT_ERROR = "File format doesn't match — Download the Excel file";
+
+  /* ── Helpers ─────────────────────────────────────────────────────────── */
+  function escapeHtml(s) {
+    return String(s === null || s === undefined ? "" : s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+  function normText(s) {
+    return String(s === null || s === undefined ? "" : s).replace(/\s+/g, " ").trim();
+  }
+  function cellsMatch(a, b) {
+    return normText(a).toLowerCase() === normText(b).toLowerCase();
+  }
+
+  /* ── View routing ────────────────────────────────────────────────────── */
+  var VIEW_IDS = ["view-landing", "view-ecovadis", "view-questionnaire", "view-upload", "view-confirmation"];
+  var HASH_MAP = { "#view-2": "view-ecovadis", "#view-3": "view-questionnaire", "#view-4": "view-upload" };
+
+  window.showView = function (id) {
+    // Nothing is saved between visits — every door starts blank each time it
+    // is entered, whether that is a fresh page load or a return visit later
+    // in the same session.
+    if (id === "view-ecovadis") resetEcovadisForm();
+    if (id === "view-questionnaire") { buildQuestionnaire(); qstGoTo(0); }
+    if (id === "view-upload") resetUpload();
+
+    VIEW_IDS.forEach(function (v) {
+      document.getElementById(v).hidden = v !== id;
+    });
+    var hashForView = null;
+    Object.keys(HASH_MAP).forEach(function (k) { if (HASH_MAP[k] === id) hashForView = k; });
+    if (history.replaceState) {
+      history.replaceState(null, "", hashForView || location.pathname + location.search);
+    }
+    window.scrollTo(0, 0);
+  };
+
+  function initFromHash() {
+    var target = HASH_MAP[location.hash] || "view-landing";
+    showView(target);
+  }
+  window.addEventListener("hashchange", initFromHash);
+
+  /* ── Shared read-only recap renderer (Views 4 & 5) ──────────────────── */
+  function renderRecapHTML(sections, declaration) {
+    var html = "";
+    sections.forEach(function (sec) {
+      html += '<div class="recap-section-title">' + escapeHtml(sec.code) + " — " + escapeHtml(sec.title) + "</div>";
+      sec.questions.forEach(function (q) {
+        html += '' +
+          '<div class="recap-question">' +
+            '<div class="recap-question-text">' + escapeHtml(q.text) + "</div>" +
+            '<div class="recap-values">' +
+              '<div><div class="recap-value-label">Supplier Response</div><div class="recap-value">' + escapeHtml(q.response) + "</div></div>" +
+              '<div><div class="recap-value-label">Notes / Evidence</div><div class="recap-value">' + escapeHtml(q.notes) + "</div></div>" +
+              '<div><div class="recap-value-label">Status</div><div class="recap-value">' + escapeHtml(q.status) + "</div></div>" +
+            "</div>" +
+          "</div>";
+      });
+    });
+    if (declaration) {
+      html += '<div class="recap-section-title">Declaration</div>' +
+        '<div class="recap-question">' +
+          '<div class="recap-values">' +
+            '<div><div class="recap-value-label">Authorised Signatory Name</div><div class="recap-value">' + escapeHtml(declaration.name) + "</div></div>" +
+            '<div><div class="recap-value-label">Date</div><div class="recap-value">' + escapeHtml(declaration.date) + "</div></div>" +
+            '<div><div class="recap-value-label">Signature</div><div class="recap-value">' + escapeHtml(declaration.signature) + "</div></div>" +
+          "</div>" +
+        "</div>";
+    }
+    return html;
+  }
+
+  function renderConfirmation(payload) {
+    var body = document.getElementById("confirmation-body");
+    if (payload.door === "ecovadis") {
+      var ev = payload.ecovadis;
+      body.innerHTML =
+        '<div class="recap-section-title">EcoVadis Scorecard</div>' +
+        '<div class="recap-question"><div class="recap-values">' +
+          '<div><div class="recap-value-label">Company Legal Name</div><div class="recap-value">' + escapeHtml(ev.company) + "</div></div>" +
+          '<div><div class="recap-value-label">Contact Name</div><div class="recap-value">' + escapeHtml(ev.contact) + "</div></div>" +
+          '<div><div class="recap-value-label">Contact Email</div><div class="recap-value">' + escapeHtml(ev.email) + "</div></div>" +
+        "</div></div>" +
+        '<div class="recap-question"><div class="recap-values">' +
+          '<div><div class="recap-value-label">EcoVadis Scorecard Link</div><div class="recap-value">' + escapeHtml(ev.link) + "</div></div>" +
+          '<div><div class="recap-value-label">Scorecard Issue Date</div><div class="recap-value">' + escapeHtml(ev.date) + "</div></div>" +
+        "</div></div>";
     } else {
-      pathB.classList.remove("dimmed");
-      pathB.classList.add("highlighted");
-      pathA.classList.add("dimmed");
-      pathA.classList.remove("highlighted");
+      body.innerHTML = renderRecapHTML(payload.sections, payload.declaration);
+    }
+  }
+
+  /* ── View 2 — EcoVadis Submission ───────────────────────────────────── */
+  function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+  function isValidUrl(v) {
+    try {
+      var u = new URL(v);
+      return u.protocol === "http:" || u.protocol === "https:";
+    } catch (e) { return false; }
+  }
+  function isScorecardDateValid(value) {
+    if (!value) return false;
+    var parts = value.split("-").map(Number);
+    if (parts.length !== 3) return false;
+    var picked = new Date(parts[0], parts[1] - 1, parts[2]);
+    if (isNaN(picked.getTime())) return false;
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    var oneYearAgo = new Date(today);
+    oneYearAgo.setFullYear(today.getFullYear() - 1);
+    return picked >= oneYearAgo && picked <= today;
+  }
+
+  function resetEcovadisForm() {
+    var form = document.getElementById("ecovadis-form");
+    if (!form) return;
+    form.reset();
+    form.querySelectorAll(".tc-field.has-error").forEach(function (el) {
+      el.classList.remove("has-error");
+    });
+  }
+
+  function initEcovadisForm() {
+    var form = document.getElementById("ecovadis-form");
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var company = document.getElementById("ev-company");
+      var contact = document.getElementById("ev-contact");
+      var email = document.getElementById("ev-email");
+      var link = document.getElementById("ev-link");
+      var date = document.getElementById("ev-date");
+
+      var checks = [
+        [company, company.value.trim() !== ""],
+        [contact, contact.value.trim() !== ""],
+        [email, email.value.trim() !== "" && isValidEmail(email.value.trim())],
+        [link, link.value.trim() !== "" && isValidUrl(link.value.trim())],
+        [date, isScorecardDateValid(date.value)]
+      ];
+
+      var valid = true;
+      checks.forEach(function (pair) {
+        var el = pair[0], ok = pair[1];
+        el.closest(".tc-field").classList.toggle("has-error", !ok);
+        if (!ok) valid = false;
+      });
+      if (!valid) return;
+
+      renderConfirmation({
+        door: "ecovadis",
+        ecovadis: {
+          company: company.value.trim(),
+          contact: contact.value.trim(),
+          email: email.value.trim(),
+          link: link.value.trim(),
+          date: date.value
+        }
+      });
+      showView("view-confirmation");
+    });
+  }
+
+  /* ── View 3 — Guided Questionnaire ──────────────────────────────────── */
+  var qstStep = 0;
+  window.qstStep = 0; // exposed for inline onclick handlers
+
+  function responseInputHTML(q) {
+    var id = "resp-" + q.row;
+    switch (q.type) {
+      case "text": return '<input class="tc-input" type="text" id="' + id + '">';
+      case "text-multiline": return '<textarea class="tc-input" id="' + id + '" rows="2"></textarea>';
+      case "textarea": return '<textarea class="tc-input" id="' + id + '" rows="4"></textarea>';
+      case "number": return '<input class="tc-input" type="number" step="any" id="' + id + '">';
+      case "dropdown":
+        var opts = q.options.map(function (o) {
+          return '<option value="' + escapeHtml(o) + '">' + escapeHtml(o) + "</option>";
+        }).join("");
+        return '<select class="tc-input" id="' + id + '"><option value=""></option>' + opts + "</select>";
+      default: return '<input class="tc-input" type="text" id="' + id + '">';
+    }
+  }
+
+  function statusSelectHTML(row) {
+    var opts = STATUS_OPTIONS.map(function (o) {
+      return '<option value="' + escapeHtml(o) + '">' + escapeHtml(o) + "</option>";
+    }).join("");
+    return '<select class="tc-input" id="status-' + row + '"><option value=""></option>' + opts + "</select>";
+  }
+
+  function buildQuestionnaire() {
+    var container = document.getElementById("qst-sections");
+    var html = "";
+    SECTIONS.forEach(function (section, idx) {
+      html += '<div class="qst-section" data-step="' + idx + '" hidden>' +
+        '<div class="qst-section-title">' + escapeHtml(section.code) + " — " + escapeHtml(section.title) +
+        ' <span style="font-family: var(--tc-font-body); font-size:13px; color:var(--tc-stone); font-weight:400;">(' +
+        escapeHtml(section.esrs) + ")</span></div>";
+      section.questions.forEach(function (q) {
+        html += '<div class="qst-question">' +
+          '<div class="qst-question-meta">' + escapeHtml(section.code) + " · " + escapeHtml(q.esrsRef) + "</div>" +
+          '<div class="qst-question-text">' + escapeHtml(q.text) + "</div>";
+        if (q.helper) {
+          html += '<div class="qst-question-helper">' + escapeHtml(q.helper) + "</div>";
+        }
+        html += '' +
+          '<div class="qst-input-row">' +
+            '<label class="qst-input-label" for="resp-' + q.row + '">Supplier Response</label>' +
+            responseInputHTML(q) +
+          "</div>" +
+          '<div class="qst-input-row">' +
+            '<label class="qst-input-label" for="notes-' + q.row + '">Notes / Evidence</label>' +
+            '<textarea class="tc-input" id="notes-' + q.row + '" rows="2"></textarea>' +
+          "</div>" +
+          '<div class="qst-input-row">' +
+            '<label class="qst-input-label" for="status-' + q.row + '">Status</label>' +
+            statusSelectHTML(q.row) +
+          "</div>" +
+        "</div>";
+      });
+      html += "</div>";
+    });
+
+    html += '<div class="qst-section" data-step="7" hidden>' +
+      '<div class="qst-section-title">Declaration</div>' +
+      '<div class="qst-declaration-text">I confirm that the information provided in this assessment is accurate and complete to the best of my knowledge.</div>' +
+      '<div class="tc-field"><label class="tc-field-label" for="decl-name">Authorised Signatory Name</label>' +
+        '<input class="tc-input" type="text" id="decl-name"></div>' +
+      '<div class="tc-field"><label class="tc-field-label" for="decl-date">Date</label>' +
+        '<input class="tc-input" type="date" id="decl-date"></div>' +
+      '<div class="tc-field"><label class="tc-field-label" for="decl-sig">Signature</label>' +
+        '<input class="tc-input" type="text" id="decl-sig" placeholder="Type your name to sign"></div>' +
+    "</div>";
+
+    container.innerHTML = html;
+  }
+
+  window.qstGoTo = function (n) {
+    n = Math.max(0, Math.min(7, n));
+    document.querySelectorAll(".qst-section").forEach(function (el) {
+      el.hidden = Number(el.dataset.step) !== n;
+    });
+    qstStep = n;
+    window.qstStep = n;
+    document.getElementById("qst-stepper").textContent = n < 7 ? "Section " + (n + 1) + " of 7" : "Declaration";
+    document.getElementById("qst-back").style.visibility = n === 0 ? "hidden" : "visible";
+    document.getElementById("qst-next").hidden = n === 7;
+    document.getElementById("qst-submit").hidden = n !== 7;
+    window.scrollTo(0, 0);
+  };
+
+  function gatherQuestionnaireAnswers() {
+    var sections = SECTIONS.map(function (section) {
+      return {
+        code: section.code,
+        title: section.title,
+        esrs: section.esrs,
+        questions: section.questions.map(function (q) {
+          var respEl = document.getElementById("resp-" + q.row);
+          var notesEl = document.getElementById("notes-" + q.row);
+          var statusEl = document.getElementById("status-" + q.row);
+          return {
+            row: q.row,
+            esrsRef: q.esrsRef,
+            text: q.text,
+            response: respEl ? respEl.value : "",
+            notes: notesEl ? notesEl.value : "",
+            status: statusEl ? statusEl.value : ""
+          };
+        })
+      };
+    });
+    var declaration = {
+      name: document.getElementById("decl-name").value,
+      date: document.getElementById("decl-date").value,
+      signature: document.getElementById("decl-sig").value
+    };
+    return { sections: sections, declaration: declaration };
+  }
+
+  window.submitQuestionnaire = function () {
+    var data = gatherQuestionnaireAnswers();
+    renderConfirmation({ door: "guided", sections: data.sections, declaration: data.declaration });
+    showView("view-confirmation");
+  };
+
+  /* ── View 4 — Upload Completed File ─────────────────────────────────── */
+  var uploadedData = null;
+
+  function parseCSV(text) {
+    var rows = [], row = [], field = "", inQuotes = false, i = 0, n = text.length;
+    while (i < n) {
+      var c = text.charAt(i);
+      if (inQuotes) {
+        if (c === '"') {
+          if (text.charAt(i + 1) === '"') { field += '"'; i += 2; continue; }
+          inQuotes = false; i++; continue;
+        }
+        field += c; i++; continue;
+      } else {
+        if (c === '"') { inQuotes = true; i++; continue; }
+        if (c === ",") { row.push(field); field = ""; i++; continue; }
+        if (c === "\r") { i++; continue; }
+        if (c === "\n") { row.push(field); rows.push(row); row = []; field = ""; i++; continue; }
+        field += c; i++; continue;
+      }
+    }
+    row.push(field);
+    rows.push(row);
+    return rows;
+  }
+
+  function validateAndParseRows(rows) {
+    var headerIdx = -1;
+    for (var i = 0; i < rows.length; i++) {
+      var r = rows[i];
+      var isHeader = HEADER_ROW.every(function (h, idx) { return cellsMatch(r[idx], h); });
+      if (isHeader) { headerIdx = i; break; }
+    }
+    if (headerIdx === -1) return null;
+
+    var cursor = headerIdx + 1;
+    var parsedSections = [];
+
+    for (var s = 0; s < SECTIONS.length; s++) {
+      var section = SECTIONS[s];
+      var foundHeading = false;
+      while (cursor < rows.length) {
+        var hr = rows[cursor];
+        if (cellsMatch(hr[0], section.code) && cellsMatch(hr[3], section.title)) {
+          foundHeading = true; cursor++; break;
+        }
+        cursor++;
+      }
+      if (!foundHeading) return null;
+
+      var parsedQuestions = [];
+      for (var qi = 0; qi < section.questions.length; qi++) {
+        var q = section.questions[qi];
+        var found = false;
+        while (cursor < rows.length) {
+          var qr = rows[cursor];
+          if (cellsMatch(qr[0], section.code) && cellsMatch(qr[3], q.text)) {
+            parsedQuestions.push({
+              row: q.row,
+              esrsRef: q.esrsRef,
+              text: q.text,
+              response: qr[4] === undefined || qr[4] === null ? "" : String(qr[4]),
+              notes: qr[5] === undefined || qr[5] === null ? "" : String(qr[5]),
+              status: qr[6] === undefined || qr[6] === null ? "" : String(qr[6])
+            });
+            found = true; cursor++; break;
+          }
+          cursor++;
+        }
+        if (!found) return null;
+      }
+      parsedSections.push({ code: section.code, title: section.title, esrs: section.esrs, questions: parsedQuestions });
     }
 
-    // Scroll to paths
-    document.getElementById("tree-paths").scrollIntoView({ behavior: "smooth", block: "nearest" });
+    var declaration = null;
+    for (var d = 0; d < rows.length; d++) {
+      var dr = rows[d];
+      if (normText(dr[0]).toUpperCase().indexOf("DECLARATION") === 0) {
+        declaration = {
+          name: dr[4] === undefined || dr[4] === null ? "" : String(dr[4]),
+          date: dr[5] === undefined || dr[5] === null ? "" : String(dr[5]),
+          signature: dr[6] === undefined || dr[6] === null ? "" : String(dr[6])
+        };
+        break;
+      }
+    }
+
+    return { sections: parsedSections, declaration: declaration };
   }
 
-  function resetTree() {
-    const pathA   = document.getElementById("path-a");
-    const pathB   = document.getElementById("path-b");
-    const reset   = document.getElementById("tree-reset");
-    const connector = document.getElementById("tree-connector");
-
-    pathA.classList.remove("dimmed", "highlighted");
-    pathB.classList.remove("dimmed", "highlighted");
-    reset.style.display = "none";
-    connector.style.display = "none";
+  function showUploadError() {
+    document.getElementById("upload-initial").hidden = false;
+    document.getElementById("upload-review").hidden = true;
+    var box = document.getElementById("upload-error");
+    box.hidden = false;
+    box.innerHTML =
+      '<div class="upload-error">' +
+        '<div class="upload-error-message">' + escapeHtml(FILE_FORMAT_ERROR) + "</div>" +
+        '<a href="' + ASSET_PATH + '" download class="tc-btn-secondary">Download the Excel file</a>' +
+      "</div>";
+    document.getElementById("upload-input").value = "";
   }
+
+  function finishUpload(rows, filename) {
+    var result = validateAndParseRows(rows);
+    if (!result) { showUploadError(); return; }
+    uploadedData = result;
+    document.getElementById("upload-filename").textContent = filename;
+    document.getElementById("upload-review-body").innerHTML = renderRecapHTML(result.sections, result.declaration);
+    document.getElementById("upload-initial").hidden = true;
+    document.getElementById("upload-error").hidden = true;
+    document.getElementById("upload-review").hidden = false;
+  }
+
+  function handleFile(file) {
+    if (!file) return;
+    document.getElementById("upload-error").hidden = true;
+    var name = file.name || "";
+    var ext = name.slice(name.lastIndexOf(".")).toLowerCase();
+    if (ext !== ".xlsx" && ext !== ".csv") { showUploadError(); return; }
+    if (file.size > 10 * 1024 * 1024) { showUploadError(); return; }
+
+    var reader = new FileReader();
+    if (ext === ".csv") {
+      reader.onload = function (e) {
+        try {
+          var rows = parseCSV(String(e.target.result));
+          finishUpload(rows, file.name);
+        } catch (err) { showUploadError(); }
+      };
+      reader.onerror = function () { showUploadError(); };
+      reader.readAsText(file);
+    } else {
+      reader.onload = function (e) {
+        try {
+          var data = new Uint8Array(e.target.result);
+          var wb = XLSX.read(data, { type: "array" });
+          var sheetName = wb.SheetNames.indexOf("Supplier Assessment 2026") !== -1
+            ? "Supplier Assessment 2026" : wb.SheetNames[0];
+          var ws = wb.Sheets[sheetName];
+          var rows = XLSX.utils.sheet_to_json(ws, { header: 1, defval: "", blankrows: true, raw: false });
+          finishUpload(rows, file.name);
+        } catch (err) { showUploadError(); }
+      };
+      reader.onerror = function () { showUploadError(); };
+      reader.readAsArrayBuffer(file);
+    }
+  }
+
+  window.resetUpload = function () {
+    uploadedData = null;
+    document.getElementById("upload-input").value = "";
+    document.getElementById("upload-initial").hidden = false;
+    document.getElementById("upload-error").hidden = true;
+    document.getElementById("upload-review").hidden = true;
+  };
+
+  window.submitUpload = function () {
+    if (!uploadedData) return;
+    renderConfirmation({ door: "upload", sections: uploadedData.sections, declaration: uploadedData.declaration });
+    showView("view-confirmation");
+  };
+
+  function initUpload() {
+    document.getElementById("upload-input").addEventListener("change", function (e) {
+      handleFile(e.target.files[0]);
+    });
+    var dz = document.getElementById("upload-dropzone");
+    dz.addEventListener("dragover", function (e) { e.preventDefault(); dz.classList.add("is-dragover"); });
+    dz.addEventListener("dragleave", function () { dz.classList.remove("is-dragover"); });
+    dz.addEventListener("drop", function (e) {
+      e.preventDefault();
+      dz.classList.remove("is-dragover");
+      if (e.dataTransfer.files && e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
+    });
+  }
+
+  /* ── Init ────────────────────────────────────────────────────────────── */
+  buildQuestionnaire();
+  qstGoTo(0);
+  initEcovadisForm();
+  initUpload();
+  initFromHash();
+})();
 </script>
 
 </body>
