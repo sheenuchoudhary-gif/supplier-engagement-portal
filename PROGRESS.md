@@ -4,22 +4,20 @@
 > anything. Update it at every save point. Replace content — do not append.
 > History lives in git.
 
-**Session:** 0 — build not started
-**Last updated:** 4 September 2026 — by Project Governor, pre-build
+**Session:** 1 — build in progress
+**Last updated:** 4 September 2026 — Session 1
 **Live URL:** none yet [Rule: fill in after the first successful deploy]
 
 ## Current state
-The v1.0 landing page exists as built HTML — `supplier_onboarding.html`, static, brand-verified, two route cards, EcoVadis button pointing off-site, standalone Excel download, no user input. Views 2 to 5 do not exist. Repo contains CLAUDE.md, PROGRESS.md, product-spec.md, supplier_onboarding.html, the-corporate-brand (brand skill — installed in session 1), and The_Corporate_Supplier_Questionnaire_2026.xlsx.
+First Session Setup complete: `docs/` created and `product-spec.md` moved into it; `the-corporate-brand` skill installed at `.claude/skills/the-corporate-brand/SKILL.md`; `The_Corporate_Supplier_Questionnaire_2026.xlsx` moved to `/assets/`; the v1.0 landing page renamed from `supplier-onboarding-V1.html` to `index.html` (content untouched at rename time) so Netlify serves it at the site root. The 30-question inventory in the workbook was opened and verified cell-by-cell against product-spec.md Section 8 — exact match, including the E12 dropdown-vs-number discrepancy. Views 2 to 5 do not exist yet; the Two Routes section on the landing page is still the v1.0 gate-question/email version.
 [Rule: this section describes what exists and works right now — never what is planned. Completed checklist items get absorbed here in compressed form.]
 
 ## Last session
-None — the first build session under this spec has not happened yet.
+Session 1: ran First Session Setup (docs/, brand skill, assets/, index.html rename) and verified the workbook against the spec. Proceeding to build Views 2–5 and the revised Two Routes section in this same session.
 [Rule: 3–5 lines maximum. Replace each session — what was built, changed, or fixed.]
 
 ## Remaining work
-- [ ] First Session Setup: create docs/, move reference files, install the the-corporate-brand skill, commit (see CLAUDE.md Session Protocol)
 - [ ] Builder: decide the cell E12 workbook correction — fix the dropdown to allow a tonnage, or consciously decline it (spec Section 15). The tool renders row 12 as a number field either way; the workbook needs the fix so uploads and downloads stay consistent.
-- [ ] Open The_Corporate_Supplier_Questionnaire_2026.xlsx and verify the 30-question inventory against spec Section 8 before building View 3
 - [ ] Extend View 1 — revise only the Two Routes section of the existing landing page; three controls on Card 2, EcoVadis button stays on site, no email copy anywhere
 - [ ] Build View 2 — EcoVadis submission form, five required fields, scorecard date validation
 - [ ] Build View 3 — guided questionnaire, 7 sections, 30 questions, 90 inputs, persistent unsaved-progress warning, declaration step
