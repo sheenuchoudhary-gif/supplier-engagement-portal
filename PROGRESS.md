@@ -6,8 +6,12 @@
 
 **Session:** 1
 **Last updated:** 7 September 2026
-**Live URL:** none yet. Netlify MCP is not available in this Claude Code on
-the web session; see Notes for next session.
+**Live URL:** none yet on `main`. Netlify is connected via a GitHub App
+(not the Netlify MCP, which is not available in this Claude Code on the web
+session) and is already building deploy previews automatically for
+[PR #2](https://github.com/sheenuchoudhary-gif/supplier-engagement-portal/pull/2):
+https://deploy-preview-2--supplier-engagement-portal-netlify.netlify.app.
+A production URL will exist once this PR merges to `main`.
 
 ## Current state
 The full v2.1 build is complete in `index.html`, a single page with six
@@ -70,9 +74,13 @@ horizontal overflow at 375px.
       decline it (spec Section 15). The tool renders row 12 as a number
       field either way; the source workbook still carries the wrong
       dropdown, so downloads stay inconsistent with the portal until fixed.
-- [ ] Deploy to Netlify. Netlify MCP was not available as a tool in this
-      Claude Code on the web session, so no site was created or deployed.
-      See Notes for next session.
+- [ ] Merge PR #2 to `main` to get a production URL. Netlify is connected
+      via GitHub (deploy previews are already building automatically per PR,
+      confirmed green); the Netlify MCP tool itself was never needed.
+- [ ] Once merged, click through the live site once, PR #2's deploy preview
+      in particular: this sandbox's network policy blocks reaching any
+      `netlify.app` host directly, so the live SheetJS `.xlsx` upload path
+      could not be exercised from here (see Known issues).
 - [ ] Acceptance criteria 26 (full manual pass on a real phone) and 27
       (post-deploy Netlify check) still need a human pass; everything else
       in Section 13 was verified this session (see Known issues for the one
@@ -101,21 +109,25 @@ horizontal overflow at 375px.
   to primary actions only.
 
 ## Known issues
-- Netlify MCP is not exposed as a tool in this Claude Code on the web
-  session, so the site has not been created or deployed. See Notes for next
-  session for what the builder needs to do.
+- Netlify turns out to be connected via a GitHub App (not the Netlify MCP
+  tool, which this Claude Code on the web session never had access to):
+  PR #2 already has a green, working deploy preview at
+  https://deploy-preview-2--supplier-engagement-portal-netlify.netlify.app.
+  Merging that PR to `main` is what produces the production URL; no manual
+  Netlify setup is actually needed.
 - Acceptance criterion 23 (nothing transmitted) and the CDN-only requirement
   were verified by code inspection (no fetch/XHR/form-action/serverless code
   exists anywhere in the file) and by a live Playwright pass. The one CDN
   request that could not be exercised live from this sandbox is SheetJS
   itself: this session's outbound network policy blocks
-  `cdnjs.cloudflare.com`, so the actual browser-side .xlsx upload path
-  could not be click-tested here (Google Fonts loaded fine; the .xlsx
-  parsing logic itself was independently verified against the real
-  unmodified workbook via SheetJS in Node, and the CSV upload path, which
-  shares the same validator and needs no CDN, was click-tested successfully
-  in a real browser). Confirm the .xlsx upload once deployed, or in any
-  browser with normal internet access.
+  `cdnjs.cloudflare.com` (and, separately, every `netlify.app` host,
+  including the deploy preview above), so the actual browser-side .xlsx
+  upload path could not be click-tested here (Google Fonts loaded fine;
+  the .xlsx parsing logic itself was independently verified against the
+  real unmodified workbook via SheetJS in Node, and the CSV upload path,
+  which shares the same validator and needs no CDN, was click-tested
+  successfully in a real browser). Confirm the .xlsx upload on the deploy
+  preview or the production URL, from a normal browser.
 - Supplier Code of Conduct URL unresolved, carried over from v1.0, left as `#`.
 - Global Environmental Policy URL unresolved, carried over from v1.0, left as `#`.
 - Navigation logo retained from v1.0 (the plain "C" mark) and not otherwise
@@ -135,11 +147,13 @@ horizontal overflow at 375px.
   deletion contact, and it will also store the uploaded scorecard file.
 
 ## Notes for next session
-Netlify MCP was not available in this Claude Code on the web session (no
-matching tool was exposed), so the build could not be deployed here, only
-committed and pushed to the `claude/build-from-folder-wzxs8m` branch. Whoever
-picks this up next, with Netlify MCP available, should: create or update the
-Netlify site from this repo, deploy the `main` branch (or this branch, once
-merged), confirm the live URL loads on desktop and mobile with the Excel
-download working, then decide on password protection per the build
-constraint, and finally record the live URL in this file's status header.
+Netlify is connected via GitHub, not the Netlify MCP tool (which this
+session never had access to and turned out not to need): PR #2 already has
+a green deploy preview at
+https://deploy-preview-2--supplier-engagement-portal-netlify.netlify.app.
+Whoever picks this up next should: merge PR #2 to `main` for the production
+URL, confirm the live site loads on desktop and mobile with the Excel
+download and the .xlsx upload both working (this session could reach neither
+`cdnjs.cloudflare.com` nor any `netlify.app` host to verify that last one
+itself), then decide on password protection per the build constraint, and
+record the live URL in this file's status header.
