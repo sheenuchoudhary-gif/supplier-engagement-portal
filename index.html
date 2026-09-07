@@ -3,43 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Supplier Sustainability Portal — The Corporate</title>
+<title>Supplier Sustainability Portal, The Corporate</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   /* ── Reset ───────────────────────────────────────────────────────────── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   img, svg { display: block; max-width: 100%; }
   a { color: inherit; }
 
-  /* ── Brand Tokens ────────────────────────────────────────────────────── */
+  /* ── Brand tokens (spec Section 10) ─────────────────────────────────── */
   :root {
-    --tc-ink:    #000000;
-    --tc-stone:  #B6B09F;
-    --tc-linen:  #EAE4D5;
-    --tc-chalk:  #F2F2F2;
-    --tc-white:  #FFFFFF;
-    --tc-lime:   #C8F135;
+    --tc-text:      #111111;
+    --tc-secondary: #555555;
+    --tc-accent:    #BC2D2E;
+    --tc-bg:        #FFFFFF;
 
-    --tc-bg-page:      var(--tc-chalk);
-    --tc-bg-surface:   var(--tc-linen);
-    --tc-bg-elevated:  var(--tc-white);
-    --tc-text-primary: var(--tc-ink);
-    --tc-text-muted:   var(--tc-stone);
-    --tc-border:       rgba(182, 176, 159, 0.35);
-    --tc-border-strong: var(--tc-stone);
+    --tc-border:        rgba(17,17,17,0.12);
+    --tc-border-strong:  rgba(17,17,17,0.28);
+    --tc-error:     #B3261E;
 
-    --tc-font-display: 'Playfair Display', Georgia, serif;
-    --tc-font-body:    'DM Sans', system-ui, sans-serif;
+    --tc-font: 'Inter', 'Helvetica Neue', Arial, system-ui, sans-serif;
 
-    --tc-space-xs:  4px;
-    --tc-space-sm:  8px;
-    --tc-space-md:  16px;
-    --tc-space-lg:  24px;
-    --tc-space-xl:  40px;
-    --tc-space-2xl: 64px;
-    --tc-space-3xl: 96px;
+    --tc-space-xs:  8px;
+    --tc-space-sm:  16px;
+    --tc-space-md:  24px;
+    --tc-space-lg:  40px;
+    --tc-space-xl:  64px;
+    --tc-space-2xl: 96px;
     --tc-max-width: 1120px;
     --tc-content-width: 720px;
   }
@@ -47,703 +39,438 @@
   /* ── Base ────────────────────────────────────────────────────────────── */
   html { scroll-behavior: smooth; }
   body {
-    font-family: var(--tc-font-body);
-    font-size: 15px;
-    font-weight: 300;
-    line-height: 1.75;
-    color: var(--tc-ink);
-    background: var(--tc-chalk);
+    font-family: var(--tc-font);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--tc-text);
+    background: var(--tc-bg);
   }
+  :focus-visible { outline: 2px solid var(--tc-accent); outline-offset: 2px; }
 
   /* ── Layout ──────────────────────────────────────────────────────────── */
-  .tc-page { max-width: var(--tc-max-width); margin: 0 auto; padding: 0 var(--tc-space-2xl); }
-  @media (max-width: 768px) { .tc-page { padding: 0 var(--tc-space-md); } }
+  .tc-page { max-width: var(--tc-max-width); margin: 0 auto; padding: 0 var(--tc-space-lg); }
+  @media (max-width: 768px) { .tc-page { padding: 0 var(--tc-space-sm); } }
 
-  /* ── Typography ──────────────────────────────────────────────────────── */
+  /* ── Typography (spec Section 10 type scale) ────────────────────────── */
   .tc-h1 {
-    font-family: var(--tc-font-display);
-    font-size: clamp(36px, 5vw, 56px);
+    font-size: clamp(34px, 5.2vw, 58px);
     font-weight: 700;
-    line-height: 1.05;
-    letter-spacing: -0.01em;
-    color: var(--tc-ink);
+    letter-spacing: -0.04em;
+    line-height: 1.0;
+    color: var(--tc-text);
   }
   .tc-h2 {
-    font-family: var(--tc-font-display);
-    font-size: clamp(26px, 3.5vw, 38px);
-    font-weight: 400;
-    line-height: 1.15;
-    color: var(--tc-ink);
+    font-size: clamp(26px, 3.4vw, 36px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: var(--tc-text);
   }
-  .tc-h3 {
-    font-family: var(--tc-font-body);
-    font-size: 18px;
+  .tc-tagline {
+    font-size: 17px;
     font-weight: 500;
+    letter-spacing: -0.01em;
     line-height: 1.3;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--tc-ink);
-  }
-  .tc-subhead {
-    font-family: var(--tc-font-body);
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 1.4;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--tc-stone);
-  }
-  .tc-body {
-    font-family: var(--tc-font-body);
-    font-size: 15px;
-    font-weight: 300;
-    line-height: 1.75;
-    color: var(--tc-ink);
+    color: var(--tc-secondary);
   }
   .tc-label {
-    font-family: var(--tc-font-body);
-    font-size: 11px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+    color: var(--tc-text);
+  }
+  .tc-body {
+    font-size: 15px;
     font-weight: 400;
-    line-height: 1.5;
-    letter-spacing: 0.14em;
+    line-height: 1.4;
+    color: var(--tc-text);
+  }
+  .tc-helper {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--tc-secondary);
+  }
+  .tc-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--tc-stone);
+    color: var(--tc-secondary);
   }
 
   /* ── Buttons ─────────────────────────────────────────────────────────── */
   .tc-btn-primary {
-    display: inline-block;
-    font-family: var(--tc-font-body);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--tc-font);
+    font-size: 14px;
+    font-weight: 600;
     text-decoration: none;
-    background: var(--tc-ink);
-    color: var(--tc-chalk);
-    border: none;
-    border-radius: 0;
-    padding: 14px 32px;
+    background: var(--tc-accent);
+    color: #FFFFFF;
+    border: 1px solid var(--tc-accent);
+    border-radius: 2px;
+    padding: 14px 28px;
     cursor: pointer;
-    transition: background 0.15s ease;
-    white-space: nowrap;
+    transition: background 0.15s ease, border-color 0.15s ease;
   }
-  .tc-btn-primary:hover { background: #1a1a1a; }
+  .tc-btn-primary:hover { background: #a12324; border-color: #a12324; }
+  .tc-btn-primary:disabled { opacity: 0.45; cursor: not-allowed; }
 
   .tc-btn-secondary {
-    display: inline-block;
-    font-family: var(--tc-font-body);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--tc-font);
+    font-size: 14px;
+    font-weight: 600;
     text-decoration: none;
     background: transparent;
-    color: var(--tc-ink);
-    border: 0.5px solid var(--tc-ink);
-    border-radius: 0;
-    padding: 14px 32px;
+    color: var(--tc-text);
+    border: 1px solid var(--tc-text);
+    border-radius: 2px;
+    padding: 14px 28px;
     cursor: pointer;
     transition: background 0.15s ease;
   }
-  .tc-btn-secondary:hover { background: var(--tc-linen); }
+  .tc-btn-secondary:hover { background: rgba(17,17,17,0.05); }
 
   .tc-btn-ghost {
-    display: inline-block;
-    font-family: var(--tc-font-body);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--tc-font);
+    font-size: 13px;
+    font-weight: 600;
     text-decoration: none;
     background: transparent;
-    color: var(--tc-stone);
-    border: 0.5px solid var(--tc-border-strong);
-    border-radius: 0;
-    padding: 12px 28px;
+    color: var(--tc-secondary);
+    border: 1px solid var(--tc-border-strong);
+    border-radius: 2px;
+    padding: 12px 24px;
     cursor: pointer;
-    transition: all 0.15s ease;
+    transition: color 0.15s ease, border-color 0.15s ease;
   }
-  .tc-btn-ghost:hover { color: var(--tc-ink); border-color: var(--tc-ink); }
+  .tc-btn-ghost:hover { color: var(--tc-text); border-color: var(--tc-text); }
 
-  /* ── Dividers ─────────────────────────────────────────────────────────── */
-  .tc-divider { height: 0.5px; background: var(--tc-border); margin: var(--tc-space-xl) 0; }
-  .tc-divider-strong { height: 1px; background: var(--tc-stone); margin: var(--tc-space-xl) 0; }
-
-  /* ── NAV ─────────────────────────────────────────────────────────────── */
-  .nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: var(--tc-ink);
-    border-bottom: 0.5px solid rgba(255,255,255,0.08);
-  }
-  .nav-inner {
-    max-width: var(--tc-max-width);
-    margin: 0 auto;
-    padding: 0 var(--tc-space-2xl);
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--tc-space-lg);
-  }
-  @media (max-width: 768px) { .nav-inner { padding: 0 var(--tc-space-md); } }
-
-  .nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-  }
-  .nav-logo-mark {
-    width: 28px;
-    height: 28px;
-    background: var(--tc-chalk);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-  .nav-logo-mark span {
-    font-family: var(--tc-font-body);
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--tc-ink);
-    line-height: 1;
-  }
-  .nav-logo-wordmark {
-    font-family: var(--tc-font-body);
-    font-size: 11px;
-    font-weight: 300;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--tc-chalk);
-  }
-
-  .nav-meta {
-    font-family: var(--tc-font-body);
-    font-size: 10px;
-    font-weight: 400;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--tc-stone);
-  }
-  @media (max-width: 560px) { .nav-meta { display: none; } }
-
-  /* ── HERO ─────────────────────────────────────────────────────────────── */
-  .hero {
-    background: var(--tc-ink);
-    padding: var(--tc-space-3xl) 0 var(--tc-space-2xl);
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: var(--tc-lime);
-  }
-  .hero-inner {
-    max-width: var(--tc-max-width);
-    margin: 0 auto;
-    padding: 0 var(--tc-space-2xl);
-  }
-  @media (max-width: 768px) { .hero-inner { padding: 0 var(--tc-space-md); } }
-
-  .hero-eyebrow {
-    display: flex;
-    align-items: center;
-    gap: var(--tc-space-md);
-    margin-bottom: var(--tc-space-xl);
-  }
-  .hero-eyebrow-tag {
-    background: var(--tc-ink);
-    padding: 4px 12px;
-    display: inline-block;
-    border: 0.5px solid rgba(182,176,159,0.4);
-  }
-  .hero-eyebrow-tag span {
-    font-family: var(--tc-font-body);
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--tc-lime);
-  }
-  .hero-eyebrow-line {
-    flex: 1;
-    height: 0.5px;
-    background: rgba(182,176,159,0.25);
-  }
-
-  .hero-title {
-    font-family: var(--tc-font-display);
-    font-size: clamp(38px, 5.5vw, 64px);
-    font-weight: 700;
-    line-height: 1.04;
-    letter-spacing: -0.01em;
-    color: var(--tc-chalk);
-    max-width: 760px;
-    margin-bottom: var(--tc-space-xl);
-  }
-  .hero-title em {
-    font-style: normal;
-    border-bottom: 2px solid var(--tc-lime);
-    padding-bottom: 2px;
-  }
-
-  .hero-body {
-    font-family: var(--tc-font-body);
-    font-size: 16px;
-    font-weight: 300;
-    line-height: 1.8;
-    color: var(--tc-stone);
-    max-width: 580px;
-    margin-bottom: var(--tc-space-xl);
-  }
-
-  .hero-stats {
-    display: flex;
-    gap: var(--tc-space-2xl);
-    flex-wrap: wrap;
-    border-top: 0.5px solid rgba(182,176,159,0.2);
-    padding-top: var(--tc-space-xl);
-  }
-  .hero-stat-value {
-    font-family: var(--tc-font-display);
-    font-size: 36px;
-    font-weight: 700;
-    color: var(--tc-chalk);
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-  .hero-stat-label {
-    font-family: var(--tc-font-body);
-    font-size: 10px;
-    font-weight: 400;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--tc-stone);
-  }
-
-  /* ── WHY SECTION ─────────────────────────────────────────────────────── */
-  .section-why { padding: var(--tc-space-3xl) 0; background: var(--tc-white); }
-
-  .why-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--tc-space-2xl);
-    align-items: start;
-  }
-  @media (max-width: 768px) { .why-grid { grid-template-columns: 1fr; } }
-
-  .why-left {}
-  .why-right {}
-
-  .why-card {
-    border: 0.5px solid var(--tc-border-strong);
-    padding: var(--tc-space-lg);
-    background: var(--tc-chalk);
-  }
-  .why-card + .why-card { margin-top: var(--tc-space-md); }
-
-  .why-card-tag {
-    display: inline-block;
-    background: var(--tc-ink);
-    padding: 3px 10px;
-    margin-bottom: var(--tc-space-sm);
-  }
-  .why-card-tag span {
-    font-family: var(--tc-font-body);
-    font-size: 9px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--tc-lime);
-  }
-  .why-card-title {
-    font-family: var(--tc-font-body);
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--tc-ink);
-    margin-bottom: var(--tc-space-xs);
-  }
-  .why-card-body {
-    font-family: var(--tc-font-body);
-    font-size: 13px;
-    font-weight: 300;
-    line-height: 1.7;
-    color: var(--tc-stone);
-  }
-
-  /* ── TWO ROUTES SECTION SHELL ────────────────────────────────────────── */
-  .section-tree {
-    padding: var(--tc-space-3xl) 0;
-    background: var(--tc-chalk);
-  }
-
-  .tree-header {
-    text-align: center;
-    max-width: 560px;
-    margin: 0 auto var(--tc-space-2xl);
-  }
-
-  /* ── KEY LINKS ───────────────────────────────────────────────────────── */
-  .section-links { padding: var(--tc-space-3xl) 0; background: var(--tc-linen); }
-
-  .links-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--tc-space-md);
-    margin-top: var(--tc-space-xl);
-  }
-  @media (max-width: 768px) { .links-grid { grid-template-columns: 1fr; } }
-
-  .link-card {
-    background: var(--tc-white);
-    border: 0.5px solid var(--tc-border-strong);
-    padding: var(--tc-space-lg);
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    gap: var(--tc-space-sm);
-    transition: border-color 0.15s ease;
-  }
-  .link-card:hover { border-color: var(--tc-ink); }
-  .link-card:hover .link-card-arrow { transform: translateX(4px); }
-
-  .link-card-icon {
-    width: 32px;
-    height: 32px;
-    border: 0.5px solid var(--tc-border-strong);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-  .link-card-icon svg { width: 16px; height: 16px; stroke: var(--tc-stone); fill: none; stroke-width: 1.5; }
-  .link-card-label {
-    font-size: 10px;
-    font-weight: 400;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--tc-stone);
-    margin-top: var(--tc-space-sm);
-  }
-  .link-card-title {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--tc-ink);
-  }
-  .link-card-desc {
-    font-size: 12px;
-    font-weight: 300;
-    line-height: 1.6;
-    color: var(--tc-stone);
-    flex: 1;
-  }
-  .link-card-arrow {
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--tc-stone);
-    margin-top: var(--tc-space-sm);
-    transition: transform 0.15s ease;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .link-card-arrow svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 1.5; }
-
-  /* ── TIMELINE ─────────────────────────────────────────────────────────── */
-  .section-timeline { padding: var(--tc-space-3xl) 0; background: var(--tc-white); }
-
-  .timeline {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    margin-top: var(--tc-space-xl);
-    border: 0.5px solid var(--tc-border-strong);
-  }
-  @media (max-width: 768px) { .timeline { grid-template-columns: 1fr; } }
-
-  .timeline-step {
-    padding: var(--tc-space-lg);
-    border-right: 0.5px solid var(--tc-border-strong);
-    position: relative;
-  }
-  .timeline-step:last-child { border-right: none; }
-  @media (max-width: 768px) {
-    .timeline-step { border-right: none; border-bottom: 0.5px solid var(--tc-border-strong); }
-    .timeline-step:last-child { border-bottom: none; }
-  }
-
-  .timeline-step-num {
-    font-family: var(--tc-font-display);
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--tc-linen);
-    line-height: 1;
-    margin-bottom: var(--tc-space-sm);
-  }
-  .timeline-step.active .timeline-step-num { color: var(--tc-lime); }
-  .timeline-step.active { background: var(--tc-ink); }
-  .timeline-step.active .timeline-step-title { color: var(--tc-chalk); }
-  .timeline-step.active .timeline-step-body { color: var(--tc-stone); }
-  .timeline-step.active .timeline-step-date { color: var(--tc-stone); }
-
-  .timeline-step-title {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--tc-ink);
-    margin-bottom: var(--tc-space-xs);
-  }
-  .timeline-step-body {
-    font-size: 12px;
-    font-weight: 300;
-    line-height: 1.6;
-    color: var(--tc-stone);
-    margin-bottom: var(--tc-space-sm);
-  }
-  .timeline-step-date {
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--tc-stone);
-  }
-
-  /* ── FOOTER ──────────────────────────────────────────────────────────── */
-  .footer {
-    background: var(--tc-ink);
-    padding: var(--tc-space-2xl) 0;
-    border-top: 0.5px solid rgba(255,255,255,0.06);
-  }
-  .footer-inner {
-    max-width: var(--tc-max-width);
-    margin: 0 auto;
-    padding: 0 var(--tc-space-2xl);
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: var(--tc-space-xl);
-    flex-wrap: wrap;
-  }
-  @media (max-width: 768px) { .footer-inner { padding: 0 var(--tc-space-md); flex-direction: column; } }
-
-  .footer-brand {}
-  .footer-logo {
-    font-family: var(--tc-font-body);
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--tc-chalk);
-    margin-bottom: var(--tc-space-sm);
-  }
-  .footer-tagline {
-    font-size: 11px;
-    font-weight: 300;
-    color: var(--tc-stone);
-    max-width: 260px;
-    line-height: 1.6;
-  }
-
-  .footer-meta {
-    text-align: right;
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: 0.1em;
-    color: var(--tc-stone);
-    line-height: 2;
-  }
-  @media (max-width: 768px) { .footer-meta { text-align: left; } }
-  .footer-meta a { text-decoration: underline; text-underline-offset: 3px; color: var(--tc-stone); }
-  .footer-meta a:hover { color: var(--tc-chalk); }
-
-  .footer-divider {
-    height: 0.5px;
-    background: rgba(182,176,159,0.15);
-    margin: var(--tc-space-lg) 0;
-  }
-  .footer-bottom {
-    max-width: var(--tc-max-width);
-    margin: 0 auto;
-    padding: 0 var(--tc-space-2xl);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: var(--tc-space-md);
-  }
-  @media (max-width: 768px) { .footer-bottom { padding: 0 var(--tc-space-md); } }
-  .footer-copy {
-    font-size: 10px;
-    font-weight: 300;
-    color: var(--tc-stone);
-    letter-spacing: 0.1em;
-  }
-  .footer-esrs-badge {
-    display: inline-block;
-    background: transparent;
-    border: 0.5px solid rgba(182,176,159,0.3);
-    padding: 4px 10px;
-  }
-  .footer-esrs-badge span {
-    font-size: 9px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--tc-stone);
-  }
-
-  /* ── Utilities ───────────────────────────────────────────────────────── */
-  .mt-sm  { margin-top: var(--tc-space-sm); }
-  .mt-md  { margin-top: var(--tc-space-md); }
-  .mt-lg  { margin-top: var(--tc-space-lg); }
-  .mt-xl  { margin-top: var(--tc-space-xl); }
-  .mb-sm  { margin-bottom: var(--tc-space-sm); }
-  .mb-md  { margin-bottom: var(--tc-space-md); }
-  .mb-lg  { margin-bottom: var(--tc-space-lg); }
-  .mb-xl  { margin-bottom: var(--tc-space-xl); }
-
-  /* ── VIEW SWITCHING ──────────────────────────────────────────────────── */
-  [hidden] { display: none !important; }
-
-  /* ── TWO ROUTES (v2.0 — both routes are in-portal doors, no gate question) ── */
-  .routes-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--tc-space-md);
-    max-width: 860px;
-    margin: 0 auto;
-  }
-  @media (max-width: 680px) { .routes-grid { grid-template-columns: 1fr; } }
-
-  .route-card {
-    border: 0.5px solid var(--tc-border-strong);
-    padding: var(--tc-space-xl) var(--tc-space-lg);
-    background: var(--tc-white);
-    display: flex;
-    flex-direction: column;
-  }
-  .route-card-badge {
-    display: inline-block;
-    background: var(--tc-ink);
-    padding: 4px 12px;
-    margin-bottom: var(--tc-space-md);
-    align-self: flex-start;
-  }
-  .route-card-badge span {
-    font-family: var(--tc-font-body);
-    font-size: 9px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--tc-chalk);
-  }
-  .route-card-badge.badge-b { background: var(--tc-chalk); }
-  .route-card-badge.badge-b span { color: var(--tc-stone); }
-  .route-card-title {
-    font-family: var(--tc-font-body);
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--tc-ink);
-    margin-bottom: var(--tc-space-sm);
-  }
-  .route-card-body {
-    font-family: var(--tc-font-body);
-    font-size: 13px;
-    font-weight: 300;
-    color: var(--tc-stone);
-    line-height: 1.7;
-    margin-bottom: var(--tc-space-lg);
-    flex: 1;
-  }
-  .route-card-btn {
-    width: 100%;
-    text-align: center;
-    display: block;
-    padding: 14px;
-    box-sizing: border-box;
-  }
-  .route-card-btn + .route-card-btn { margin-top: 10px; }
-
-  /* ── FORMS (Views 2–4) ───────────────────────────────────────────────── */
-  .section-form { padding: var(--tc-space-3xl) 0; background: var(--tc-white); min-height: 55vh; }
-
-  .tc-back-link {
+  .tc-text-link {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-family: var(--tc-font-body);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--tc-ink);
+    font-family: var(--tc-font);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--tc-text);
     text-decoration: underline;
     text-underline-offset: 3px;
     cursor: pointer;
     background: none;
     border: none;
     padding: 0;
-    margin-bottom: var(--tc-space-xl);
   }
-  .tc-back-link:hover { color: #1a1a1a; }
+  .tc-text-link:hover { color: var(--tc-accent); }
 
-  .tc-form-header { max-width: var(--tc-content-width); margin-bottom: var(--tc-space-xl); }
+  /* ── View switching ──────────────────────────────────────────────────── */
+  [hidden] { display: none !important; }
 
-  .tc-field { margin-bottom: var(--tc-space-lg); max-width: var(--tc-content-width); }
-  .tc-field-label {
-    display: block;
-    font-family: var(--tc-font-body);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    color: var(--tc-ink);
-    margin-bottom: 8px;
+  /* ── NAV ─────────────────────────────────────────────────────────────── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--tc-bg);
+    border-bottom: 1px solid var(--tc-border);
   }
-  .tc-field-hint {
-    font-family: var(--tc-font-body);
-    font-size: 12px;
-    font-weight: 300;
-    color: var(--tc-stone);
-    margin-top: 6px;
+  .nav-inner {
+    max-width: var(--tc-max-width);
+    margin: 0 auto;
+    padding: 0 var(--tc-space-lg);
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--tc-space-sm);
   }
+  @media (max-width: 768px) { .nav-inner { padding: 0 var(--tc-space-sm); } }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .nav-logo-mark {
+    width: 30px;
+    height: 30px;
+    background: var(--tc-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 2px;
+  }
+  .nav-logo-mark span {
+    font-size: 14px;
+    font-weight: 700;
+    color: #FFFFFF;
+    line-height: 1;
+  }
+  .nav-logo-wordmark {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--tc-text);
+  }
+  .nav-meta {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--tc-secondary);
+  }
+  @media (max-width: 620px) { .nav-meta { display: none; } }
+
+  /* ── HERO ─────────────────────────────────────────────────────────────── */
+  .hero { padding: var(--tc-space-2xl) 0 var(--tc-space-xl); background: var(--tc-bg); }
+  .hero-inner { max-width: var(--tc-max-width); margin: 0 auto; padding: 0 var(--tc-space-lg); }
+  @media (max-width: 768px) { .hero-inner { padding: 0 var(--tc-space-sm); } }
+
+  .hero-eyebrow { margin-bottom: var(--tc-space-sm); }
+
+  .hero-title { max-width: 820px; margin-top: 10px; }
+  .hero-title em { font-style: normal; color: var(--tc-accent); }
+
+  .hero-body { max-width: 600px; margin-top: var(--tc-space-sm); color: var(--tc-secondary); }
+
+  .hero-stats {
+    display: flex;
+    gap: var(--tc-space-lg);
+    flex-wrap: wrap;
+    border-top: 1px solid var(--tc-border);
+    margin-top: var(--tc-space-lg);
+    padding-top: var(--tc-space-md);
+  }
+  .hero-stat-value {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--tc-text);
+    line-height: 1.1;
+  }
+  .hero-stat-label { font-size: 12px; color: var(--tc-secondary); margin-top: 4px; }
+  .hero-footnote { margin-top: var(--tc-space-sm); }
+
+  /* ── Sections shared ─────────────────────────────────────────────────── */
+  .tc-section { padding: var(--tc-space-2xl) 0; }
+  .tc-section-border-top { border-top: 1px solid var(--tc-border); }
+
+  /* ── WHY SECTION ─────────────────────────────────────────────────────── */
+  .why-body { max-width: var(--tc-content-width); margin-top: var(--tc-space-sm); }
+  .why-body p { margin-top: var(--tc-space-sm); color: var(--tc-text); }
+  .why-body p:first-child { margin-top: 0; }
+
+  .why-points {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--tc-space-sm);
+    margin-top: var(--tc-space-lg);
+    max-width: var(--tc-max-width);
+  }
+  @media (max-width: 860px) { .why-points { grid-template-columns: 1fr; } }
+
+  .why-point { border: 1px solid var(--tc-border); border-radius: 2px; padding: var(--tc-space-sm); }
+  .why-point-label { color: var(--tc-accent); margin-bottom: var(--tc-space-xs); }
+  .why-point-title { margin-bottom: 6px; }
+  .why-point-body { color: var(--tc-secondary); }
+
+  /* ── SUBMISSION GATE ─────────────────────────────────────────────────── */
+  .gate-wrap { max-width: 640px; margin: 0 auto; text-align: center; }
+  .gate-supporting { margin-top: var(--tc-space-xs); }
+  .gate-buttons {
+    display: flex;
+    gap: var(--tc-space-sm);
+    margin-top: var(--tc-space-md);
+    justify-content: center;
+  }
+  .gate-btn {
+    flex: 1;
+    max-width: 220px;
+    padding: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    background: var(--tc-bg);
+    color: var(--tc-text);
+    border: 1px solid var(--tc-text);
+    border-radius: 2px;
+    cursor: pointer;
+    font-family: var(--tc-font);
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .gate-btn:hover { border-color: var(--tc-accent); color: var(--tc-accent); }
+  @media (max-width: 480px) { .gate-buttons { flex-direction: column; align-items: center; } .gate-btn { max-width: none; width: 100%; } }
+
+  /* ── TIMELINE ─────────────────────────────────────────────────────────── */
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: var(--tc-space-lg);
+    border: 1px solid var(--tc-border);
+    border-radius: 2px;
+  }
+  @media (max-width: 768px) { .timeline { grid-template-columns: 1fr; } }
+
+  .timeline-step { padding: var(--tc-space-sm); border-right: 1px solid var(--tc-border); }
+  .timeline-step:last-child { border-right: none; }
+  @media (max-width: 768px) {
+    .timeline-step { border-right: none; border-bottom: 1px solid var(--tc-border); }
+    .timeline-step:last-child { border-bottom: none; }
+  }
+  .timeline-step-num { font-size: 12px; font-weight: 700; color: var(--tc-accent); margin-bottom: var(--tc-space-xs); }
+  .timeline-step-title { margin-bottom: 6px; }
+  .timeline-step-body { color: var(--tc-secondary); margin-bottom: var(--tc-space-xs); }
+  .timeline-step-date { font-size: 12px; color: var(--tc-secondary); }
+
+  /* ── KEY RESOURCES ───────────────────────────────────────────────────── */
+  .links-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--tc-space-sm);
+    margin-top: var(--tc-space-lg);
+  }
+  @media (max-width: 768px) { .links-grid { grid-template-columns: 1fr; } }
+
+  .link-card {
+    background: var(--tc-bg);
+    border: 1px solid var(--tc-border);
+    border-radius: 2px;
+    padding: var(--tc-space-md);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: border-color 0.15s ease;
+  }
+  .link-card:hover { border-color: var(--tc-accent); }
+  .link-card:hover .link-card-arrow { color: var(--tc-accent); }
+
+  .link-card-icon {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--tc-border);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-bottom: var(--tc-space-xs);
+  }
+  .link-card-icon svg { width: 16px; height: 16px; stroke: var(--tc-text); fill: none; stroke-width: 1.5; }
+  .link-card-eyebrow { color: var(--tc-secondary); }
+  .link-card-title { margin-top: 2px; }
+  .link-card-desc { color: var(--tc-secondary); flex: 1; }
+  .link-card-arrow {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--tc-text);
+    margin-top: var(--tc-space-xs);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.15s ease;
+  }
+  .link-card-arrow svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+
+  /* ── FOOTER ──────────────────────────────────────────────────────────── */
+  .footer { padding: var(--tc-space-xl) 0 var(--tc-space-md); border-top: 1px solid var(--tc-border); }
+  .footer-inner {
+    max-width: var(--tc-max-width);
+    margin: 0 auto;
+    padding: 0 var(--tc-space-lg);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--tc-space-md);
+    flex-wrap: wrap;
+  }
+  @media (max-width: 768px) { .footer-inner { padding: 0 var(--tc-space-sm); flex-direction: column; } }
+
+  .footer-logo { margin-bottom: var(--tc-space-xs); }
+  .footer-tagline { color: var(--tc-secondary); max-width: 300px; }
+
+  .footer-meta { text-align: right; color: var(--tc-secondary); line-height: 1.8; }
+  @media (max-width: 768px) { .footer-meta { text-align: left; } }
+  .footer-meta a { text-decoration: underline; text-underline-offset: 3px; color: var(--tc-secondary); }
+  .footer-meta a:hover { color: var(--tc-accent); }
+
+  .footer-bottom {
+    max-width: var(--tc-max-width);
+    margin: var(--tc-space-md) auto 0;
+    padding: var(--tc-space-md) var(--tc-space-lg) 0;
+    border-top: 1px solid var(--tc-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--tc-space-xs);
+  }
+  @media (max-width: 768px) { .footer-bottom { padding: var(--tc-space-md) var(--tc-space-sm) 0; } }
+  .footer-copy { color: var(--tc-secondary); }
+  .footer-badge {
+    display: inline-block;
+    border: 1px solid var(--tc-border);
+    border-radius: 2px;
+    padding: 4px 10px;
+    font-size: 12px;
+    color: var(--tc-secondary);
+  }
+
+  /* ── FORM VIEWS (Plan A / Plan B / Questionnaire / Upload) ──────────── */
+  .section-form { padding: var(--tc-space-xl) 0; min-height: 60vh; }
+
+  .tc-form-header { max-width: var(--tc-content-width); margin-bottom: var(--tc-space-lg); }
+  .tc-form-header .tc-h2 { margin-top: 6px; }
+  .tc-form-header .tc-tagline { margin-top: var(--tc-space-xs); }
+
+  .tc-field { margin-bottom: var(--tc-space-md); max-width: var(--tc-content-width); }
+  .tc-field-label { display: block; margin-bottom: 6px; }
+  .tc-field-hint { margin-top: 6px; }
   .tc-field-error {
-    font-family: var(--tc-font-body);
-    font-size: 12px;
-    font-weight: 500;
-    color: #C0392B;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--tc-error);
     margin-top: 6px;
     display: none;
   }
   .tc-field.has-error .tc-field-error { display: block; }
-  .tc-field.has-error .tc-input { border-color: #C0392B; }
+  .tc-field.has-error .tc-input,
+  .tc-field.has-error .file-field { border-color: var(--tc-error); }
 
   .tc-input {
-    font-family: var(--tc-font-body);
-    font-size: 14px;
-    font-weight: 300;
-    color: var(--tc-ink);
-    background: var(--tc-white);
-    border: 0.5px solid var(--tc-stone);
-    border-radius: 0;
-    padding: 10px 14px;
+    font-family: var(--tc-font);
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--tc-text);
+    background: var(--tc-bg);
+    border: 1px solid var(--tc-border-strong);
+    border-radius: 2px;
+    padding: 12px 14px;
     width: 100%;
     outline: none;
     box-sizing: border-box;
   }
-  .tc-input:focus { border-color: var(--tc-ink); }
-  .tc-input::placeholder { color: var(--tc-stone); }
-  textarea.tc-input { resize: vertical; line-height: 1.6; font-family: var(--tc-font-body); }
+  .tc-input:focus { border-color: var(--tc-accent); }
+  .tc-input::placeholder { color: var(--tc-secondary); }
+  textarea.tc-input { resize: vertical; line-height: 1.4; }
   select.tc-input {
     appearance: none;
     -webkit-appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='1.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23111111' stroke-width='1.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 12px center;
     background-size: 12px;
@@ -751,207 +478,147 @@
     cursor: pointer;
   }
 
-  /* ── QUESTIONNAIRE (View 3) ──────────────────────────────────────────── */
-  .qst-warning {
-    background: var(--tc-ink);
-    color: var(--tc-chalk);
-    border: 0.5px solid var(--tc-border-strong);
-    padding: var(--tc-space-md) var(--tc-space-lg);
-    font-family: var(--tc-font-body);
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 1.6;
-    margin-bottom: var(--tc-space-xl);
+  /* File field, shared by Plan A upload and View 5 upload */
+  .file-field {
+    border: 1px dashed var(--tc-border-strong);
+    border-radius: 2px;
+    padding: var(--tc-space-md);
+    text-align: center;
+    max-width: var(--tc-content-width);
   }
-  .qst-warning strong { font-weight: 500; }
+  .file-field.is-dragover { border-color: var(--tc-accent); background: rgba(188,45,46,0.04); }
+  .file-field.has-file { border-style: solid; text-align: left; }
+  .file-field-chosen { display: flex; align-items: center; justify-content: space-between; gap: var(--tc-space-sm); flex-wrap: wrap; }
+  .file-field-name { font-weight: 600; word-break: break-all; }
+  .file-field-meta { color: var(--tc-secondary); margin-top: 4px; }
+  .file-field p { color: var(--tc-secondary); margin-top: var(--tc-space-xs); }
 
-  .qst-stepper {
-    font-family: var(--tc-font-body);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--tc-stone);
-    margin-bottom: var(--tc-space-xs);
+  /* ── UNSAVED PROGRESS WARNING ────────────────────────────────────────── */
+  .qst-warning {
+    background: #FFFFFF;
+    color: var(--tc-text);
+    border: 1px solid var(--tc-accent);
+    border-left: 4px solid var(--tc-accent);
+    border-radius: 2px;
+    padding: var(--tc-space-sm) var(--tc-space-md);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: var(--tc-space-lg);
   }
-  .qst-section-title {
-    font-family: var(--tc-font-display);
-    font-size: clamp(22px, 3vw, 30px);
-    font-weight: 400;
-    color: var(--tc-ink);
-    margin-bottom: var(--tc-space-xl);
+
+  /* ── QUESTIONNAIRE ───────────────────────────────────────────────────── */
+  .qst-stepper { color: var(--tc-secondary); margin-bottom: var(--tc-space-xs); }
+  .qst-step-title { margin-bottom: var(--tc-space-lg); }
+
+  .qst-subgroup { margin-top: var(--tc-space-lg); }
+  .qst-subgroup:first-child { margin-top: 0; }
+  .qst-subgroup-title {
+    padding-bottom: var(--tc-space-xs);
+    margin-bottom: var(--tc-space-md);
+    border-bottom: 1px solid var(--tc-border-strong);
   }
 
   .qst-question {
-    border: 0.5px solid var(--tc-border-strong);
-    background: var(--tc-linen);
-    padding: var(--tc-space-lg);
-    margin-bottom: var(--tc-space-lg);
-  }
-  .qst-question-meta {
-    font-family: var(--tc-font-body);
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--tc-stone);
+    border: 1px solid var(--tc-border);
+    border-radius: 2px;
+    padding: var(--tc-space-md);
     margin-bottom: var(--tc-space-sm);
   }
-  .qst-question-text {
-    font-family: var(--tc-font-body);
-    font-size: 15px;
-    font-weight: 400;
-    color: var(--tc-ink);
-    line-height: 1.6;
-    margin-bottom: var(--tc-space-md);
-    white-space: pre-line;
-  }
+  .qst-question-meta { color: var(--tc-secondary); margin-bottom: var(--tc-space-xs); }
+  .qst-question-text { margin-bottom: var(--tc-space-sm); white-space: pre-line; }
   .qst-question-helper {
-    font-family: var(--tc-font-body);
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--tc-ink);
-    background: var(--tc-chalk);
-    border: 0.5px solid var(--tc-border-strong);
+    color: var(--tc-secondary);
+    background: rgba(17,17,17,0.03);
+    border: 1px solid var(--tc-border);
+    border-radius: 2px;
     padding: 8px 12px;
-    margin-bottom: var(--tc-space-md);
+    margin-bottom: var(--tc-space-sm);
   }
-  .qst-input-row { margin-bottom: var(--tc-space-md); }
-  .qst-input-row:last-child { margin-bottom: 0; }
-  .qst-input-label {
-    display: block;
-    font-family: var(--tc-font-body);
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--tc-stone);
-    margin-bottom: 6px;
-  }
+  .qst-input-row { margin-top: var(--tc-space-xs); }
+  .qst-input-row:first-of-type { margin-top: 0; }
+  .qst-input-label { display: block; color: var(--tc-secondary); margin-bottom: 6px; }
 
   .qst-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: var(--tc-space-xl);
-    gap: var(--tc-space-md);
+    margin-top: var(--tc-space-lg);
+    gap: var(--tc-space-sm);
   }
   .qst-nav-spacer { flex: 1; }
 
   .qst-declaration-text {
-    font-family: var(--tc-font-body);
-    font-style: normal;
-    font-size: 15px;
-    font-weight: 400;
-    color: var(--tc-ink);
-    line-height: 1.7;
-    background: var(--tc-linen);
-    border: 0.5px solid var(--tc-border-strong);
-    padding: var(--tc-space-lg);
-    margin-bottom: var(--tc-space-xl);
+    font-weight: 500;
+    line-height: 1.4;
+    background: rgba(17,17,17,0.03);
+    border: 1px solid var(--tc-border);
+    border-radius: 2px;
+    padding: var(--tc-space-md);
+    margin-bottom: var(--tc-space-lg);
     max-width: var(--tc-content-width);
   }
 
-  /* ── UPLOAD (View 4) ─────────────────────────────────────────────────── */
-  .upload-dropzone {
-    border: 0.5px dashed var(--tc-border-strong);
-    background: var(--tc-chalk);
-    padding: var(--tc-space-2xl) var(--tc-space-lg);
-    text-align: center;
-    max-width: var(--tc-content-width);
-    margin-bottom: var(--tc-space-lg);
-  }
-  .upload-dropzone.is-dragover { border-color: var(--tc-ink); background: var(--tc-linen); }
-  .upload-dropzone p { font-family: var(--tc-font-body); font-size: 13px; color: var(--tc-stone); margin-top: var(--tc-space-md); }
-
-  .upload-error {
-    border: 0.5px solid #C0392B;
-    background: var(--tc-white);
-    padding: var(--tc-space-lg);
-    max-width: var(--tc-content-width);
-    margin-bottom: var(--tc-space-lg);
-  }
-  .upload-error-message {
-    font-family: var(--tc-font-body);
-    font-size: 14px;
-    font-weight: 500;
-    color: #C0392B;
-    margin-bottom: var(--tc-space-md);
-  }
-
-  .upload-filename {
-    font-family: var(--tc-font-body);
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--tc-ink);
-    margin-bottom: var(--tc-space-lg);
-  }
-
-  /* ── READ-ONLY RECAP (Views 4 & 5) ───────────────────────────────────── */
-  .recap-section-title {
-    font-family: var(--tc-font-body);
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--tc-ink);
-    border-bottom: 0.5px solid var(--tc-border-strong);
-    padding-bottom: 8px;
-    margin: var(--tc-space-xl) 0 var(--tc-space-md);
-  }
-  .recap-section-title:first-child { margin-top: 0; }
-  .recap-question {
-    border-bottom: 0.5px solid var(--tc-border);
-    padding: var(--tc-space-md) 0;
-  }
-  .recap-question-text {
-    font-family: var(--tc-font-body);
-    font-size: 14px;
-    font-weight: 400;
-    color: var(--tc-ink);
-    margin-bottom: var(--tc-space-sm);
-    line-height: 1.55;
-  }
-  .recap-values {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: var(--tc-space-md);
-  }
-  @media (max-width: 680px) { .recap-values { grid-template-columns: 1fr; } }
-  .recap-value-label {
-    font-family: var(--tc-font-body);
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--tc-stone);
-    margin-bottom: 4px;
-  }
-  .recap-value {
-    font-family: var(--tc-font-body);
-    font-size: 13px;
-    font-weight: 300;
-    color: var(--tc-ink);
-    line-height: 1.6;
-    min-height: 1em;
-    white-space: pre-line;
-  }
-  .recap-summary-grid {
+  /* ── PLAN B CHOICE CARDS ─────────────────────────────────────────────── */
+  .planb-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--tc-space-lg);
-    max-width: var(--tc-content-width);
-    margin-bottom: var(--tc-space-xl);
+    gap: var(--tc-space-sm);
+    max-width: 900px;
   }
-  @media (max-width: 680px) { .recap-summary-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 700px) { .planb-grid { grid-template-columns: 1fr; } }
 
-  .confirm-heading {
-    font-family: var(--tc-font-display);
-    font-size: clamp(30px, 4vw, 42px);
-    font-weight: 700;
-    color: var(--tc-ink);
-    margin-bottom: var(--tc-space-sm);
+  .planb-card {
+    border: 1px solid var(--tc-border);
+    border-radius: 2px;
+    padding: var(--tc-space-md);
+    display: flex;
+    flex-direction: column;
   }
+  .planb-card-title { margin-bottom: var(--tc-space-xs); }
+  .planb-card-body { color: var(--tc-secondary); margin-bottom: var(--tc-space-md); flex: 1; }
+  .planb-card-actions { display: flex; flex-direction: column; gap: 10px; }
+  .planb-card-actions > * { width: 100%; text-align: center; }
+
+  /* ── UPLOAD ERROR ────────────────────────────────────────────────────── */
+  .upload-error {
+    border: 1px solid var(--tc-error);
+    border-radius: 2px;
+    padding: var(--tc-space-md);
+    max-width: var(--tc-content-width);
+    margin-bottom: var(--tc-space-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--tc-space-sm);
+    align-items: flex-start;
+  }
+  .upload-error-message { font-weight: 600; color: var(--tc-error); }
+
+  .upload-filename { font-weight: 600; margin-bottom: var(--tc-space-md); }
+
+  /* ── READ-ONLY RECAP (Views 5 & 6) ───────────────────────────────────── */
+  .recap-group-title {
+    margin: var(--tc-space-lg) 0 var(--tc-space-sm);
+    padding-bottom: var(--tc-space-xs);
+    border-bottom: 1px solid var(--tc-border-strong);
+  }
+  .recap-group-title:first-child { margin-top: 0; }
+  .recap-subgroup-title { color: var(--tc-secondary); margin: var(--tc-space-md) 0 var(--tc-space-xs); }
+  .recap-question { border-bottom: 1px solid var(--tc-border); padding: var(--tc-space-sm) 0; }
+  .recap-question-text { margin-bottom: var(--tc-space-xs); line-height: 1.4; }
+  .recap-values { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--tc-space-sm); }
+  @media (max-width: 680px) { .recap-values { grid-template-columns: 1fr; } }
+  .recap-value-label { color: var(--tc-secondary); margin-bottom: 4px; }
+  .recap-value { color: var(--tc-text); line-height: 1.4; min-height: 1em; white-space: pre-line; }
+
+  .confirm-heading { margin-bottom: var(--tc-space-xs); }
+  .confirm-lede { color: var(--tc-secondary); max-width: var(--tc-content-width); margin-bottom: var(--tc-space-lg); }
+
+  /* ── Utilities ───────────────────────────────────────────────────────── */
+  .mt-sm { margin-top: var(--tc-space-xs); }
+  .mt-md { margin-top: var(--tc-space-sm); }
+  .mt-lg { margin-top: var(--tc-space-md); }
+  .mt-xl { margin-top: var(--tc-space-lg); }
 </style>
 </head>
 <body>
@@ -959,11 +626,11 @@
 <!-- ── NAV ──────────────────────────────────────────────────────────────────── -->
 <nav class="nav">
   <div class="nav-inner">
-    <a href="#" class="nav-logo" aria-label="The Corporate" onclick="event.preventDefault(); showView('view-landing');">
+    <button type="button" class="nav-logo" aria-label="The Corporate" onclick="showView('view-landing');">
       <div class="nav-logo-mark"><span>C</span></div>
       <span class="nav-logo-wordmark">The Corporate</span>
-    </a>
-    <span class="nav-meta">Supplier Sustainability Portal · 2026</span>
+    </button>
+    <span class="nav-meta">Supplier Sustainability Portal, 2026</span>
   </div>
 </nav>
 
@@ -972,194 +639,154 @@
 <!-- ── HERO ──────────────────────────────────────────────────────────────────── -->
 <section class="hero" id="top">
   <div class="hero-inner">
-    <div class="hero-eyebrow">
-      <div class="hero-eyebrow-tag"><span>Supplier Programme 2026</span></div>
-      <div class="hero-eyebrow-line"></div>
-    </div>
+    <div class="hero-eyebrow tc-eyebrow">Supplier Programme 2026</div>
 
-    <h1 class="hero-title">
-      We don't just manufacture products.<br>We <em>engineer</em> a sustainable future.
+    <h1 class="tc-h1 hero-title">
+      We do not just manufacture products. We <em>engineer</em> a sustainable future.
     </h1>
 
-    <p class="hero-body">
-      Our 2045 Net-Zero goal is a shared journey. This portal is your starting point — understand
-      what we are asking, why it matters, and which submission path applies to you.
+    <p class="tc-body hero-body">
+      Our 2045 net zero goal is a shared journey. This portal is your starting point.
+      Understand what we are asking, why it matters, and which submission path applies to you.
     </p>
 
     <div class="hero-stats">
       <div>
         <div class="hero-stat-value">690,000</div>
-        <div class="hero-stat-label">tCO2e Total Footprint (2023)</div>
+        <div class="hero-stat-label">tCO2e total footprint (2023)</div>
       </div>
       <div>
         <div class="hero-stat-value">71%</div>
-        <div class="hero-stat-label">Scope 3 — Value Chain</div>
+        <div class="hero-stat-label">Scope 3, value chain</div>
       </div>
       <div>
         <div class="hero-stat-value">2045</div>
-        <div class="hero-stat-label">Net-Zero Target Year</div>
+        <div class="hero-stat-label">Net zero target year</div>
       </div>
       <div>
         <div class="hero-stat-value">500+</div>
-        <div class="hero-stat-label">Tier 1 Suppliers</div>
+        <div class="hero-stat-label">Tier 1 suppliers</div>
       </div>
     </div>
-    <p class="hero-stat-note" style="margin-top: var(--tc-space-md); font-size: 12px; color: var(--tc-stone); letter-spacing: 0.04em;">
-      Scope 3 is 71% of The Corporate's total carbon footprint (location-based, 2023 base year).
+    <p class="tc-helper hero-footnote">
+      Scope 3 is 71% of The Corporate's total carbon footprint, location based, 2023 base year.
     </p>
   </div>
 </section>
 
-<!-- ── THE WHY ────────────────────────────────────────────────────────────── -->
-<section class="section-why" id="why">
+<!-- ── WHY WE ARE ASKING ──────────────────────────────────────────────────── -->
+<section class="tc-section tc-section-border-top" id="why">
   <div class="tc-page">
-    <p class="tc-subhead mb-lg">Why We Are Asking</p>
-    <div class="why-grid">
-      <div class="why-left">
-        <h2 class="tc-h2" style="max-width:440px;">
-          This is driven by regulation, and by ambition.
-        </h2>
-        <p class="tc-body mt-lg" style="color:var(--tc-stone);">
-          71% of The Corporate's total carbon footprint sits in our value chain — in the products
-          and services our Tier 1 suppliers provide. Reaching Net-Zero by 2045 is not possible
-          without visibility into, and collaboration with, our supply base.
-        </p>
-        <p class="tc-body mt-md" style="color:var(--tc-stone);">
-          This assessment is the foundation of that visibility. It is aligned with the EU's
-          Corporate Sustainability Reporting Directive (CSRD) and the European Sustainability
-          Reporting Standards (ESRS), both of which require companies to report on value chain
-          impacts beginning in 2026.
-        </p>
+    <div class="tc-eyebrow">Programme rationale</div>
+    <h2 class="tc-h2 mt-sm">Why We Are Asking</h2>
+
+    <div class="why-body">
+      <p class="tc-body">
+        Scope 3 emissions, the emissions embedded in the products and services we buy, account for
+        71% of The Corporate's total carbon footprint on a location based basis, measured against
+        our 2023 base year. That is a larger share than everything we control directly. We cannot
+        reach our targets by looking only at our own operations.
+      </p>
+      <p class="tc-body">
+        We need your cooperation to reduce our Scope 3 emissions. This assessment is how we build a
+        shared, factual picture of that footprint across our Tier 1 supply base, so we can set
+        realistic goals together and support the suppliers who need it most.
+      </p>
+      <p class="tc-body">
+        Suppliers who demonstrate strong sustainability performance also receive preferential
+        standing in our procurement scoring. Regulatory frameworks, including the EU's Corporate
+        Sustainability Reporting Directive, now require this kind of value chain reporting. That
+        context matters, but it is not why we are asking. We are asking because reducing our shared
+        footprint depends on working with you, not around you.
+      </p>
+    </div>
+
+    <div class="why-points">
+      <div class="why-point">
+        <div class="tc-eyebrow why-point-label">Partnership</div>
+        <div class="tc-label why-point-title">A shared journey</div>
+        <div class="tc-body why-point-body">
+          Suppliers who show strong sustainability performance receive preferential status in our
+          procurement scoring. This is the foundation of a long term, resilient supply partnership.
+        </div>
       </div>
-      <div class="why-right">
-        <div class="why-card">
-          <div class="why-card-tag"><span>CSRD / ESRS</span></div>
-          <div class="why-card-title">Regulatory Requirement</div>
-          <div class="why-card-body">
-            The EU Corporate Sustainability Reporting Directive mandates disclosure of Scope 3
-            emissions and value chain sustainability performance. Non-compliance creates
-            material financial and reputational risk for The Corporate — and by extension, for you.
-          </div>
+      <div class="why-point">
+        <div class="tc-eyebrow why-point-label">Double materiality</div>
+        <div class="tc-label why-point-title">Impact and financial materiality</div>
+        <div class="tc-body why-point-body">
+          Our double materiality assessment identified three primary supplier risk areas: E1
+          climate, E2 PFAS and pollution, and E3 water stress, each carrying real financial exposure.
         </div>
-        <div class="why-card">
-          <div class="why-card-tag"><span>Double Materiality</span></div>
-          <div class="why-card-title">Impact & Financial Materiality</div>
-          <div class="why-card-body">
-            Our 2026 Double Materiality Assessment identified three primary supplier risk areas:
-            E1 (Climate), E2 (PFAS / Pollution), and E3 (Water Stress). These are not
-            hypothetical risks — they carry direct financial exposure in the form of
-            carbon taxes, REACH bans, and supply chain disruptions.
-          </div>
-        </div>
-        <div class="why-card">
-          <div class="why-card-tag"><span>Partnership</span></div>
-          <div class="why-card-title">A Shared Journey</div>
-          <div class="why-card-body">
-            Suppliers who demonstrate strong sustainability performance receive preferential
-            status in The Corporate's procurement scoring. This is not a compliance exercise —
-            it is the foundation of a long-term, resilient supply partnership.
-          </div>
+      </div>
+      <div class="why-point">
+        <div class="tc-eyebrow why-point-label">CSRD / ESRS</div>
+        <div class="tc-label why-point-title">Regulatory context</div>
+        <div class="tc-body why-point-body">
+          The EU's Corporate Sustainability Reporting Directive requires disclosure of Scope 3
+          emissions and value chain performance, beginning in 2026.
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── TWO ROUTES ──────────────────────────────────────────────────────────── -->
-<section class="section-tree" id="submit">
+<!-- ── SUBMISSION (gate question) ─────────────────────────────────────────── -->
+<section class="tc-section tc-section-border-top" id="submit">
   <div class="tc-page">
-    <div class="tree-header">
-      <p class="tc-subhead mb-md">Your Submission Path</p>
-      <h2 class="tc-h2">Two routes. One destination.</h2>
-      <p class="tc-body mt-md" style="color:var(--tc-stone); font-size:14px;">
-        Read both options below and choose the one that fits your current sustainability
-        documentation. Both routes lead to the same assessment.
+    <div class="gate-wrap">
+      <div class="tc-eyebrow">Your submission path</div>
+      <h2 class="tc-h2 mt-sm">Do you have an EcoVadis scorecard?</h2>
+      <p class="tc-body gate-supporting">
+        A scorecard qualifies only if it was issued within the last 12 months.
       </p>
-    </div>
-
-    <div class="routes-grid">
-
-      <!-- Card 1: EcoVadis Scorecard -->
-      <div class="route-card">
-        <div class="route-card-badge"><span>EcoVadis Scorecard</span></div>
-        <div class="route-card-title">Submit Your Scorecard</div>
-        <div class="route-card-body">
-          Suppliers holding a valid EcoVadis Scorecard issued within the last 12 months
-          may submit their scorecard details instead of completing the full questionnaire.
-          <br><br>
-          Estimated time: <strong style="color:var(--tc-ink); font-weight:500;">5 minutes</strong>
-        </div>
-        <button type="button" class="tc-btn-primary route-card-btn" style="border:none;" onclick="showView('view-ecovadis')">
-          Submit EcoVadis Scorecard
-        </button>
+      <div class="gate-buttons">
+        <button type="button" class="gate-btn" onclick="showView('view-plana')">Yes</button>
+        <button type="button" class="gate-btn" onclick="showView('view-planb')">No</button>
       </div>
-
-      <!-- Card 2: Full Questionnaire -->
-      <div class="route-card">
-        <div class="route-card-badge badge-b"><span>Full Questionnaire</span></div>
-        <div class="route-card-title">Complete the ESRS-Aligned Assessment</div>
-        <div class="route-card-body">
-          Suppliers without a current scorecard complete the seven-section sustainability
-          assessment. Fill it in directly in the portal, or download the workbook, complete
-          it offline, and upload the finished file back for review.
-          <br><br>
-          Estimated time: <strong style="color:var(--tc-ink); font-weight:500;">45–60 minutes</strong>
-        </div>
-        <button type="button" class="tc-btn-primary route-card-btn" onclick="showView('view-questionnaire')">
-          Fill in the Portal
-        </button>
-        <button type="button" class="tc-btn-secondary route-card-btn" onclick="showView('view-upload')">
-          Upload Completed File
-        </button>
-        <a href="assets/The_Corporate_Supplier_Questionnaire_2026.xlsx" download class="tc-btn-ghost route-card-btn">
-          Download Assessment
-        </a>
-      </div>
-
     </div>
   </div>
 </section>
 
 <!-- ── TIMELINE ───────────────────────────────────────────────────────────── -->
-<section class="section-timeline" id="timeline">
+<section class="tc-section tc-section-border-top" id="timeline">
   <div class="tc-page">
-    <p class="tc-subhead mb-md">Programme Timeline</p>
-    <h2 class="tc-h2">What happens next.</h2>
+    <div class="tc-eyebrow">Programme timeline</div>
+    <h2 class="tc-h2 mt-sm">What happens next</h2>
 
-    <div class="timeline mt-xl">
-      <div class="timeline-step active">
+    <div class="timeline">
+      <div class="timeline-step">
         <div class="timeline-step-num">01</div>
-        <div class="timeline-step-title">Portal Launch</div>
-        <div class="timeline-step-body">You receive this link and select your submission path.</div>
+        <div class="tc-label timeline-step-title">Portal launch</div>
+        <div class="tc-body timeline-step-body">You receive this link and select your submission path.</div>
         <div class="timeline-step-date">April 2026</div>
       </div>
       <div class="timeline-step">
         <div class="timeline-step-num">02</div>
-        <div class="timeline-step-title">Data Submission</div>
-        <div class="timeline-step-body">Submit scorecard or complete questionnaire. 100% Tier 1 response required.</div>
+        <div class="tc-label timeline-step-title">Data submission</div>
+        <div class="tc-body timeline-step-body">Submit your scorecard or complete the questionnaire. Full Tier 1 response requested.</div>
         <div class="timeline-step-date">Deadline: 30 Sep 2026</div>
       </div>
       <div class="timeline-step">
         <div class="timeline-step-num">03</div>
-        <div class="timeline-step-title">Review & Scoring</div>
-        <div class="timeline-step-body">Our EHS and Procurement teams review submissions and flag gaps.</div>
+        <div class="tc-label timeline-step-title">Review and scoring</div>
+        <div class="tc-body timeline-step-body">Our EHS and Procurement teams review submissions and flag gaps.</div>
         <div class="timeline-step-date">Q4 2026</div>
       </div>
       <div class="timeline-step">
         <div class="timeline-step-num">04</div>
-        <div class="timeline-step-title">Partnership Plans</div>
-        <div class="timeline-step-body">Joint decarbonisation and improvement plans agreed with prioritised suppliers.</div>
+        <div class="tc-label timeline-step-title">Partnership plans</div>
+        <div class="tc-body timeline-step-body">Joint decarbonisation and improvement plans agreed with prioritised suppliers.</div>
         <div class="timeline-step-date">Q1 2027</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── KEY LINKS ──────────────────────────────────────────────────────────── -->
-<section class="section-links" id="resources">
+<!-- ── KEY RESOURCES ──────────────────────────────────────────────────────── -->
+<section class="tc-section tc-section-border-top" id="resources">
   <div class="tc-page">
-    <p class="tc-subhead mb-md">Key Resources</p>
-    <h2 class="tc-h2">Everything you need.</h2>
+    <div class="tc-eyebrow">Key resources</div>
+    <h2 class="tc-h2 mt-sm">Everything you need</h2>
 
     <div class="links-grid">
 
@@ -1167,14 +794,14 @@
         <div class="link-card-icon">
           <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
         </div>
-        <div class="link-card-label">Document</div>
-        <div class="link-card-title">Supplier Code of Conduct</div>
-        <div class="link-card-desc">
-          Our standards for ethical business conduct, labour rights, and environmental responsibility.
-          All Tier 1 suppliers must have a signed copy on file.
+        <div class="tc-eyebrow link-card-eyebrow">Document</div>
+        <div class="tc-label link-card-title">Supplier Code of Conduct</div>
+        <div class="tc-body link-card-desc">
+          Our standards for ethical business conduct, labour rights, and environmental
+          responsibility. All Tier 1 suppliers must have a signed copy on file.
         </div>
         <div class="link-card-arrow">
-          View Document
+          View document
           <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </div>
       </a>
@@ -1183,14 +810,14 @@
         <div class="link-card-icon">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
         </div>
-        <div class="link-card-label">Policy</div>
-        <div class="link-card-title">Global Environmental Policy</div>
-        <div class="link-card-desc">
-          The Corporate's commitments on climate, water, PFAS, and circular economy —
-          the framework that defines what we expect from our value chain partners.
+        <div class="tc-eyebrow link-card-eyebrow">Policy</div>
+        <div class="tc-label link-card-title">Global Environmental Policy</div>
+        <div class="tc-body link-card-desc">
+          The Corporate's commitments on climate, water, PFAS, and circular economy, the framework
+          that defines what we expect from our value chain partners.
         </div>
         <div class="link-card-arrow">
-          View Policy
+          View policy
           <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </div>
       </a>
@@ -1199,11 +826,11 @@
         <div class="link-card-icon">
           <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         </div>
-        <div class="link-card-label">Support</div>
-        <div class="link-card-title">EHS Help Desk</div>
-        <div class="link-card-desc">
+        <div class="tc-eyebrow link-card-eyebrow">Support</div>
+        <div class="tc-label link-card-title">EHS Help Desk</div>
+        <div class="tc-body link-card-desc">
           Questions about specific ESRS requirements, measurement methodology, or technical
-          aspects of the questionnaire? Contact our Environment, Health &amp; Safety team directly.
+          aspects of the questionnaire? Contact our Environment, Health and Safety team directly.
         </div>
         <div class="link-card-arrow">
           Contact EHS
@@ -1219,89 +846,140 @@
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <div class="footer-logo">The Corporate</div>
-      <div class="footer-tagline">
-        Engineering a sustainable future. Net-Zero by 2045 across all scopes of operation.
+      <div class="tc-label footer-logo">The Corporate</div>
+      <div class="tc-body footer-tagline">
+        Engineering a sustainable future. Net zero by 2045 across all scopes of operation.
       </div>
     </div>
-    <div class="footer-meta">
-      <div>ESRS / CSRD Aligned · Version 2.0</div>
-      <div>Supplier Programme · 2026</div>
-      <div style="margin-top:8px;">Scope 3: 71% of total footprint · location-based · 2023 base year</div>
-      <div style="margin-top:8px;"><a href="mailto:sustainability@thecorporate.com">sustainability@thecorporate.com</a></div>
+    <div class="tc-helper footer-meta">
+      <div>ESRS / CSRD aligned. Version 2.1</div>
+      <div>Supplier Programme, 2026</div>
+      <div>Scope 3: 71% of total footprint, location based, 2023 base year</div>
+      <div><a href="mailto:sustainability@thecorporate.com">sustainability@thecorporate.com</a></div>
     </div>
   </div>
-  <div class="footer-divider" style="margin: var(--tc-space-lg) var(--tc-space-2xl);"></div>
   <div class="footer-bottom">
-    <div class="footer-copy">© 2026 The Corporate. Confidential. For Tier 1 Supplier use only.</div>
-    <div class="footer-esrs-badge"><span>ESRS Compliant · CSRD 2026</span></div>
+    <div class="tc-helper footer-copy">&copy; 2026 The Corporate. Confidential. For Tier 1 supplier use only.</div>
+    <div class="footer-badge">ESRS compliant, CSRD 2026</div>
   </div>
 </footer>
 
 </div><!-- /#view-landing -->
 
-<!-- ── VIEW 2 — ECOVADIS SUBMISSION ────────────────────────────────────────── -->
-<div id="view-ecovadis" class="tc-view" hidden>
+<!-- ── VIEW 2, PLAN A: ECOVADIS SUBMISSION ────────────────────────────────── -->
+<div id="view-plana" class="tc-view" hidden>
   <section class="section-form">
     <div class="tc-page">
-      <button type="button" class="tc-back-link" onclick="showView('view-landing')">&larr; Back to Landing Page</button>
+      <button type="button" class="tc-text-link mb-lg" style="margin-bottom: var(--tc-space-lg); display:inline-flex;" onclick="showView('view-landing')">&larr; Back to landing page</button>
 
       <div class="tc-form-header">
-        <p class="tc-subhead mb-md">EcoVadis Door</p>
-        <h2 class="tc-h2">Submit your EcoVadis Scorecard.</h2>
-        <p class="tc-body mt-md" style="color:var(--tc-stone);">
-          Your scorecard must have been issued within the last 12 months. A date outside
-          that window, or in the future, cannot be accepted through this route.
+        <div class="tc-eyebrow">Plan A, EcoVadis scorecard</div>
+        <h2 class="tc-h2">Submit your EcoVadis scorecard</h2>
+        <p class="tc-tagline">
+          Your scorecard must have been issued within the last 12 months to qualify.
         </p>
       </div>
 
-      <form id="ecovadis-form" novalidate>
+      <form id="plana-form" novalidate>
         <div class="tc-field">
-          <label class="tc-field-label" for="ev-company">Company Legal Name</label>
-          <input class="tc-input" type="text" id="ev-company">
-          <div class="tc-field-error">Enter your company's legal name.</div>
+          <label class="tc-label tc-field-label" for="pa-company">Company legal name</label>
+          <input class="tc-input" type="text" id="pa-company">
+          <div class="tc-field-error tc-helper">Enter your company's legal name.</div>
         </div>
         <div class="tc-field">
-          <label class="tc-field-label" for="ev-contact">Contact Name</label>
-          <input class="tc-input" type="text" id="ev-contact">
-          <div class="tc-field-error">Enter a contact name.</div>
+          <label class="tc-label tc-field-label" for="pa-contact">Contact name</label>
+          <input class="tc-input" type="text" id="pa-contact">
+          <div class="tc-field-error tc-helper">Enter a contact name.</div>
         </div>
         <div class="tc-field">
-          <label class="tc-field-label" for="ev-email">Contact Email</label>
-          <input class="tc-input" type="email" id="ev-email">
-          <div class="tc-field-error">Enter a valid email address.</div>
+          <label class="tc-label tc-field-label" for="pa-email">Contact email</label>
+          <input class="tc-input" type="email" id="pa-email">
+          <div class="tc-field-error tc-helper">Enter a valid email address.</div>
         </div>
         <div class="tc-field">
-          <label class="tc-field-label" for="ev-link">EcoVadis Scorecard Link</label>
-          <input class="tc-input" type="url" id="ev-link" placeholder="https://">
-          <div class="tc-field-error">Enter a valid URL.</div>
+          <label class="tc-label tc-field-label" for="pa-date">Scorecard issue date</label>
+          <input class="tc-input" type="date" id="pa-date">
+          <div class="tc-helper tc-field-hint">Must fall within the 12 months preceding today, and cannot be in the future.</div>
+          <div class="tc-field-error tc-helper">The scorecard issue date must fall within the 12 months preceding today.</div>
         </div>
         <div class="tc-field">
-          <label class="tc-field-label" for="ev-date">Scorecard Issue Date</label>
-          <input class="tc-input" type="date" id="ev-date">
-          <div class="tc-field-hint">Must fall within the 12 months preceding today.</div>
-          <div class="tc-field-error">The scorecard issue date must fall within the 12 months preceding today.</div>
+          <label class="tc-label tc-field-label" for="pa-file-input">Scorecard file</label>
+          <div class="file-field" id="pa-file-field">
+            <div id="pa-file-empty">
+              <button type="button" class="tc-btn-secondary" onclick="document.getElementById('pa-file-input').click()">Choose file</button>
+              <p class="tc-helper">PDF, PNG or JPG. Maximum 10 MB.</p>
+            </div>
+            <div id="pa-file-chosen" class="file-field-chosen" hidden>
+              <div>
+                <div class="tc-body file-field-name" id="pa-file-name"></div>
+                <div class="tc-helper file-field-meta" id="pa-file-size"></div>
+              </div>
+              <button type="button" class="tc-btn-secondary" onclick="document.getElementById('pa-file-input').click()">Replace</button>
+            </div>
+            <input type="file" id="pa-file-input" accept=".pdf,.png,.jpg,.jpeg" style="display:none;">
+          </div>
+          <div class="tc-field-error tc-helper" id="pa-file-error">Attach a scorecard file. Accepted types are PDF, PNG or JPG, under 10 MB.</div>
         </div>
 
-        <button type="submit" class="tc-btn-primary">Submit</button>
+        <button type="submit" class="tc-btn-primary mt-md">Submit</button>
       </form>
     </div>
   </section>
 </div>
 
-<!-- ── VIEW 3 — GUIDED QUESTIONNAIRE ───────────────────────────────────────── -->
+<!-- ── VIEW 3, PLAN B: CHOOSE HOW TO SUBMIT ───────────────────────────────── -->
+<div id="view-planb" class="tc-view" hidden>
+  <section class="section-form">
+    <div class="tc-page">
+      <button type="button" class="tc-text-link" style="margin-bottom: var(--tc-space-lg); display:inline-flex;" onclick="showView('view-landing')">&larr; Back to landing page</button>
+
+      <div class="tc-form-header">
+        <div class="tc-eyebrow">Plan B, full assessment</div>
+        <h2 class="tc-h2">Complete the sustainability assessment</h2>
+        <p class="tc-tagline">
+          The full assessment is required. Complete it directly in the portal, or download the
+          template and upload it once finished.
+        </p>
+      </div>
+
+      <div class="planb-grid">
+        <div class="planb-card">
+          <div class="tc-label planb-card-title">Option 1. Fill in the portal</div>
+          <div class="tc-body planb-card-body">
+            Complete every section directly in this portal. The assessment must be completed in
+            one sitting, because progress is not saved between steps.
+          </div>
+          <div class="planb-card-actions">
+            <button type="button" class="tc-btn-primary" onclick="showView('view-questionnaire')">Fill in the Portal</button>
+          </div>
+        </div>
+        <div class="planb-card">
+          <div class="tc-label planb-card-title">Option 2. Download and upload</div>
+          <div class="tc-body planb-card-body">
+            Download the Excel template, complete it offline, and upload the finished file back.
+            This suits organisations where several colleagues contribute.
+          </div>
+          <div class="planb-card-actions">
+            <a href="assets/The_Corporate_Supplier_Questionnaire_2026.xlsx" download class="tc-btn-secondary">Download Template</a>
+            <button type="button" class="tc-btn-primary" onclick="showView('view-upload')">Upload Completed Template</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ── VIEW 4, FILL IN THE PORTAL (GUIDED QUESTIONNAIRE) ──────────────────── -->
 <div id="view-questionnaire" class="tc-view" hidden>
   <section class="section-form">
     <div class="tc-page">
-      <button type="button" class="tc-back-link" onclick="showView('view-landing')">&larr; Back to Landing Page</button>
-
       <div class="qst-warning">
-        Your progress is not saved. Refreshing this page, navigating back, or closing the
-        tab will lose all answers. Complete the assessment in one sitting.
+        Your progress is not saved. Refreshing this page, navigating back, or closing the tab
+        will lose all answers. Complete the assessment in one sitting.
       </div>
 
-      <div class="qst-stepper" id="qst-stepper">Section 1 of 7</div>
-      <div id="qst-sections"><!-- populated by script --></div>
+      <div class="tc-eyebrow qst-stepper" id="qst-stepper">Step 1 of 5</div>
+      <div id="qst-steps"><!-- populated by script --></div>
 
       <div class="qst-nav">
         <button type="button" class="tc-btn-secondary" id="qst-back" onclick="qstGoTo(qstStep - 1)">Back</button>
@@ -1313,30 +991,30 @@
   </section>
 </div>
 
-<!-- ── VIEW 4 — UPLOAD COMPLETED FILE ──────────────────────────────────────── -->
+<!-- ── VIEW 5, UPLOAD COMPLETED TEMPLATE ──────────────────────────────────── -->
 <div id="view-upload" class="tc-view" hidden>
   <section class="section-form">
     <div class="tc-page">
-      <button type="button" class="tc-back-link" onclick="showView('view-landing')">&larr; Back to Landing Page</button>
+      <button type="button" class="tc-text-link" style="margin-bottom: var(--tc-space-lg); display:inline-flex;" onclick="showView('view-planb')">&larr; Back</button>
 
       <div class="tc-form-header">
-        <p class="tc-subhead mb-md">Upload Door</p>
-        <h2 class="tc-h2">Upload your completed file.</h2>
-        <p class="tc-body mt-md" style="color:var(--tc-stone);">
-          Upload the completed questionnaire — the Excel workbook, or a CSV export of it.
-          The file is read in your browser and never leaves your device.
+        <div class="tc-eyebrow">Plan B, option 2</div>
+        <h2 class="tc-h2">Upload your completed template</h2>
+        <p class="tc-tagline">
+          Upload the completed questionnaire, either the Excel workbook or a CSV export of it. The
+          file is read in your browser and never leaves your device.
         </p>
       </div>
 
       <div id="upload-initial">
-        <div class="upload-dropzone" id="upload-dropzone">
+        <div class="file-field" id="upload-dropzone">
           <input type="file" id="upload-input" accept=".xlsx,.csv" style="display:none;">
-          <button type="button" class="tc-btn-primary" onclick="document.getElementById('upload-input').click()">Choose File</button>
-          <p>Drag and drop an .xlsx or .csv file here, or choose a file. Maximum 10 MB.</p>
+          <button type="button" class="tc-btn-secondary" onclick="document.getElementById('upload-input').click()">Choose file</button>
+          <p class="tc-helper">Drag and drop an .xlsx or .csv file here, or choose a file. Maximum 10 MB.</p>
         </div>
-        <p class="tc-body" style="font-size:13px; color:var(--tc-stone); max-width: var(--tc-content-width);">
-          Don't have the file yet?
-          <a href="assets/The_Corporate_Supplier_Questionnaire_2026.xlsx" download style="color:var(--tc-ink);">Download the template</a>.
+        <p class="tc-body mt-md" style="max-width: var(--tc-content-width);">
+          Do not have the file yet?
+          <a href="assets/The_Corporate_Supplier_Questionnaire_2026.xlsx" download style="color: var(--tc-accent); font-weight:600;">Download the template.</a>
         </p>
       </div>
 
@@ -1345,7 +1023,7 @@
       <div id="upload-review" hidden>
         <div class="upload-filename" id="upload-filename"></div>
         <div id="upload-review-body"></div>
-        <div style="margin-top: var(--tc-space-xl); display:flex; gap: var(--tc-space-md); flex-wrap:wrap;">
+        <div class="mt-xl" style="margin-top: var(--tc-space-lg); display:flex; gap: var(--tc-space-sm); flex-wrap:wrap;">
           <button type="button" class="tc-btn-secondary" onclick="resetUpload()">Replace File</button>
           <button type="button" class="tc-btn-primary" onclick="submitUpload()">Submit</button>
         </div>
@@ -1354,135 +1032,196 @@
   </section>
 </div>
 
-<!-- ── VIEW 5 — CONFIRMATION ───────────────────────────────────────────────── -->
+<!-- ── VIEW 6, CONFIRMATION ────────────────────────────────────────────────── -->
 <div id="view-confirmation" class="tc-view" hidden>
   <section class="section-form">
     <div class="tc-page">
-      <div class="confirm-heading">Successfully submitted.</div>
-      <p class="tc-body mb-xl" style="color:var(--tc-stone); max-width: var(--tc-content-width);">
-        Below is a read-only recap of what you submitted.
+      <h2 class="tc-h2 confirm-heading">Successfully submitted</h2>
+      <p class="tc-body confirm-lede">
+        Below is a read only recap of what you submitted.
       </p>
       <div id="confirmation-body"></div>
-      <button type="button" class="tc-btn-primary mt-xl" onclick="showView('view-landing')">Back to Landing Page</button>
+      <button type="button" class="tc-btn-primary mt-xl" style="margin-top: var(--tc-space-lg);" onclick="showView('view-landing')">Back to Landing Page</button>
     </div>
   </section>
 </div>
 
-<!-- ── SheetJS (xlsx) — CDN only, parses uploaded workbooks entirely in the browser ── -->
+<!-- ── SheetJS (xlsx), CDN only, parses uploaded workbooks entirely in the browser ── -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
-<!-- ── APP LOGIC — Views 2–5 (session-only, nothing transmitted) ──────────── -->
+<!-- ── APP LOGIC, Views 2 to 6 (session only, nothing transmitted) ─────────── -->
 <script>
 (function () {
   "use strict";
 
-  /* ── Question inventory — exact text/order from product-spec.md Section 8, ── */
-  /* ── verified against The_Corporate_Supplier_Questionnaire_2026.xlsx.       ── */
   var STATUS_OPTIONS = ["Not Started", "In Progress", "Complete", "N/A", "EcoVadis Bypass"];
 
-  var SECTIONS = [
+  /* ── Portal question inventory. Text and ESRS references reproduced from  ── */
+  /* ── docs/product-spec.md Section 8, verified against the workbook. Rows  ── */
+  /* ── 8 and 9 (EcoVadis bypass, scorecard link) are excluded, as the gate  ── */
+  /* ── question on the landing page makes them redundant.                   ── */
+  var PORTAL_STEPS = [
     {
-      code: "S1", title: "General Information & EcoVadis Bypass", esrs: "All ESRS",
-      questions: [
-        { row: 6, esrsRef: "—", type: "text-multiline",
-          text: "Legal name and registered country of the responding entity." },
-        { row: 7, esrsRef: "—", type: "text-multiline",
-          text: "Primary contact name, title, and email address for this assessment." },
-        { row: 8, esrsRef: "Bypass", type: "dropdown",
-          options: ["Yes — Scorecard Attached", "No — Will Complete Questionnaire"],
-          text: "Do you hold a valid EcoVadis Sustainability Scorecard (issued within the last 12 months)? If YES: attach scorecard link in the Notes column and proceed directly to the Status column. Sections S2–S7 are not required." },
-        { row: 9, esrsRef: "—", type: "text",
-          text: "EcoVadis Scorecard Link (if applicable). Paste URL or attach document reference." }
+      key: "company", stepTitle: "Company Details",
+      subgroups: [
+        { questions: [
+          { row: 6, esrsRef: "None", type: "text-multiline",
+            text: "Legal name and registered country of the responding entity." },
+          { row: 7, esrsRef: "None", type: "text-multiline",
+            text: "Primary contact name, title, and email address for this assessment." }
+        ] }
       ]
     },
     {
-      code: "S2", title: "Climate & Decarbonisation", esrs: "ESRS E1",
-      questions: [
-        { row: 11, esrsRef: "E1-4", type: "number",
-          text: "Total Scope 1 emissions for last fiscal year (metric tonnes CO₂e). Include verification method." },
-        { row: 12, esrsRef: "E1-4", type: "number",
-          text: "Total Scope 2 emissions for last fiscal year — market-based (metric tonnes CO₂e)." },
-        { row: 13, esrsRef: "E1-4", type: "number",
-          text: "Total Scope 3 emissions for last fiscal year (metric tonnes CO₂e). Specify categories included." },
-        { row: 14, esrsRef: "E1-3", type: "dropdown", options: ["Yes", "No"],
-          text: "Does your organisation have a Science-Based Target (SBTi) validated decarbonisation target?" },
-        { row: 15, esrsRef: "E1-2", type: "textarea",
-          text: "Describe your top three decarbonisation projects currently in progress or planned for the next 24 months. Include estimated tCO₂e reduction and the specific technology being utilised (e.g., electrification of heat, on-site renewables)." },
-        { row: 16, esrsRef: "E1-2", type: "textarea",
-          text: "What are the primary technical or financial barriers preventing you from reaching a 50% reduction in Scope 1 and 2 emissions by 2030?" }
+      key: "environment", stepTitle: "Environment",
+      subgroups: [
+        { title: "Climate and Decarbonisation", esrs: "ESRS E1", questions: [
+          { row: 11, esrsRef: "E1-4", type: "number",
+            text: "Total Scope 1 emissions for last fiscal year (metric tonnes CO₂e). Include verification method." },
+          { row: 12, esrsRef: "E1-4", type: "number",
+            text: "Total Scope 2 emissions for last fiscal year, market-based (metric tonnes CO₂e)." },
+          { row: 13, esrsRef: "E1-4", type: "number",
+            text: "Total Scope 3 emissions for last fiscal year (metric tonnes CO₂e). Specify categories included." },
+          { row: 14, esrsRef: "E1-3", type: "dropdown", options: ["Yes", "No"],
+            text: "Does your organisation have a Science-Based Target (SBTi) validated decarbonisation target?" },
+          { row: 15, esrsRef: "E1-2", type: "textarea",
+            text: "Describe your top three decarbonisation projects currently in progress or planned for the next 24 months. Include estimated tCO₂e reduction and the specific technology being utilised (e.g., electrification of heat, on-site renewables)." },
+          { row: 16, esrsRef: "E1-2", type: "textarea",
+            text: "What are the primary technical or financial barriers preventing you from reaching a 50% reduction in Scope 1 and 2 emissions by 2030?" }
+        ] },
+        { title: "Pollution and PFAS", esrs: "ESRS E2", questions: [
+          { row: 18, esrsRef: "E2-3", type: "number",
+            text: "Total weight of substances of concern (REACH, SVHC list) used in production last fiscal year (kg)." },
+          { row: 19, esrsRef: "E2-3", type: "dropdown", options: ["Yes", "No"],
+            text: "Do any of your products or production processes contain or utilise PFAS compounds (\"Forever Chemicals\")?",
+            helper: "AUTO-FLAG: \"Yes\" triggers PFAS Risk review. This build takes no automated action on that flag." },
+          { row: 20, esrsRef: "E2-3", type: "textarea",
+            text: "If your products contain PFAS, detail your substitution roadmap. Have you identified viable non-PFAS alternatives? Provide your target date for a complete phase-out." },
+          { row: 21, esrsRef: "E2-2", type: "textarea",
+            text: "Describe your industrial wastewater treatment process. What specific measures are in place to ensure zero leakage of hazardous chemicals into local water systems?" }
+        ] },
+        { title: "Water and Marine Resources", esrs: "ESRS E3", questions: [
+          { row: 23, esrsRef: "E3-1", type: "number",
+            text: "Total water withdrawal last fiscal year (m³). Specify source (municipal, groundwater, surface)." },
+          { row: 24, esrsRef: "E3-1", type: "dropdown", options: ["Yes", "No"],
+            text: "Is your primary production facility located in a high-water-stress region (WRI Aqueduct score ≥3)?" },
+          { row: 25, esrsRef: "E3-2", type: "textarea",
+            text: "Provide details on any water-saving or closed-loop recycling projects implemented at your facility. How has your total water intensity (litres per unit produced) changed over the last three years?" },
+          { row: 26, esrsRef: "E3-2", type: "textarea",
+            text: "If your facility is in a high-water-stress region, what is your operational contingency plan for severe drought conditions to ensure supply continuity to The Corporate?" }
+        ] },
+        { title: "Circular Economy and Waste", esrs: "ESRS E5", questions: [
+          { row: 28, esrsRef: "E5-2", type: "number",
+            text: "Total waste generated last fiscal year (tonnes). Breakdown: landfill / recycled / energy recovery / hazardous." },
+          { row: 29, esrsRef: "E5-4", type: "number",
+            text: "Percentage of post-consumer recycled (PCR) content in the components supplied to The Corporate (%)." },
+          { row: 30, esrsRef: "E5-3", type: "textarea",
+            text: "How are you incorporating circularity into the specific components you supply to The Corporate? Examples: design for disassembly, modularity, or increasing PCR content." },
+          { row: 31, esrsRef: "E5-2", type: "textarea",
+            text: "Detail your strategy for achieving Zero Waste to Landfill. What are your primary waste streams, and what innovative recycling or upcycling initiatives have you launched recently?" }
+        ] },
+        { title: "Biodiversity and Ecosystems", esrs: "ESRS E4", questions: [
+          { row: 33, esrsRef: "E4-2", type: "dropdown", options: ["Yes", "No"],
+            text: "Are any of your production sites located within or adjacent to (within 1 km) a protected area or biodiversity hotspot?" },
+          { row: 34, esrsRef: "E4-3", type: "textarea",
+            text: "Describe any initiatives taken to minimise the impact of your operations on local biodiversity. Include land-use management, native planting schemes, or light/noise pollution reduction." },
+          { row: 35, esrsRef: "E4-5", type: "textarea",
+            text: "Have you undertaken a biodiversity impact assessment (TNFD or equivalent) for your primary production sites? If yes, share key findings. If no, provide your target assessment date." }
+        ] }
       ]
     },
     {
-      code: "S3", title: "Pollution & PFAS", esrs: "ESRS E2",
-      questions: [
-        { row: 18, esrsRef: "E2-3", type: "number",
-          text: "Total weight of substances of concern (REACH, SVHC list) used in production last fiscal year (kg)." },
-        { row: 19, esrsRef: "E2-3", type: "dropdown", options: ["Yes", "No"],
-          text: "Do any of your products or production processes contain or utilise PFAS compounds (\"Forever Chemicals\")?",
-          helper: "⚠ AUTO-FLAG: \"Yes\" triggers PFAS Risk review" },
-        { row: 20, esrsRef: "E2-3", type: "textarea",
-          text: "If your products contain PFAS, detail your substitution roadmap. Have you identified viable non-PFAS alternatives? Provide your target date for a complete phase-out." },
-        { row: 21, esrsRef: "E2-2", type: "textarea",
-          text: "Describe your industrial wastewater treatment process. What specific measures are in place to ensure zero leakage of hazardous chemicals into local water systems?" }
+      key: "social", stepTitle: "Social",
+      subgroups: [
+        { esrs: "ESRS S2", questions: [
+          { row: 37, esrsRef: "S2-1", type: "dropdown", options: ["Yes", "No"],
+            text: "Does your organisation have a formal Human Rights and Labour Rights Policy, aligned with the UN Guiding Principles on Business and Human Rights?" },
+          { row: 38, esrsRef: "S2-2", type: "dropdown", options: ["Yes", "No"],
+            text: "Have you conducted a human rights due diligence assessment of your Tier 1 and Tier 2 supply chains in the last 24 months?" },
+          { row: 39, esrsRef: "S2-4", type: "textarea",
+            text: "Describe the grievance mechanism available to workers in your supply chain. How many grievances were filed and resolved in the last 12 months?" }
+        ] }
       ]
     },
     {
-      code: "S4", title: "Water & Marine Resources", esrs: "ESRS E3",
-      questions: [
-        { row: 23, esrsRef: "E3-1", type: "number",
-          text: "Total water withdrawal last fiscal year (m³). Specify source (municipal, groundwater, surface)." },
-        { row: 24, esrsRef: "E3-1", type: "dropdown", options: ["Yes", "No"],
-          text: "Is your primary production facility located in a high-water-stress region (WRI Aqueduct score ≥3)?" },
-        { row: 25, esrsRef: "E3-2", type: "textarea",
-          text: "Provide details on any water-saving or closed-loop recycling projects implemented at your facility. How has your total water intensity (litres per unit produced) changed over the last three years?" },
-        { row: 26, esrsRef: "E3-2", type: "textarea",
-          text: "If your facility is in a high-water-stress region, what is your operational contingency plan for severe drought conditions to ensure supply continuity to The Corporate?" }
-      ]
-    },
-    {
-      code: "S5", title: "Circular Economy & Waste", esrs: "ESRS E5",
-      questions: [
-        { row: 28, esrsRef: "E5-2", type: "number",
-          text: "Total waste generated last fiscal year (tonnes). Breakdown: landfill / recycled / energy recovery / hazardous." },
-        { row: 29, esrsRef: "E5-4", type: "number",
-          text: "Percentage of post-consumer recycled (PCR) content in the components supplied to The Corporate (%)." },
-        { row: 30, esrsRef: "E5-3", type: "textarea",
-          text: "How are you incorporating circularity into the specific components you supply to The Corporate? Examples: design for disassembly, modularity, or increasing PCR content." },
-        { row: 31, esrsRef: "E5-2", type: "textarea",
-          text: "Detail your strategy for achieving Zero Waste to Landfill. What are your primary waste streams, and what innovative recycling or upcycling initiatives have you launched recently?" }
-      ]
-    },
-    {
-      code: "S6", title: "Biodiversity & Ecosystems", esrs: "ESRS E4",
-      questions: [
-        { row: 33, esrsRef: "E4-2", type: "dropdown", options: ["Yes", "No"],
-          text: "Are any of your production sites located within or adjacent to (within 1 km) a protected area or biodiversity hotspot?" },
-        { row: 34, esrsRef: "E4-3", type: "textarea",
-          text: "Describe any initiatives taken to minimise the impact of your operations on local biodiversity. Include land-use management, native planting schemes, or light/noise pollution reduction." },
-        { row: 35, esrsRef: "E4-5", type: "textarea",
-          text: "Have you undertaken a biodiversity impact assessment (TNFD or equivalent) for your primary production sites? If yes, share key findings. If no, provide your target assessment date." }
-      ]
-    },
-    {
-      code: "S7", title: "Social, Labour & Governance", esrs: "ESRS S2 · G1",
-      questions: [
-        { row: 37, esrsRef: "S2-1", type: "dropdown", options: ["Yes", "No"],
-          text: "Does your organisation have a formal Human Rights and Labour Rights Policy, aligned with the UN Guiding Principles on Business and Human Rights?" },
-        { row: 38, esrsRef: "S2-2", type: "dropdown", options: ["Yes", "No"],
-          text: "Have you conducted a human rights due diligence assessment of your Tier 1 and Tier 2 supply chains in the last 24 months?" },
-        { row: 39, esrsRef: "S2-4", type: "textarea",
-          text: "Describe the grievance mechanism available to workers in your supply chain. How many grievances were filed and resolved in the last 12 months?" },
-        { row: 40, esrsRef: "G1-1", type: "dropdown", options: ["Yes", "No"],
-          text: "Does your organisation have a verified conflict minerals policy (3TG — tin, tantalum, tungsten, gold) in place, including OECD Due Diligence guidance compliance?" },
-        { row: 41, esrsRef: "G1-2", type: "textarea",
-          text: "Describe your supplier code of conduct and how compliance is monitored across your own supply chain. Include details of any third-party audits conducted in the last 24 months." }
+      key: "governance", stepTitle: "Governance",
+      subgroups: [
+        { esrs: "ESRS G1", questions: [
+          { row: 40, esrsRef: "G1-1", type: "dropdown", options: ["Yes", "No"],
+            text: "Does your organisation have a verified conflict minerals policy (3TG, tin, tantalum, tungsten, gold) in place, including OECD Due Diligence guidance compliance?" },
+          { row: 41, esrsRef: "G1-2", type: "textarea",
+            text: "Describe your supplier code of conduct and how compliance is monitored across your own supply chain. Include details of any third-party audits conducted in the last 24 months." }
+        ] }
       ]
     }
   ];
 
+  /* Flat lookup of the 28 portal questions, by row number, used to build the ── */
+  /* recap groupings after a questionnaire submit or a validated file upload.  ── */
+  var PORTAL_ROW_INDEX = {};
+  var PORTAL_GROUP_ORDER = [];
+  PORTAL_STEPS.forEach(function (step) {
+    PORTAL_GROUP_ORDER.push(step.key);
+    step.subgroups.forEach(function (sg) {
+      sg.questions.forEach(function (q) {
+        PORTAL_ROW_INDEX[q.row] = { stepKey: step.key, stepTitle: step.stepTitle, subgroupTitle: sg.title, question: q };
+      });
+    });
+  });
+
+  /* ── Workbook structure, exact text from The_Corporate_Supplier_Questionnaire_2026.xlsx.── */
+  /* Used only to validate an uploaded file (Rule 1). All 30 rows, S1 to S7, including     ── */
+  /* rows 8 and 9, which the portal form and the review omit as redundant with the gate.   ── */
+  var WORKBOOK_SECTIONS = [
+    { code: "S1", title: "General Information & EcoVadis Bypass", rows: [
+      { row: 6, text: "Legal name and registered country of the responding entity." },
+      { row: 7, text: "Primary contact name, title, and email address for this assessment." },
+      { row: 8, text: "Do you hold a valid EcoVadis Sustainability Scorecard (issued within the last 12 months)? If YES: attach scorecard link in the Notes column and proceed directly to the Status column. Sections S2–S7 are not required." },
+      { row: 9, text: "EcoVadis Scorecard Link (if applicable). Paste URL or attach document reference." }
+    ] },
+    { code: "S2", title: "Climate & Decarbonisation", rows: [
+      { row: 11, text: "Total Scope 1 emissions for last fiscal year (metric tonnes CO₂e). Include verification method." },
+      { row: 12, text: "Total Scope 2 emissions for last fiscal year — market-based (metric tonnes CO₂e)." },
+      { row: 13, text: "Total Scope 3 emissions for last fiscal year (metric tonnes CO₂e). Specify categories included." },
+      { row: 14, text: "Does your organisation have a Science-Based Target (SBTi) validated decarbonisation target?" },
+      { row: 15, text: "Describe your top three decarbonisation projects currently in progress or planned for the next 24 months. Include estimated tCO₂e reduction and the specific technology being utilised (e.g., electrification of heat, on-site renewables)." },
+      { row: 16, text: "What are the primary technical or financial barriers preventing you from reaching a 50% reduction in Scope 1 and 2 emissions by 2030?" }
+    ] },
+    { code: "S3", title: "Pollution & PFAS", rows: [
+      { row: 18, text: "Total weight of substances of concern (REACH, SVHC list) used in production last fiscal year (kg)." },
+      { row: 19, text: "Do any of your products or production processes contain or utilise PFAS compounds (\"Forever Chemicals\")?" },
+      { row: 20, text: "If your products contain PFAS, detail your substitution roadmap. Have you identified viable non-PFAS alternatives? Provide your target date for a complete phase-out." },
+      { row: 21, text: "Describe your industrial wastewater treatment process. What specific measures are in place to ensure zero leakage of hazardous chemicals into local water systems?" }
+    ] },
+    { code: "S4", title: "Water & Marine Resources", rows: [
+      { row: 23, text: "Total water withdrawal last fiscal year (m³). Specify source (municipal, groundwater, surface)." },
+      { row: 24, text: "Is your primary production facility located in a high-water-stress region (WRI Aqueduct score ≥3)?" },
+      { row: 25, text: "Provide details on any water-saving or closed-loop recycling projects implemented at your facility. How has your total water intensity (litres per unit produced) changed over the last three years?" },
+      { row: 26, text: "If your facility is in a high-water-stress region, what is your operational contingency plan for severe drought conditions to ensure supply continuity to The Corporate?" }
+    ] },
+    { code: "S5", title: "Circular Economy & Waste", rows: [
+      { row: 28, text: "Total waste generated last fiscal year (tonnes). Breakdown: landfill / recycled / energy recovery / hazardous." },
+      { row: 29, text: "Percentage of post-consumer recycled (PCR) content in the components supplied to The Corporate (%)." },
+      { row: 30, text: "How are you incorporating circularity into the specific components you supply to The Corporate? Examples: design for disassembly, modularity, or increasing PCR content." },
+      { row: 31, text: "Detail your strategy for achieving Zero Waste to Landfill. What are your primary waste streams, and what innovative recycling or upcycling initiatives have you launched recently?" }
+    ] },
+    { code: "S6", title: "Biodiversity & Ecosystems", rows: [
+      { row: 33, text: "Are any of your production sites located within or adjacent to (within 1 km) a protected area or biodiversity hotspot?" },
+      { row: 34, text: "Describe any initiatives taken to minimise the impact of your operations on local biodiversity. Include land-use management, native planting schemes, or light/noise pollution reduction." },
+      { row: 35, text: "Have you undertaken a biodiversity impact assessment (TNFD or equivalent) for your primary production sites? If yes, share key findings. If no, provide your target assessment date." }
+    ] },
+    { code: "S7", title: "Social, Labour & Governance", rows: [
+      { row: 37, text: "Does your organisation have a formal Human Rights and Labour Rights Policy, aligned with the UN Guiding Principles on Business and Human Rights?" },
+      { row: 38, text: "Have you conducted a human rights due diligence assessment of your Tier 1 and Tier 2 supply chains in the last 24 months?" },
+      { row: 39, text: "Describe the grievance mechanism available to workers in your supply chain. How many grievances were filed and resolved in the last 12 months?" },
+      { row: 40, text: "Does your organisation have a verified conflict minerals policy (3TG — tin, tantalum, tungsten, gold) in place, including OECD Due Diligence guidance compliance?" },
+      { row: 41, text: "Describe your supplier code of conduct and how compliance is monitored across your own supply chain. Include details of any third-party audits conducted in the last 24 months." }
+    ] }
+  ];
+
   var HEADER_ROW = ["SECTION", "ESRS REF", "TYPE", "QUESTION / METRIC", "SUPPLIER RESPONSE", "NOTES / EVIDENCE", "STATUS"];
   var ASSET_PATH = "assets/The_Corporate_Supplier_Questionnaire_2026.xlsx";
-  var FILE_FORMAT_ERROR = "File format doesn't match — Download the Excel file";
+  var FILE_FORMAT_ERROR = "File format doesn't match. Download the Excel file";
 
   /* ── Helpers ─────────────────────────────────────────────────────────── */
   function escapeHtml(s) {
@@ -1499,16 +1238,19 @@
   function cellsMatch(a, b) {
     return normText(a).toLowerCase() === normText(b).toLowerCase();
   }
+  function formatBytes(n) {
+    if (n < 1024) return n + " B";
+    if (n < 1024 * 1024) return Math.round(n / 1024) + " KB";
+    return (n / (1024 * 1024)).toFixed(1) + " MB";
+  }
 
-  /* ── View routing ────────────────────────────────────────────────────── */
-  var VIEW_IDS = ["view-landing", "view-ecovadis", "view-questionnaire", "view-upload", "view-confirmation"];
-  var HASH_MAP = { "#view-2": "view-ecovadis", "#view-3": "view-questionnaire", "#view-4": "view-upload" };
+  /* ── View routing. Every door starts blank, whether entered fresh or   ── */
+  /* ── returned to later in the same session. Nothing carries across.    ── */
+  var VIEW_IDS = ["view-landing", "view-plana", "view-planb", "view-questionnaire", "view-upload", "view-confirmation"];
+  var HASH_MAP = { "#eco-vadis": "view-plana", "#full-assessment": "view-planb", "#questionnaire": "view-questionnaire", "#upload": "view-upload" };
 
   window.showView = function (id) {
-    // Nothing is saved between visits — every door starts blank each time it
-    // is entered, whether that is a fresh page load or a return visit later
-    // in the same session.
-    if (id === "view-ecovadis") resetEcovadisForm();
+    if (id === "view-plana") resetPlanAForm();
     if (id === "view-questionnaire") { buildQuestionnaire(); qstGoTo(0); }
     if (id === "view-upload") resetUpload();
 
@@ -1529,30 +1271,39 @@
   }
   window.addEventListener("hashchange", initFromHash);
 
-  /* ── Shared read-only recap renderer (Views 4 & 5) ──────────────────── */
-  function renderRecapHTML(sections, declaration) {
+  /* ── Shared read-only recap renderer, grouped Company Details / ──────── */
+  /* ── Environment / Social / Governance, used by View 5 and View 6.      ── */
+  function renderRecapHTML(groupedAnswers, declaration) {
+    var STEP_TITLES = { company: "Company Details", environment: "Environment", social: "Social", governance: "Governance" };
     var html = "";
-    sections.forEach(function (sec) {
-      html += '<div class="recap-section-title">' + escapeHtml(sec.code) + " — " + escapeHtml(sec.title) + "</div>";
-      sec.questions.forEach(function (q) {
-        html += '' +
-          '<div class="recap-question">' +
-            '<div class="recap-question-text">' + escapeHtml(q.text) + "</div>" +
-            '<div class="recap-values">' +
-              '<div><div class="recap-value-label">Supplier Response</div><div class="recap-value">' + escapeHtml(q.response) + "</div></div>" +
-              '<div><div class="recap-value-label">Notes / Evidence</div><div class="recap-value">' + escapeHtml(q.notes) + "</div></div>" +
-              '<div><div class="recap-value-label">Status</div><div class="recap-value">' + escapeHtml(q.status) + "</div></div>" +
-            "</div>" +
-          "</div>";
+    PORTAL_GROUP_ORDER.forEach(function (key) {
+      var group = groupedAnswers[key];
+      if (!group) return;
+      html += '<div class="tc-label recap-group-title">' + escapeHtml(STEP_TITLES[key]) + "</div>";
+      group.subgroups.forEach(function (sg) {
+        if (sg.title) {
+          html += '<div class="tc-eyebrow recap-subgroup-title">' + escapeHtml(sg.title) + "</div>";
+        }
+        sg.questions.forEach(function (q) {
+          html += '' +
+            '<div class="recap-question">' +
+              '<div class="tc-body recap-question-text">' + escapeHtml(q.text) + "</div>" +
+              '<div class="recap-values">' +
+                '<div><div class="tc-eyebrow recap-value-label">Supplier Response</div><div class="recap-value">' + escapeHtml(q.response) + "</div></div>" +
+                '<div><div class="tc-eyebrow recap-value-label">Notes / Evidence</div><div class="recap-value">' + escapeHtml(q.notes) + "</div></div>" +
+                '<div><div class="tc-eyebrow recap-value-label">Status</div><div class="recap-value">' + escapeHtml(q.status) + "</div></div>" +
+              "</div>" +
+            "</div>";
+        });
       });
     });
     if (declaration) {
-      html += '<div class="recap-section-title">Declaration</div>' +
+      html += '<div class="tc-label recap-group-title">Declaration</div>' +
         '<div class="recap-question">' +
           '<div class="recap-values">' +
-            '<div><div class="recap-value-label">Authorised Signatory Name</div><div class="recap-value">' + escapeHtml(declaration.name) + "</div></div>" +
-            '<div><div class="recap-value-label">Date</div><div class="recap-value">' + escapeHtml(declaration.date) + "</div></div>" +
-            '<div><div class="recap-value-label">Signature</div><div class="recap-value">' + escapeHtml(declaration.signature) + "</div></div>" +
+            '<div><div class="tc-eyebrow recap-value-label">Authorised Signatory Name</div><div class="recap-value">' + escapeHtml(declaration.name) + "</div></div>" +
+            '<div><div class="tc-eyebrow recap-value-label">Date</div><div class="recap-value">' + escapeHtml(declaration.date) + "</div></div>" +
+            '<div><div class="tc-eyebrow recap-value-label">Signature</div><div class="recap-value">' + escapeHtml(declaration.signature) + "</div></div>" +
           "</div>" +
         "</div>";
     }
@@ -1561,32 +1312,28 @@
 
   function renderConfirmation(payload) {
     var body = document.getElementById("confirmation-body");
-    if (payload.door === "ecovadis") {
-      var ev = payload.ecovadis;
+    if (payload.plan === "a") {
+      var pa = payload.plana;
       body.innerHTML =
-        '<div class="recap-section-title">EcoVadis Scorecard</div>' +
+        '<div class="tc-label recap-group-title">EcoVadis Scorecard</div>' +
         '<div class="recap-question"><div class="recap-values">' +
-          '<div><div class="recap-value-label">Company Legal Name</div><div class="recap-value">' + escapeHtml(ev.company) + "</div></div>" +
-          '<div><div class="recap-value-label">Contact Name</div><div class="recap-value">' + escapeHtml(ev.contact) + "</div></div>" +
-          '<div><div class="recap-value-label">Contact Email</div><div class="recap-value">' + escapeHtml(ev.email) + "</div></div>" +
+          '<div><div class="tc-eyebrow recap-value-label">Company Legal Name</div><div class="recap-value">' + escapeHtml(pa.company) + "</div></div>" +
+          '<div><div class="tc-eyebrow recap-value-label">Contact Name</div><div class="recap-value">' + escapeHtml(pa.contact) + "</div></div>" +
+          '<div><div class="tc-eyebrow recap-value-label">Contact Email</div><div class="recap-value">' + escapeHtml(pa.email) + "</div></div>" +
         "</div></div>" +
         '<div class="recap-question"><div class="recap-values">' +
-          '<div><div class="recap-value-label">EcoVadis Scorecard Link</div><div class="recap-value">' + escapeHtml(ev.link) + "</div></div>" +
-          '<div><div class="recap-value-label">Scorecard Issue Date</div><div class="recap-value">' + escapeHtml(ev.date) + "</div></div>" +
+          '<div><div class="tc-eyebrow recap-value-label">Scorecard Issue Date</div><div class="recap-value">' + escapeHtml(pa.date) + "</div></div>" +
+          '<div><div class="tc-eyebrow recap-value-label">Attached File</div><div class="recap-value">' + escapeHtml(pa.filename) + "</div></div>" +
         "</div></div>";
     } else {
-      body.innerHTML = renderRecapHTML(payload.sections, payload.declaration);
+      body.innerHTML = renderRecapHTML(payload.grouped, payload.declaration);
     }
   }
 
-  /* ── View 2 — EcoVadis Submission ───────────────────────────────────── */
+  /* ── View 2, Plan A: EcoVadis Submission ──────────────────────────────── */
+  var planaFile = null;
+
   function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
-  function isValidUrl(v) {
-    try {
-      var u = new URL(v);
-      return u.protocol === "http:" || u.protocol === "https:";
-    } catch (e) { return false; }
-  }
   function isScorecardDateValid(value) {
     if (!value) return false;
     var parts = value.split("-").map(Number);
@@ -1599,31 +1346,62 @@
     oneYearAgo.setFullYear(today.getFullYear() - 1);
     return picked >= oneYearAgo && picked <= today;
   }
+  function isValidScorecardFile(file) {
+    if (!file) return false;
+    var name = file.name || "";
+    var ext = name.slice(name.lastIndexOf(".")).toLowerCase();
+    if (ext !== ".pdf" && ext !== ".png" && ext !== ".jpg" && ext !== ".jpeg") return false;
+    if (file.size > 10 * 1024 * 1024) return false;
+    return true;
+  }
 
-  function resetEcovadisForm() {
-    var form = document.getElementById("ecovadis-form");
+  function setPlanAFile(file) {
+    planaFile = file || null;
+    var empty = document.getElementById("pa-file-empty");
+    var chosen = document.getElementById("pa-file-chosen");
+    var field = document.getElementById("pa-file-field");
+    if (planaFile) {
+      document.getElementById("pa-file-name").textContent = planaFile.name;
+      document.getElementById("pa-file-size").textContent = formatBytes(planaFile.size);
+      empty.hidden = true;
+      chosen.hidden = false;
+      field.classList.add("has-file");
+    } else {
+      empty.hidden = false;
+      chosen.hidden = true;
+      field.classList.remove("has-file");
+    }
+  }
+
+  function resetPlanAForm() {
+    var form = document.getElementById("plana-form");
     if (!form) return;
     form.reset();
     form.querySelectorAll(".tc-field.has-error").forEach(function (el) {
       el.classList.remove("has-error");
     });
+    document.getElementById("pa-file-input").value = "";
+    setPlanAFile(null);
   }
 
-  function initEcovadisForm() {
-    var form = document.getElementById("ecovadis-form");
+  function initPlanAForm() {
+    document.getElementById("pa-file-input").addEventListener("change", function (e) {
+      setPlanAFile(e.target.files[0] || null);
+    });
+
+    var form = document.getElementById("plana-form");
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      var company = document.getElementById("ev-company");
-      var contact = document.getElementById("ev-contact");
-      var email = document.getElementById("ev-email");
-      var link = document.getElementById("ev-link");
-      var date = document.getElementById("ev-date");
+      var company = document.getElementById("pa-company");
+      var contact = document.getElementById("pa-contact");
+      var email = document.getElementById("pa-email");
+      var date = document.getElementById("pa-date");
+      var fileField = document.getElementById("pa-file-field");
 
       var checks = [
         [company, company.value.trim() !== ""],
         [contact, contact.value.trim() !== ""],
         [email, email.value.trim() !== "" && isValidEmail(email.value.trim())],
-        [link, link.value.trim() !== "" && isValidUrl(link.value.trim())],
         [date, isScorecardDateValid(date.value)]
       ];
 
@@ -1633,23 +1411,28 @@
         el.closest(".tc-field").classList.toggle("has-error", !ok);
         if (!ok) valid = false;
       });
+
+      var fileOk = isValidScorecardFile(planaFile);
+      fileField.closest(".tc-field").classList.toggle("has-error", !fileOk);
+      if (!fileOk) valid = false;
+
       if (!valid) return;
 
       renderConfirmation({
-        door: "ecovadis",
-        ecovadis: {
+        plan: "a",
+        plana: {
           company: company.value.trim(),
           contact: contact.value.trim(),
           email: email.value.trim(),
-          link: link.value.trim(),
-          date: date.value
+          date: date.value,
+          filename: planaFile.name
         }
       });
       showView("view-confirmation");
     });
   }
 
-  /* ── View 3 — Guided Questionnaire ──────────────────────────────────── */
+  /* ── View 4, Fill in the Portal (guided questionnaire) ───────────────── */
   var qstStep = 0;
   window.qstStep = 0; // exposed for inline onclick handlers
 
@@ -1676,47 +1459,57 @@
     return '<select class="tc-input" id="status-' + row + '"><option value=""></option>' + opts + "</select>";
   }
 
+  function questionHTML(q) {
+    var html = '<div class="qst-question">' +
+      '<div class="tc-eyebrow qst-question-meta">' + escapeHtml(q.esrsRef) + "</div>" +
+      '<div class="tc-body qst-question-text">' + escapeHtml(q.text) + "</div>";
+    if (q.helper) {
+      html += '<div class="tc-helper qst-question-helper">' + escapeHtml(q.helper) + "</div>";
+    }
+    html += '' +
+      '<div class="qst-input-row">' +
+        '<label class="tc-eyebrow qst-input-label" for="resp-' + q.row + '">Supplier Response</label>' +
+        responseInputHTML(q) +
+      "</div>" +
+      '<div class="qst-input-row">' +
+        '<label class="tc-eyebrow qst-input-label" for="notes-' + q.row + '">Notes / Evidence</label>' +
+        '<textarea class="tc-input" id="notes-' + q.row + '" rows="2"></textarea>' +
+      "</div>" +
+      '<div class="qst-input-row">' +
+        '<label class="tc-eyebrow qst-input-label" for="status-' + q.row + '">Status</label>' +
+        statusSelectHTML(q.row) +
+      "</div>" +
+    "</div>";
+    return html;
+  }
+
   function buildQuestionnaire() {
-    var container = document.getElementById("qst-sections");
+    var container = document.getElementById("qst-steps");
     var html = "";
-    SECTIONS.forEach(function (section, idx) {
-      html += '<div class="qst-section" data-step="' + idx + '" hidden>' +
-        '<div class="qst-section-title">' + escapeHtml(section.code) + " — " + escapeHtml(section.title) +
-        ' <span style="font-family: var(--tc-font-body); font-size:13px; color:var(--tc-stone); font-weight:400;">(' +
-        escapeHtml(section.esrs) + ")</span></div>";
-      section.questions.forEach(function (q) {
-        html += '<div class="qst-question">' +
-          '<div class="qst-question-meta">' + escapeHtml(section.code) + " · " + escapeHtml(q.esrsRef) + "</div>" +
-          '<div class="qst-question-text">' + escapeHtml(q.text) + "</div>";
-        if (q.helper) {
-          html += '<div class="qst-question-helper">' + escapeHtml(q.helper) + "</div>";
+    PORTAL_STEPS.forEach(function (step, idx) {
+      html += '<div class="qst-step" data-step="' + idx + '" hidden>' +
+        '<h2 class="tc-h2 qst-step-title">' + escapeHtml(step.stepTitle) + "</h2>";
+      step.subgroups.forEach(function (sg) {
+        html += '<div class="qst-subgroup">';
+        if (sg.title) {
+          html += '<div class="tc-label qst-subgroup-title">' + escapeHtml(sg.title) +
+            (sg.esrs ? ' <span class="tc-eyebrow" style="font-weight:400;">(' + escapeHtml(sg.esrs) + ")</span>" : "") +
+            "</div>";
         }
-        html += '' +
-          '<div class="qst-input-row">' +
-            '<label class="qst-input-label" for="resp-' + q.row + '">Supplier Response</label>' +
-            responseInputHTML(q) +
-          "</div>" +
-          '<div class="qst-input-row">' +
-            '<label class="qst-input-label" for="notes-' + q.row + '">Notes / Evidence</label>' +
-            '<textarea class="tc-input" id="notes-' + q.row + '" rows="2"></textarea>' +
-          "</div>" +
-          '<div class="qst-input-row">' +
-            '<label class="qst-input-label" for="status-' + q.row + '">Status</label>' +
-            statusSelectHTML(q.row) +
-          "</div>" +
-        "</div>";
+        sg.questions.forEach(function (q) { html += questionHTML(q); });
+        html += "</div>";
       });
       html += "</div>";
     });
 
-    html += '<div class="qst-section" data-step="7" hidden>' +
-      '<div class="qst-section-title">Declaration</div>' +
+    html += '<div class="qst-step" data-step="' + PORTAL_STEPS.length + '" hidden>' +
+      '<h2 class="tc-h2 qst-step-title">Declaration</h2>' +
       '<div class="qst-declaration-text">I confirm that the information provided in this assessment is accurate and complete to the best of my knowledge.</div>' +
-      '<div class="tc-field"><label class="tc-field-label" for="decl-name">Authorised Signatory Name</label>' +
+      '<div class="tc-field"><label class="tc-label tc-field-label" for="decl-name">Authorised Signatory Name</label>' +
         '<input class="tc-input" type="text" id="decl-name"></div>' +
-      '<div class="tc-field"><label class="tc-field-label" for="decl-date">Date</label>' +
+      '<div class="tc-field"><label class="tc-label tc-field-label" for="decl-date">Date</label>' +
         '<input class="tc-input" type="date" id="decl-date"></div>' +
-      '<div class="tc-field"><label class="tc-field-label" for="decl-sig">Signature</label>' +
+      '<div class="tc-field"><label class="tc-label tc-field-label" for="decl-sig">Signature</label>' +
         '<input class="tc-input" type="text" id="decl-sig" placeholder="Type your name to sign"></div>' +
     "</div>";
 
@@ -1724,38 +1517,50 @@
   }
 
   window.qstGoTo = function (n) {
-    n = Math.max(0, Math.min(7, n));
-    document.querySelectorAll(".qst-section").forEach(function (el) {
+    var last = PORTAL_STEPS.length;
+    n = Math.max(0, Math.min(last, n));
+    document.querySelectorAll(".qst-step").forEach(function (el) {
       el.hidden = Number(el.dataset.step) !== n;
     });
     qstStep = n;
     window.qstStep = n;
-    document.getElementById("qst-stepper").textContent = n < 7 ? "Section " + (n + 1) + " of 7" : "Declaration";
+    document.getElementById("qst-stepper").textContent = n < last ? "Step " + (n + 1) + " of " + (last + 1) : "Step " + (last + 1) + " of " + (last + 1) + ", Declaration";
     document.getElementById("qst-back").style.visibility = n === 0 ? "hidden" : "visible";
-    document.getElementById("qst-next").hidden = n === 7;
-    document.getElementById("qst-submit").hidden = n !== 7;
+    document.getElementById("qst-next").hidden = n === last;
+    document.getElementById("qst-submit").hidden = n !== last;
     window.scrollTo(0, 0);
   };
 
+  /* Groups the flat set of row answers into the Company Details / Environment/ ── */
+  /* Social / Governance recap structure shared by View 5 and View 6.           ── */
+  function groupRowAnswers(rowAnswers) {
+    var grouped = {};
+    PORTAL_STEPS.forEach(function (step) {
+      var subgroups = step.subgroups.map(function (sg) {
+        return {
+          title: sg.title,
+          questions: sg.questions.map(function (q) {
+            var a = rowAnswers[q.row] || { response: "", notes: "", status: "" };
+            return { row: q.row, esrsRef: q.esrsRef, text: q.text, response: a.response, notes: a.notes, status: a.status };
+          })
+        };
+      });
+      grouped[step.key] = { title: step.stepTitle, subgroups: subgroups };
+    });
+    return grouped;
+  }
+
   function gatherQuestionnaireAnswers() {
-    var sections = SECTIONS.map(function (section) {
-      return {
-        code: section.code,
-        title: section.title,
-        esrs: section.esrs,
-        questions: section.questions.map(function (q) {
-          var respEl = document.getElementById("resp-" + q.row);
-          var notesEl = document.getElementById("notes-" + q.row);
-          var statusEl = document.getElementById("status-" + q.row);
-          return {
-            row: q.row,
-            esrsRef: q.esrsRef,
-            text: q.text,
-            response: respEl ? respEl.value : "",
-            notes: notesEl ? notesEl.value : "",
-            status: statusEl ? statusEl.value : ""
-          };
-        })
+    var rowAnswers = {};
+    Object.keys(PORTAL_ROW_INDEX).forEach(function (rowKey) {
+      var row = rowKey;
+      var respEl = document.getElementById("resp-" + row);
+      var notesEl = document.getElementById("notes-" + row);
+      var statusEl = document.getElementById("status-" + row);
+      rowAnswers[row] = {
+        response: respEl ? respEl.value : "",
+        notes: notesEl ? notesEl.value : "",
+        status: statusEl ? statusEl.value : ""
       };
     });
     var declaration = {
@@ -1763,16 +1568,16 @@
       date: document.getElementById("decl-date").value,
       signature: document.getElementById("decl-sig").value
     };
-    return { sections: sections, declaration: declaration };
+    return { grouped: groupRowAnswers(rowAnswers), declaration: declaration };
   }
 
   window.submitQuestionnaire = function () {
     var data = gatherQuestionnaireAnswers();
-    renderConfirmation({ door: "guided", sections: data.sections, declaration: data.declaration });
+    renderConfirmation({ plan: "b", grouped: data.grouped, declaration: data.declaration });
     showView("view-confirmation");
   };
 
-  /* ── View 4 — Upload Completed File ─────────────────────────────────── */
+  /* ── View 5, Upload Completed Template ────────────────────────────────── */
   var uploadedData = null;
 
   function parseCSV(text) {
@@ -1798,6 +1603,9 @@
     return rows;
   }
 
+  /* Validates against the workbook's own S1 to S7 structure (Rule 1): header row, ── */
+  /* all seven section headings, all thirty question rows in order, matched on    ── */
+  /* question text. Rejects outright, with no partial import, on any mismatch.    ── */
   function validateAndParseRows(rows) {
     var headerIdx = -1;
     for (var i = 0; i < rows.length; i++) {
@@ -1808,10 +1616,10 @@
     if (headerIdx === -1) return null;
 
     var cursor = headerIdx + 1;
-    var parsedSections = [];
+    var rowAnswers = {};
 
-    for (var s = 0; s < SECTIONS.length; s++) {
-      var section = SECTIONS[s];
+    for (var s = 0; s < WORKBOOK_SECTIONS.length; s++) {
+      var section = WORKBOOK_SECTIONS[s];
       var foundHeading = false;
       while (cursor < rows.length) {
         var hr = rows[cursor];
@@ -1822,28 +1630,23 @@
       }
       if (!foundHeading) return null;
 
-      var parsedQuestions = [];
-      for (var qi = 0; qi < section.questions.length; qi++) {
-        var q = section.questions[qi];
+      for (var qi = 0; qi < section.rows.length; qi++) {
+        var wq = section.rows[qi];
         var found = false;
         while (cursor < rows.length) {
           var qr = rows[cursor];
-          if (cellsMatch(qr[0], section.code) && cellsMatch(qr[3], q.text)) {
-            parsedQuestions.push({
-              row: q.row,
-              esrsRef: q.esrsRef,
-              text: q.text,
+          if (cellsMatch(qr[0], section.code) && cellsMatch(qr[3], wq.text)) {
+            rowAnswers[wq.row] = {
               response: qr[4] === undefined || qr[4] === null ? "" : String(qr[4]),
               notes: qr[5] === undefined || qr[5] === null ? "" : String(qr[5]),
               status: qr[6] === undefined || qr[6] === null ? "" : String(qr[6])
-            });
+            };
             found = true; cursor++; break;
           }
           cursor++;
         }
         if (!found) return null;
       }
-      parsedSections.push({ code: section.code, title: section.title, esrs: section.esrs, questions: parsedQuestions });
     }
 
     var declaration = null;
@@ -1859,7 +1662,7 @@
       }
     }
 
-    return { sections: parsedSections, declaration: declaration };
+    return { grouped: groupRowAnswers(rowAnswers), declaration: declaration };
   }
 
   function showUploadError() {
@@ -1880,7 +1683,7 @@
     if (!result) { showUploadError(); return; }
     uploadedData = result;
     document.getElementById("upload-filename").textContent = filename;
-    document.getElementById("upload-review-body").innerHTML = renderRecapHTML(result.sections, result.declaration);
+    document.getElementById("upload-review-body").innerHTML = renderRecapHTML(result.grouped, result.declaration);
     document.getElementById("upload-initial").hidden = true;
     document.getElementById("upload-error").hidden = true;
     document.getElementById("upload-review").hidden = false;
@@ -1931,7 +1734,7 @@
 
   window.submitUpload = function () {
     if (!uploadedData) return;
-    renderConfirmation({ door: "upload", sections: uploadedData.sections, declaration: uploadedData.declaration });
+    renderConfirmation({ plan: "b", grouped: uploadedData.grouped, declaration: uploadedData.declaration });
     showView("view-confirmation");
   };
 
@@ -1952,7 +1755,7 @@
   /* ── Init ────────────────────────────────────────────────────────────── */
   buildQuestionnaire();
   qstGoTo(0);
-  initEcovadisForm();
+  initPlanAForm();
   initUpload();
   initFromHash();
 })();
