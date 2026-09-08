@@ -4,14 +4,13 @@
 > anything. Update it at every save point. Replace content, do not append.
 > History lives in git.
 
-**Session:** 1
-**Last updated:** 7 September 2026
-**Live URL:** none yet on `main`. Netlify is connected via a GitHub App
-(not the Netlify MCP, which is not available in this Claude Code on the web
-session) and is already building deploy previews automatically for
-[PR #2](https://github.com/sheenuchoudhary-gif/supplier-engagement-portal/pull/2):
-https://deploy-preview-2--supplier-engagement-portal-netlify.netlify.app.
-A production URL will exist once this PR merges to `main`.
+**Session:** 2
+**Last updated:** 8 September 2026
+**Live URL:** PR #2 merged to `main`. The builder reported the deploy
+preview URL itself returned Netlify's "Site not found" page even though
+GitHub showed the build as green; this session cannot reach any
+`netlify.app` or `netlify.com` host to investigate (see Known issues), so
+the production URL's actual status is still unconfirmed.
 
 ## Current state
 The full v2.1 build is complete in `index.html`, a single page with six
@@ -21,7 +20,16 @@ show/hide views sharing one restyled stylesheet, deployable as a static site.
   Key Resources, footer). Why We Are Asking rewritten with the required
   sentence and no "This is driven by" sentence. Two Routes replaced with the
   single gate question, "Do you have an EcoVadis scorecard?", Yes/No buttons
-  of equal visual weight, no Download Template control on this page.
+  of equal visual weight, no Download Template control on this page. Hero H1
+  is now "You are 71% of our operations, and we need your help." (builder
+  instruction, session 2). Supplier Code of Conduct and Global Environmental
+  Policy Key Resources cards open the real PDFs from `/assets/` in a new tab
+  (builder supplied both files; moved there from the repo root). EHS Help
+  Desk opens a new in-portal contact view (Name, Email, Subject, Message,
+  Send) instead of a `mailto:` link; it does not transmit or store anything
+  it collects, consistent with the build constraint, since this build still
+  has no backend. The footer's right-hand meta column (version, programme
+  line, Scope 3 stat, email address) was removed per builder instruction.
 - **View 2, Plan A:** four required fields (company, contact, email,
   scorecard issue date) plus a required scorecard file upload (PDF/PNG/JPG,
   under 10 MB, filename and size read only, never parsed or transmitted). No
@@ -57,34 +65,32 @@ show/hide views sharing one restyled stylesheet, deployable as a static site.
   root instead). The root duplicate was removed.
 
 ## Last session
-Session 1 found `index.html` already built, but to the superseded v2.0 rules
-(old Playfair/DM Sans brand, two route cards instead of a gate, EcoVadis link
-field instead of a file upload, an ungrouped seven-section questionnaire).
-Rebuilt the whole page to v2.1: new brand system, gate-based routing, Plan
-A/Plan B structure, the 5-step ESG questionnaire, and workbook-accurate
-upload validation. Verified the question inventory and the upload validator
-against the actual xlsx (programmatic diff, zero mismatches across all 30
-rows) and against a live browser (Playwright): full walkthroughs of Plan A,
-Plan B guided, and Plan B upload (valid xlsx, valid CSV, two broken files)
-all produced the expected result, with no console/page errors and no
-horizontal overflow at 375px.
+Session 2 opened after PR #2 (session 1's full v2.1 rebuild) merged to
+`main`; restarted the working branch from `main` per the merged-PR
+protocol. Builder reported the Netlify deploy preview showed "Site not
+found" despite a green GitHub check, still unresolved (see Known issues).
+Builder then gave four direct content/UI changes, all implemented and
+Playwright-verified: new hero H1, the two policy document links now open
+real PDFs, EHS Help Desk now opens an in-portal contact form instead of a
+`mailto:` link, and the footer's right-hand meta column was removed.
 
 ## Remaining work
+- [ ] Push this session's changes and get them merged (no PR open yet).
+- [ ] Builder: confirm whether the "Site not found" issue on the Netlify
+      deploy preview was a stale/transitional state or a real site
+      configuration problem, since this sandbox cannot reach Netlify at all
+      to check. Confirm the production URL actually resolves post-merge.
 - [ ] Builder: decide the cell E12 workbook correction, or consciously
       decline it (spec Section 15). The tool renders row 12 as a number
       field either way; the source workbook still carries the wrong
       dropdown, so downloads stay inconsistent with the portal until fixed.
-- [ ] Merge PR #2 to `main` to get a production URL. Netlify is connected
-      via GitHub (deploy previews are already building automatically per PR,
-      confirmed green); the Netlify MCP tool itself was never needed.
-- [ ] Once merged, click through the live site once, PR #2's deploy preview
-      in particular: this sandbox's network policy blocks reaching any
-      `netlify.app` host directly, so the live SheetJS `.xlsx` upload path
-      could not be exercised from here (see Known issues).
+- [ ] Once the live site is confirmed reachable, click through it once,
+      the .xlsx upload path especially: this sandbox's network policy
+      blocks every `cdnjs.cloudflare.com` and `netlify.app`/`netlify.com`
+      request, so it could not be exercised live from here (see Known
+      issues).
 - [ ] Acceptance criteria 26 (full manual pass on a real phone) and 27
-      (post-deploy Netlify check) still need a human pass; everything else
-      in Section 13 was verified this session (see Known issues for the one
-      criterion that could not be verified from this sandbox).
+      (post-deploy Netlify check) still need a human pass.
 - [ ] Builder: decide whether to password-protect the deployed URL before it
       goes live, per the build constraint that this must not reach suppliers.
 [Rule: completed items leave this list and are absorbed into Current state. This list only shrinks.]
@@ -109,27 +115,26 @@ horizontal overflow at 375px.
   to primary actions only.
 
 ## Known issues
-- Netlify turns out to be connected via a GitHub App (not the Netlify MCP
-  tool, which this Claude Code on the web session never had access to):
-  PR #2 already has a green, working deploy preview at
-  https://deploy-preview-2--supplier-engagement-portal-netlify.netlify.app.
-  Merging that PR to `main` is what produces the production URL; no manual
-  Netlify setup is actually needed.
+- Builder reported the PR #2 deploy preview URL returned Netlify's own
+  "Site not found" page, even though GitHub's check showed the build as
+  green. This session cannot investigate: no host under `netlify.app` or
+  `netlify.com` is reachable from this sandbox (confirmed via curl and
+  WebFetch, both blocked by network policy), and there is no Netlify MCP
+  tool here either. Needs a check directly in the Netlify dashboard: does
+  a site named `supplier-engagement-portal-netlify` exist and is it linked
+  to this repo. Unresolved as of this session.
 - Acceptance criterion 23 (nothing transmitted) and the CDN-only requirement
   were verified by code inspection (no fetch/XHR/form-action/serverless code
   exists anywhere in the file) and by a live Playwright pass. The one CDN
   request that could not be exercised live from this sandbox is SheetJS
   itself: this session's outbound network policy blocks
-  `cdnjs.cloudflare.com` (and, separately, every `netlify.app` host,
-  including the deploy preview above), so the actual browser-side .xlsx
-  upload path could not be click-tested here (Google Fonts loaded fine;
-  the .xlsx parsing logic itself was independently verified against the
-  real unmodified workbook via SheetJS in Node, and the CSV upload path,
-  which shares the same validator and needs no CDN, was click-tested
-  successfully in a real browser). Confirm the .xlsx upload on the deploy
-  preview or the production URL, from a normal browser.
-- Supplier Code of Conduct URL unresolved, carried over from v1.0, left as `#`.
-- Global Environmental Policy URL unresolved, carried over from v1.0, left as `#`.
+  `cdnjs.cloudflare.com`, so the actual browser-side .xlsx upload path
+  could not be click-tested here (Google Fonts loaded fine; the .xlsx
+  parsing logic itself was independently verified against the real
+  unmodified workbook via SheetJS in Node, and the CSV upload path, which
+  shares the same validator and needs no CDN, was click-tested successfully
+  in a real browser). Confirm the .xlsx upload once the live site is
+  reachable, from a normal browser.
 - Navigation logo retained from v1.0 (the plain "C" mark) and not otherwise
   redesigned for the new brand beyond recolouring; flagged for builder review.
 - Why We Are Asking body copy is drafted by Claude Code and needs builder
@@ -147,13 +152,4 @@ horizontal overflow at 375px.
   deletion contact, and it will also store the uploaded scorecard file.
 
 ## Notes for next session
-Netlify is connected via GitHub, not the Netlify MCP tool (which this
-session never had access to and turned out not to need): PR #2 already has
-a green deploy preview at
-https://deploy-preview-2--supplier-engagement-portal-netlify.netlify.app.
-Whoever picks this up next should: merge PR #2 to `main` for the production
-URL, confirm the live site loads on desktop and mobile with the Excel
-download and the .xlsx upload both working (this session could reach neither
-`cdnjs.cloudflare.com` nor any `netlify.app` host to verify that last one
-itself), then decide on password protection per the build constraint, and
-record the live URL in this file's status header.
+None.
