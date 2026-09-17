@@ -488,6 +488,37 @@
   .file-field-meta { color: var(--tc-secondary); margin-top: 4px; }
   .file-field p { color: var(--tc-secondary); margin-top: var(--tc-space-xs); }
 
+  /* ── CONSENT CHECKBOX (View 2) ──────────────────────────────────────── */
+  .tc-consent-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+    max-width: var(--tc-content-width);
+  }
+  .tc-consent-label input[type="checkbox"] {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    margin-top: 3px;
+    accent-color: var(--tc-accent);
+  }
+  .tc-field.has-error .tc-consent-label { color: var(--tc-error); }
+
+  /* ── SUBMIT RETRY BANNER (Rule 5) ───────────────────────────────────── */
+  .tc-submit-error {
+    display: none;
+    border: 1px solid var(--tc-error);
+    border-radius: 2px;
+    padding: var(--tc-space-sm) var(--tc-space-md);
+    color: var(--tc-error);
+    font-weight: 600;
+    font-size: 14px;
+    max-width: var(--tc-content-width);
+    margin-top: var(--tc-space-md);
+  }
+  .tc-submit-error.is-visible { display: block; }
+
   /* ── UNSAVED PROGRESS WARNING ────────────────────────────────────────── */
   .qst-warning {
     background: #FFFFFF;
@@ -735,8 +766,8 @@
         A scorecard qualifies only if it was issued within the last 12 months.
       </p>
       <div class="gate-buttons">
-        <button type="button" class="gate-btn" onclick="showView('view-plana')">Yes</button>
-        <button type="button" class="gate-btn" onclick="showView('view-planb')">No</button>
+        <button type="button" class="gate-btn" onclick="startIdentity('a')">Yes</button>
+        <button type="button" class="gate-btn" onclick="startIdentity('b')">No</button>
       </div>
     </div>
   </div>
@@ -855,11 +886,66 @@
 
 </div><!-- /#view-landing -->
 
-<!-- ── VIEW 2, PLAN A: ECOVADIS SUBMISSION ────────────────────────────────── -->
+<!-- ── VIEW 2, COMPANY AND CONTACT DETAILS (new, shared by both doors) ────── -->
+<div id="view-identity" class="tc-view" hidden>
+  <section class="section-form">
+    <div class="tc-page">
+      <button type="button" class="tc-text-link" style="margin-bottom: var(--tc-space-lg); display:inline-flex;" onclick="showView('view-landing')">&larr; Back to landing page</button>
+
+      <div class="tc-form-header">
+        <div class="tc-eyebrow" id="id-eyebrow">Plan A, EcoVadis scorecard</div>
+        <h2 class="tc-h2" id="id-heading">EcoVadis submission, step 1 of 2</h2>
+        <p class="tc-tagline">
+          Tell us who is submitting before you continue.
+        </p>
+      </div>
+
+      <form id="identity-form" novalidate>
+        <div class="tc-field">
+          <label class="tc-label tc-field-label" for="id-company">Company legal name</label>
+          <input class="tc-input" type="text" id="id-company">
+          <div class="tc-field-error tc-helper">Enter your company's legal name.</div>
+        </div>
+        <div class="tc-field">
+          <label class="tc-label tc-field-label" for="id-contact">Contact name</label>
+          <input class="tc-input" type="text" id="id-contact">
+          <div class="tc-field-error tc-helper">Enter a contact name.</div>
+        </div>
+        <div class="tc-field">
+          <label class="tc-label tc-field-label" for="id-email">Contact email</label>
+          <input class="tc-input" type="email" id="id-email">
+          <div class="tc-field-error tc-helper">Enter a valid email address.</div>
+        </div>
+        <div class="tc-field">
+          <label class="tc-label tc-field-label" for="id-title">Contact title or role</label>
+          <input class="tc-input" type="text" id="id-title">
+          <div class="tc-field-error tc-helper">Enter a contact title or role.</div>
+        </div>
+
+        <div class="tc-field" id="id-consent-field">
+          <label class="tc-consent-label" for="id-consent">
+            <input type="checkbox" id="id-consent">
+            <span class="tc-body">
+              Your data will be stored securely and used only to review your sustainability
+              submission as part of The Corporate's supplier programme. You can request deletion
+              at any time by contacting [deletion contact, to be confirmed by the builder before
+              this tool is given to real suppliers].
+            </span>
+          </label>
+          <div class="tc-field-error tc-helper">You must accept this statement to continue.</div>
+        </div>
+
+        <button type="submit" class="tc-btn-primary mt-md">Continue</button>
+      </form>
+    </div>
+  </section>
+</div>
+
+<!-- ── VIEW 3, PLAN A: ECOVADIS SUBMISSION ────────────────────────────────── -->
 <div id="view-plana" class="tc-view" hidden>
   <section class="section-form">
     <div class="tc-page">
-      <button type="button" class="tc-text-link mb-lg" style="margin-bottom: var(--tc-space-lg); display:inline-flex;" onclick="showView('view-landing')">&larr; Back to landing page</button>
+      <button type="button" class="tc-text-link mb-lg" style="margin-bottom: var(--tc-space-lg); display:inline-flex;" onclick="showView('view-identity')">&larr; Back</button>
 
       <div class="tc-form-header">
         <div class="tc-eyebrow">Plan A, EcoVadis scorecard</div>
@@ -910,17 +996,18 @@
           <div class="tc-field-error tc-helper" id="pa-file-error">Attach a scorecard file. Accepted types are PDF, PNG or JPG, under 10 MB.</div>
         </div>
 
-        <button type="submit" class="tc-btn-primary mt-md">Submit</button>
+        <button type="submit" class="tc-btn-primary mt-md" id="pa-submit-btn">Submit</button>
+        <div class="tc-submit-error" id="pa-submit-error">Something went wrong submitting your file. Please try again.</div>
       </form>
     </div>
   </section>
 </div>
 
-<!-- ── VIEW 3, PLAN B: CHOOSE HOW TO SUBMIT ───────────────────────────────── -->
+<!-- ── VIEW 4, PLAN B: CHOOSE HOW TO SUBMIT ───────────────────────────────── -->
 <div id="view-planb" class="tc-view" hidden>
   <section class="section-form">
     <div class="tc-page">
-      <button type="button" class="tc-text-link" style="margin-bottom: var(--tc-space-lg); display:inline-flex;" onclick="showView('view-landing')">&larr; Back to landing page</button>
+      <button type="button" class="tc-text-link" style="margin-bottom: var(--tc-space-lg); display:inline-flex;" onclick="showView('view-identity')">&larr; Back</button>
 
       <div class="tc-form-header">
         <div class="tc-eyebrow">Plan B, full assessment</div>
@@ -958,7 +1045,7 @@
   </section>
 </div>
 
-<!-- ── VIEW 4, FILL IN THE PORTAL (GUIDED QUESTIONNAIRE) ──────────────────── -->
+<!-- ── VIEW 5, FILL IN THE PORTAL (GUIDED QUESTIONNAIRE) ──────────────────── -->
 <div id="view-questionnaire" class="tc-view" hidden>
   <section class="section-form">
     <div class="tc-page">
@@ -976,11 +1063,12 @@
         <button type="button" class="tc-btn-primary" id="qst-next" onclick="qstGoTo(qstStep + 1)">Next</button>
         <button type="button" class="tc-btn-primary" id="qst-submit" hidden onclick="submitQuestionnaire()">Submit</button>
       </div>
+      <div class="tc-submit-error" id="qst-submit-error">Something went wrong submitting your details. Please try again.</div>
     </div>
   </section>
 </div>
 
-<!-- ── VIEW 5, UPLOAD COMPLETED TEMPLATE ──────────────────────────────────── -->
+<!-- ── VIEW 6, UPLOAD COMPLETED TEMPLATE ──────────────────────────────────── -->
 <div id="view-upload" class="tc-view" hidden>
   <section class="section-form">
     <div class="tc-page">
@@ -1014,20 +1102,21 @@
         <div id="upload-review-body"></div>
         <div class="mt-xl" style="margin-top: var(--tc-space-lg); display:flex; gap: var(--tc-space-sm); flex-wrap:wrap;">
           <button type="button" class="tc-btn-secondary" onclick="resetUpload()">Replace File</button>
-          <button type="button" class="tc-btn-primary" onclick="submitUpload()">Submit</button>
+          <button type="button" class="tc-btn-primary" id="upload-submit-btn" onclick="submitUpload()">Submit</button>
         </div>
+        <div class="tc-submit-error" id="upload-submit-error">Something went wrong submitting your file. Please try again.</div>
       </div>
     </div>
   </section>
 </div>
 
-<!-- ── VIEW 6, CONFIRMATION ────────────────────────────────────────────────── -->
+<!-- ── VIEW 7, CONFIRMATION ────────────────────────────────────────────────── -->
 <div id="view-confirmation" class="tc-view" hidden>
   <section class="section-form">
     <div class="tc-page">
       <h2 class="tc-h2 confirm-heading">Successfully submitted</h2>
       <p class="tc-body confirm-lede">
-        Below is a read only recap of what you submitted.
+        Your submission has been recorded. Below is a read only recap of what you submitted.
       </p>
       <div id="confirmation-body"></div>
       <button type="button" class="tc-btn-primary mt-xl" style="margin-top: var(--tc-space-lg);" onclick="showView('view-landing')">Back to Landing Page</button>
@@ -1080,7 +1169,15 @@
 <!-- ── SheetJS (xlsx), CDN only, parses uploaded workbooks entirely in the browser ── -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
-<!-- ── APP LOGIC, Views 2 to 6 (session only, nothing transmitted) ─────────── -->
+<!-- ── Supabase client, CDN only ────────────────────────────────────────────── -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+
+<!-- ── env.js, generated at Netlify build time from SUPABASE_URL and           ── -->
+<!-- ── SUPABASE_ANON_KEY. Never committed; absent locally under `npx serve .`. ── -->
+<script src="env.js"></script>
+
+<!-- ── APP LOGIC, Views 1 to 7. Submissions and uploaded files are written to ── -->
+<!-- ── Supabase only at final submit (Rule 5); nothing else is transmitted.   ── -->
 <script>
 (function () {
   "use strict";
@@ -1277,12 +1374,13 @@
 
   /* ── View routing. Every door starts blank, whether entered fresh or   ── */
   /* ── returned to later in the same session. Nothing carries across.    ── */
-  var VIEW_IDS = ["view-landing", "view-plana", "view-planb", "view-questionnaire", "view-upload", "view-confirmation", "view-contact"];
+  var VIEW_IDS = ["view-landing", "view-identity", "view-plana", "view-planb", "view-questionnaire", "view-upload", "view-confirmation", "view-contact"];
   var HASH_MAP = { "#eco-vadis": "view-plana", "#full-assessment": "view-planb", "#questionnaire": "view-questionnaire", "#upload": "view-upload", "#contact": "view-contact" };
 
   window.showView = function (id) {
+    if (id === "view-identity") resetIdentityForm();
     if (id === "view-plana") resetPlanAForm();
-    if (id === "view-questionnaire") { buildQuestionnaire(); qstGoTo(0); }
+    if (id === "view-questionnaire") { buildQuestionnaire(); qstGoTo(0); resetQuestionnaireSubmitState(); }
     if (id === "view-upload") resetUpload();
     if (id === "view-contact") resetContactForm();
 
@@ -1342,11 +1440,24 @@
     return html;
   }
 
+  function identityRecapHTML() {
+    if (!identity) return "";
+    return '' +
+      '<div class="tc-label recap-group-title">Company and Contact Details</div>' +
+      '<div class="recap-question"><div class="recap-values">' +
+        '<div><div class="tc-eyebrow recap-value-label">Company Legal Name</div><div class="recap-value">' + escapeHtml(identity.company) + "</div></div>" +
+        '<div><div class="tc-eyebrow recap-value-label">Contact Name</div><div class="recap-value">' + escapeHtml(identity.contact) + "</div></div>" +
+        '<div><div class="tc-eyebrow recap-value-label">Contact Email</div><div class="recap-value">' + escapeHtml(identity.email) + "</div></div>" +
+        '<div><div class="tc-eyebrow recap-value-label">Contact Title or Role</div><div class="recap-value">' + escapeHtml(identity.title) + "</div></div>" +
+      "</div></div>";
+  }
+
   function renderConfirmation(payload) {
     var body = document.getElementById("confirmation-body");
+    var html = identityRecapHTML();
     if (payload.plan === "a") {
       var pa = payload.plana;
-      body.innerHTML =
+      html +=
         '<div class="tc-label recap-group-title">EcoVadis Scorecard</div>' +
         '<div class="recap-question"><div class="recap-values">' +
           '<div><div class="tc-eyebrow recap-value-label">Company Legal Name</div><div class="recap-value">' + escapeHtml(pa.company) + "</div></div>" +
@@ -1358,8 +1469,131 @@
           '<div><div class="tc-eyebrow recap-value-label">Attached File</div><div class="recap-value">' + escapeHtml(pa.filename) + "</div></div>" +
         "</div></div>";
     } else {
-      body.innerHTML = renderRecapHTML(payload.grouped, payload.declaration);
+      html += renderRecapHTML(payload.grouped, payload.declaration);
     }
+    body.innerHTML = html;
+  }
+
+  /* ── Supabase client, RLS restricts the anon key to insert only (see  ── */
+  /* ── docs/supabase-setup.md). Both SUPABASE_URL and SUPABASE_ANON_KEY ── */
+  /* ── come from env.js, generated at Netlify build time, never committed. ── */
+  function getSupabaseClient() {
+    if (!window.SUPABASE_URL || !window.SUPABASE_ANON_KEY || typeof supabase === "undefined") return null;
+    if (!window.__sbClient) {
+      window.__sbClient = supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
+    }
+    return window.__sbClient;
+  }
+
+  function makeStoragePath(file) {
+    var name = file.name || "upload";
+    var ext = name.lastIndexOf(".") !== -1 ? name.slice(name.lastIndexOf(".")) : "";
+    var id = (window.crypto && window.crypto.randomUUID)
+      ? window.crypto.randomUUID()
+      : (Date.now().toString(36) + Math.random().toString(36).slice(2));
+    return id + ext;
+  }
+
+  var RETRY_FILE_MESSAGE = "Something went wrong submitting your file. Please try again.";
+  var RETRY_ROW_MESSAGE = "Something went wrong submitting your details. Please try again.";
+
+  /* ── Rule 5, submission write failure. Uploads any file first, then    ── */
+  /* ── inserts the submissions row only once the upload has succeeded.   ── */
+  /* ── A failure at either step leaves the supplier on the same view     ── */
+  /* ── with their data intact, and does not navigate to View 7.          ── */
+  function submitToDatabase(opts, onSuccess, onFailure) {
+    var client = getSupabaseClient();
+    if (!client) { onFailure(RETRY_ROW_MESSAGE); return; }
+
+    function insertRow(filePath) {
+      var row = {};
+      Object.keys(opts.row).forEach(function (k) { row[k] = opts.row[k]; });
+      if (opts.fileColumn && filePath) row[opts.fileColumn] = filePath;
+      client.from("submissions").insert(row).then(function (res) {
+        if (res.error) { onFailure(RETRY_ROW_MESSAGE); return; }
+        onSuccess();
+      }, function () { onFailure(RETRY_ROW_MESSAGE); });
+    }
+
+    if (opts.file) {
+      var path = makeStoragePath(opts.file);
+      client.storage.from(opts.bucket).upload(path, opts.file).then(function (res) {
+        if (res.error) { onFailure(RETRY_FILE_MESSAGE); return; }
+        insertRow(path);
+      }, function () { onFailure(RETRY_FILE_MESSAGE); });
+    } else {
+      insertRow(null);
+    }
+  }
+
+  /* ── View 2, Company and Contact Details (new, shared by both doors) ─── */
+  var identityContext = "a"; // "a" or "b", set by startIdentity()
+  var identity = null; // { company, contact, email, title, consent }, in memory only
+
+  window.startIdentity = function (ctx) {
+    identityContext = ctx;
+    showView("view-identity");
+  };
+
+  function resetIdentityForm() {
+    var form = document.getElementById("identity-form");
+    if (!form) return;
+    form.reset();
+    form.querySelectorAll(".tc-field.has-error").forEach(function (el) {
+      el.classList.remove("has-error");
+    });
+    var eyebrow = document.getElementById("id-eyebrow");
+    var heading = document.getElementById("id-heading");
+    if (identityContext === "a") {
+      eyebrow.textContent = "Plan A, EcoVadis scorecard";
+      heading.textContent = "EcoVadis submission, step 1 of 2";
+    } else {
+      eyebrow.textContent = "Plan B, full assessment";
+      heading.textContent = "Complete your assessment, step 1";
+    }
+  }
+
+  function initIdentityForm() {
+    var form = document.getElementById("identity-form");
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var company = document.getElementById("id-company");
+      var contact = document.getElementById("id-contact");
+      var email = document.getElementById("id-email");
+      var title = document.getElementById("id-title");
+      var consent = document.getElementById("id-consent");
+
+      var checks = [
+        [company, company.value.trim() !== ""],
+        [contact, contact.value.trim() !== ""],
+        [email, email.value.trim() !== "" && isValidEmail(email.value.trim())],
+        [title, title.value.trim() !== ""]
+      ];
+
+      var valid = true;
+      checks.forEach(function (pair) {
+        var el = pair[0], ok = pair[1];
+        el.closest(".tc-field").classList.toggle("has-error", !ok);
+        if (!ok) valid = false;
+      });
+
+      var consentField = document.getElementById("id-consent-field");
+      var consentOk = consent.checked;
+      consentField.classList.toggle("has-error", !consentOk);
+      if (!consentOk) valid = false;
+
+      if (!valid) return;
+
+      identity = {
+        company: company.value.trim(),
+        contact: contact.value.trim(),
+        email: email.value.trim(),
+        title: title.value.trim(),
+        consent: true
+      };
+
+      showView(identityContext === "a" ? "view-plana" : "view-planb");
+    });
   }
 
   /* ── View 2, Plan A: EcoVadis Submission ──────────────────────────────── */
@@ -1414,6 +1648,8 @@
     });
     document.getElementById("pa-file-input").value = "";
     setPlanAFile(null);
+    document.getElementById("pa-submit-btn").disabled = false;
+    document.getElementById("pa-submit-error").classList.remove("is-visible");
   }
 
   function initPlanAForm() {
@@ -1450,17 +1686,42 @@
 
       if (!valid) return;
 
-      renderConfirmation({
-        plan: "a",
-        plana: {
-          company: company.value.trim(),
-          contact: contact.value.trim(),
-          email: email.value.trim(),
-          date: date.value,
-          filename: planaFile.name
+      if (!identity) { startIdentity("a"); return; }
+
+      var submitBtn = document.getElementById("pa-submit-btn");
+      var errorBox = document.getElementById("pa-submit-error");
+      submitBtn.disabled = true;
+      errorBox.classList.remove("is-visible");
+
+      var planaFields = {
+        company: company.value.trim(),
+        contact: contact.value.trim(),
+        email: email.value.trim(),
+        date: date.value,
+        filename: planaFile.name
+      };
+
+      submitToDatabase({
+        file: planaFile,
+        bucket: "ecovadis-scorecards",
+        fileColumn: "scorecard_file_path",
+        row: {
+          submission_path: "ecovadis",
+          company_legal_name: identity.company,
+          contact_name: identity.contact,
+          contact_email: identity.email,
+          contact_title: identity.title,
+          consent_given: identity.consent,
+          scorecard_issue_date: date.value
         }
+      }, function () {
+        renderConfirmation({ plan: "a", plana: planaFields });
+        showView("view-confirmation");
+      }, function (message) {
+        submitBtn.disabled = false;
+        errorBox.textContent = message;
+        errorBox.classList.add("is-visible");
       });
-      showView("view-confirmation");
     });
   }
 
@@ -1600,17 +1861,48 @@
       date: document.getElementById("decl-date").value,
       signature: document.getElementById("decl-sig").value
     };
-    return { grouped: groupRowAnswers(rowAnswers), declaration: declaration };
+    return { rowAnswers: rowAnswers, grouped: groupRowAnswers(rowAnswers), declaration: declaration };
+  }
+
+  function resetQuestionnaireSubmitState() {
+    var btn = document.getElementById("qst-submit");
+    var errorBox = document.getElementById("qst-submit-error");
+    if (btn) btn.disabled = false;
+    if (errorBox) errorBox.classList.remove("is-visible");
   }
 
   window.submitQuestionnaire = function () {
+    if (!identity) { startIdentity("b"); return; }
+
     var data = gatherQuestionnaireAnswers();
-    renderConfirmation({ plan: "b", grouped: data.grouped, declaration: data.declaration });
-    showView("view-confirmation");
+    var btn = document.getElementById("qst-submit");
+    var errorBox = document.getElementById("qst-submit-error");
+    btn.disabled = true;
+    errorBox.classList.remove("is-visible");
+
+    submitToDatabase({
+      row: {
+        submission_path: "questionnaire",
+        company_legal_name: identity.company,
+        contact_name: identity.contact,
+        contact_email: identity.email,
+        contact_title: identity.title,
+        consent_given: identity.consent,
+        payload: { questionnaire_answers: data.rowAnswers, declaration: data.declaration }
+      }
+    }, function () {
+      renderConfirmation({ plan: "b", grouped: data.grouped, declaration: data.declaration });
+      showView("view-confirmation");
+    }, function (message) {
+      btn.disabled = false;
+      errorBox.textContent = message;
+      errorBox.classList.add("is-visible");
+    });
   };
 
-  /* ── View 5, Upload Completed Template ────────────────────────────────── */
+  /* ── View 6, Upload Completed Template ────────────────────────────────── */
   var uploadedData = null;
+  var uploadedFile = null;
 
   function parseCSV(text) {
     var rows = [], row = [], field = "", inQuotes = false, i = 0, n = text.length;
@@ -1694,7 +1986,7 @@
       }
     }
 
-    return { grouped: groupRowAnswers(rowAnswers), declaration: declaration };
+    return { rowAnswers: rowAnswers, grouped: groupRowAnswers(rowAnswers), declaration: declaration };
   }
 
   function showUploadError() {
@@ -1728,6 +2020,7 @@
     var ext = name.slice(name.lastIndexOf(".")).toLowerCase();
     if (ext !== ".xlsx" && ext !== ".csv") { showUploadError(); return; }
     if (file.size > 10 * 1024 * 1024) { showUploadError(); return; }
+    uploadedFile = file;
 
     var reader = new FileReader();
     if (ext === ".csv") {
@@ -1758,16 +2051,45 @@
 
   window.resetUpload = function () {
     uploadedData = null;
+    uploadedFile = null;
     document.getElementById("upload-input").value = "";
     document.getElementById("upload-initial").hidden = false;
     document.getElementById("upload-error").hidden = true;
     document.getElementById("upload-review").hidden = true;
+    document.getElementById("upload-submit-btn").disabled = false;
+    document.getElementById("upload-submit-error").classList.remove("is-visible");
   };
 
   window.submitUpload = function () {
-    if (!uploadedData) return;
-    renderConfirmation({ plan: "b", grouped: uploadedData.grouped, declaration: uploadedData.declaration });
-    showView("view-confirmation");
+    if (!uploadedData || !uploadedFile) return;
+    if (!identity) { startIdentity("b"); return; }
+
+    var btn = document.getElementById("upload-submit-btn");
+    var errorBox = document.getElementById("upload-submit-error");
+    btn.disabled = true;
+    errorBox.classList.remove("is-visible");
+
+    submitToDatabase({
+      file: uploadedFile,
+      bucket: "template-uploads",
+      fileColumn: "template_file_path",
+      row: {
+        submission_path: "template_upload",
+        company_legal_name: identity.company,
+        contact_name: identity.contact,
+        contact_email: identity.email,
+        contact_title: identity.title,
+        consent_given: identity.consent,
+        payload: { template_parsed_answers: uploadedData.rowAnswers, declaration: uploadedData.declaration }
+      }
+    }, function () {
+      renderConfirmation({ plan: "b", grouped: uploadedData.grouped, declaration: uploadedData.declaration });
+      showView("view-confirmation");
+    }, function (message) {
+      btn.disabled = false;
+      errorBox.textContent = message;
+      errorBox.classList.add("is-visible");
+    });
   };
 
   function initUpload() {
@@ -1804,6 +2126,7 @@
   /* ── Init ────────────────────────────────────────────────────────────── */
   buildQuestionnaire();
   qstGoTo(0);
+  initIdentityForm();
   initPlanAForm();
   initUpload();
   initContactForm();
