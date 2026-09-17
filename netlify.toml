@@ -1,3 +1,10 @@
 [build]
   command = "node scripts/generate-env.js"
   publish = "."
+
+[build.environment]
+  # SUPABASE_URL and SUPABASE_ANON_KEY are meant to end up in env.js, read
+  # directly by the browser. The anon key is protected by RLS, not secrecy,
+  # so it is expected to appear in the published output. This tells
+  # Netlify's secret scanner not to flag that as an exposed secret.
+  SECRETS_SCAN_OMIT_KEYS = "SUPABASE_URL,SUPABASE_ANON_KEY"

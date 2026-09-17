@@ -6,13 +6,12 @@
 
 **Session:** 3
 **Last updated:** 17 September 2026
-**Live URL:** Not yet confirmed reachable. Session 2 reported the Netlify deploy
-preview returned "Site not found" despite a green GitHub check; that was never
-resolved. This session had no Netlify MCP tool available (despite CLAUDE.md
-saying it is active), so it could not check, set environment variables, or
-deploy. The builder must set `SUPABASE_URL` and `SUPABASE_ANON_KEY` as Netlify
-environment variables (values given to the builder directly, not written to
-this repo) and confirm the site deploys and loads.
+**Live URL:** Not yet confirmed reachable. PR #5 merged to `main`, but both
+the production build and the deploy preview failed with Netlify's "Exposed
+secrets detected" scan (see Known issues), so the live site was still
+serving the pre-v2.2 build with no database connection. Fixed in this save
+point by adding `SECRETS_SCAN_OMIT_KEYS` to `netlify.toml`; needs a fresh
+push and deploy to confirm.
 
 ## Current state
 The v2.2 build is complete in `index.html`: a single page, now eight
@@ -94,12 +93,9 @@ querying `pg_policy` directly through the Supabase MCP rather than through
 a browser anon-key call.
 
 ## Remaining work
-- [ ] Builder: set `SUPABASE_URL` and `SUPABASE_ANON_KEY` as Netlify
-      environment variables (values given directly to the builder, not
-      written to this repo) and trigger a redeploy.
-- [ ] Builder: confirm the live Netlify URL loads and is reachable (session
-      2's "Site not found" issue was never confirmed resolved, and this
-      session could not check).
+- [ ] Builder: confirm the next deploy (production and/or a new PR preview)
+      passes Netlify's secret scan now that `SECRETS_SCAN_OMIT_KEYS` is set,
+      and that the live site loads.
 - [ ] Once live, click through all three submission paths against the real
       Supabase project, from a normal browser, and confirm a row appears in
       the `submissions` table editor and a file appears in the matching
@@ -164,6 +160,14 @@ a browser anon-key call.
   unaffected by this session's changes.
 
 ## Known issues
+- Netlify's built-in secret scanner failed both the production build and the
+  PR #5 deploy preview with "Exposed secrets detected", because `env.js`
+  intentionally contains the literal `SUPABASE_URL` and `SUPABASE_ANON_KEY`
+  values so the browser can read them at runtime. Fixed by adding
+  `SECRETS_SCAN_OMIT_KEYS = "SUPABASE_URL,SUPABASE_ANON_KEY"` under
+  `[build.environment]` in `netlify.toml`, telling the scanner these two are
+  expected to appear in the published output. Confirm the next deploy
+  passes.
 - The Supabase project already existed in `eu-west-1` (Ireland) rather than
   the spec's `eu-central-1` (Frankfurt) when this session started, with no
   tables yet. Builder was asked and chose to keep it in Ireland rather than
